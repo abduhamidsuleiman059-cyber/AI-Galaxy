@@ -1,0 +1,10 @@
+[
+  { "icon": "✍️", "name": "Writing AI",      "count": 24, "href": "trending.html?cat=writing"   },
+  { "icon": "🎨", "name": "Image AI",        "count": 18, "href": "trending.html?cat=image"     },
+  { "icon": "🎬", "name": "Video AI",        "count": 12, "href": "trending.html?cat=video"     },
+  { "icon": "💻", "name": "Code AI",         "count": 15, "href": "trending.html?cat=code"      },
+  { "icon": "🎵", "name": "Music AI",        "count": 9,  "href": "trending.html?cat=music"     },
+  { "icon": "📊", "name": "Data & Analytics","count": 11, "href": "trending.html?cat=data"      },
+  { "icon": "🌐", "name": "Translation",     "count": 8,  "href": "trending.html?cat=translate" },
+  { "icon": "🤖", "name": "Chatbots",        "count": 20, "href": "trending.html?cat=chatbots"  }
+]

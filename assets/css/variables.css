@@ -1,0 +1,218 @@
+/* ============================================
+   AI GALAXY — DESIGN TOKENS
+   variables.css
+   ============================================ */
+
+:root {
+  /* --- Brand Colors --- */
+  --color-purple-deep:    #4c1d95;
+  --color-purple:         #7c3aed;
+  --color-purple-mid:     #8b5cf6;
+  --color-purple-light:   #a855f7;
+  --color-purple-soft:    #c4b5fd;
+  --color-cyan:           #06b6d4;
+  --color-cyan-light:     #22d3ee;
+
+  /* --- Background --- */
+  --bg-base:              #07071a;
+  --bg-surface:           #0d0d2b;
+  --bg-card:              #111130;
+  --bg-card-hover:        #16163a;
+  --bg-input:             #12122e;
+  --bg-overlay:           rgba(7, 7, 26, 0.85);
+
+  /* --- Text --- */
+  --text-primary:         #f0f0ff;
+  --text-secondary:       #a0a0c0;
+  --text-muted:           #5a5a80;
+  --text-accent:          #a855f7;
+  --text-cyan:            #06b6d4;
+
+  /* --- Border --- */
+  --border-color:         rgba(124, 58, 237, 0.2);
+  --border-hover:         rgba(168, 85, 247, 0.5);
+  --border-card:          rgba(124, 58, 237, 0.15);
+
+  /* --- Gradients --- */
+  --gradient-brand:       linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  --gradient-hero:        linear-gradient(135deg, #07071a 0%, #0d0d2b 50%, #130a2e 100%);
+  --gradient-text:        linear-gradient(90deg, #a855f7, #06b6d4);
+  --gradient-card:        linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05));
+  --gradient-glow:        radial-gradient(ellipse at center, rgba(124,58,237,0.3) 0%, transparent 70%);
+
+  /* --- Shadows --- */
+  --shadow-card:          0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover:    0 8px 40px rgba(124, 58, 237, 0.3);
+  --shadow-btn:           0 4px 20px rgba(124, 58, 237, 0.4);
+  --shadow-glow-purple:   0 0 40px rgba(124, 58, 237, 0.4);
+  --shadow-glow-cyan:     0 0 40px rgba(6, 182, 212, 0.3);
+
+  /* --- Typography --- */
+  --font-display:         'Space Grotesk', sans-serif;
+  --font-body:            'Inter', sans-serif;
+
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px */
+  --text-6xl:  3.75rem;    /* 60px */
+
+  /* --- Spacing --- */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+
+  /* --- Radius --- */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* --- Transitions --- */
+  --transition-fast:   0.15s ease;
+  --transition-base:   0.25s ease;
+  --transition-slow:   0.4s ease;
+
+  /* --- Layout --- */
+  --navbar-height:     72px;
+  --container-max:     1200px;
+  --container-pad:     1.5rem;
+  --bottom-nav-height: 64px;
+}
+
+/* ============================================
+   LIGHT THEME
+   variables.css — chini kabisa
+   ============================================ */
+
+[data-theme="light"] {
+  --bg-base:              #f0f0ff;
+  --bg-surface:           #e8e8f8;
+  --bg-card:              #ffffff;
+  --bg-card-hover:        #f5f5ff;
+  --bg-input:             #ffffff;
+  --bg-overlay:           rgba(240, 240, 255, 0.9);
+
+  --text-primary:         #0a0a1a;
+  --text-secondary:       #4a4a6a;
+  --text-muted:           #8888aa;
+  --text-accent:          #7c3aed;
+  --text-cyan:            #0891b2;
+
+  --border-color:         rgba(124, 58, 237, 0.15);
+  --border-hover:         rgba(124, 58, 237, 0.4);
+  --border-card:          rgba(124, 58, 237, 0.1);
+
+  --shadow-card:          0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover:    0 8px 40px rgba(124, 58, 237, 0.2);
+  --shadow-btn:           0 4px 20px rgba(124, 58, 237, 0.3);
+}
+
+/* Hero background light mode */
+[data-theme="light"] .hero {
+  background: linear-gradient(135deg, #e8e8ff 0%, #f0e8ff 50%, #e8f0ff 100%);
+}
+
+[data-theme="light"] .hero__title {
+  color: #0a0a1a;
+}
+
+[data-theme="light"] .hero__desc {
+  color: #3a3a5a;
+}
+
+[data-theme="light"] .hero__badge {
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+}
+
+[data-theme="light"] .btn--ghost {
+  color: #0a0a1a;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .btn--ghost:hover {
+  color: #7c3aed;
+}
+
+[data-theme="light"] .section-title {
+  color: #0a0a1a;
+}
+
+[data-theme="light"] .category-card__name {
+  color: #0a0a1a;
+}
+
+[data-theme="light"] .category-card__count {
+  color: #7c3aed;
+}
+
+[data-theme="light"] .tool-card h3 {
+  color: #0a0a1a;
+}
+
+[data-theme="light"] .tool-card p {
+  color: #4a4a6a;
+}
+
+[data-theme="light"] .feature-item h4 {
+  color: #0a0a1a;
+}
+
+[data-theme="light"] .feature-item p {
+  color: #4a4a6a;
+}
+[data-theme="light"] .nav-link {
+  color: #1a1a2e !important;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.2) !important;
+}
+
+[data-theme="light"] .navbar__logo span {
+  color: #1a1a2e !important;
+}
+
+[data-theme="light"] .navbar__search {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .navbar__search input {
+  color: #1a1a2e !important;
+}
+
+[data-theme="light"] .navbar__search input::placeholder {
+  color: #6a6a8a !important;
+}
+
+[data-theme="light"] .navbar__search svg {
+  color: #6a6a8a !important;
+}
+
+[data-theme="light"] .theme-toggle {
+  color: #1a1a2e !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="light"] .navbar.scrolled {
+  background: rgba(255, 255, 255, 0.99) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}

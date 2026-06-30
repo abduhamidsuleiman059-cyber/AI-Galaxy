@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trending – AI Galaxy</title>
+  <link rel="icon" href="favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS — same order as index.html -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/animation.css" />
+  <link rel="stylesheet" href="assets/css/themes.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+
+<body class="dark">
+
+  <!-- NAVBAR — exact match to homepage -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__container">
+
+      <a href="index.html" class="navbar__logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="15" stroke="url(#g1)" stroke-width="2"/>
+          <ellipse cx="16" cy="16" rx="10" ry="5" stroke="url(#g1)" stroke-width="1.5" transform="rotate(-30 16 16)"/>
+          <ellipse cx="16" cy="16" rx="10" ry="5" stroke="url(#g1)" stroke-width="1.5" transform="rotate(30 16 16)"/>
+          <circle cx="16" cy="16" r="3" fill="url(#g1)"/>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#7c3aed"/>
+              <stop offset="1" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>AI Galaxy</span>
+      </a>
+
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="index.html"     class="nav-link">Home</a></li>
+        <li><a href="trending.html"  class="nav-link active">Trending</a></li>
+        <li><a href="learn.html"     class="nav-link">Learn</a></li>
+        <li><a href="tools.html"     class="nav-link">Tools</a></li>
+        <li><a href="community.html" class="nav-link">Community</a></li>
+        <li><a href="about.html"     class="nav-link">About Us</a></li>
+      </ul>
+
+      <div class="navbar__right">
+        <div class="navbar__search">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" placeholder="Search AI tools, articles…" />
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="navbar__icon-btn" aria-label="Notifications">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="navbar__badge">3</span>
+        </button>
+        <a href="#" class="btn-signin">Sign In</a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- TRENDING HERO -->
+  <section class="tr-hero">
+    <div class="tr-hero__inner">
+
+      <div class="tr-hero__copy">
+        <div class="tr-hero__badge">
+          <span class="tr-hero__dot"></span>
+          LIVE · Updated every 15 minutes
+        </div>
+        <h1 class="tr-hero__title">
+          What's <span class="tr-hero__accent">Hot in AI</span><br>Right Now
+        </h1>
+        <p class="tr-hero__sub">
+          Discover the most trending AI tools and technologies loved by users worldwide.
+        </p>
+        <div class="tr-hero__actions">
+          <a href="tools.html" class="tr-btn-primary">
+            Explore More Tools
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#how-it-works" class="tr-btn-outline">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            How it works
+          </a>
+        </div>
+      </div>
+<!--
+  ============================================================
+  TRENDING.HTML — PATCH
+  Tafuta sehemu hii kwenye trending.html yako:
+
+      <div class="tr-hero__visual">
+
+  Badilisha CONTENT yake YOTE (kutoka <div class="tr-hero__visual"> hadi </div> yake)
+  na hii hapa chini:
+  ============================================================
+-->
+
+      <div class="tr-hero__visual">
+
+        <!-- Premium AI Orb -->
+        <div class="tr-orb-wrap">
+          <!-- Rotating rings -->
+          <div class="tr-orb-ring tr-orb-ring--1"></div>
+          <div class="tr-orb-ring tr-orb-ring--2"></div>
+          <div class="tr-orb-ring tr-orb-ring--3"></div>
+
+          <!-- Core orb -->
+          <div class="tr-orb"></div>
+
+          <!-- Orbiting dots -->
+          <div class="tr-orb-dot tr-orb-dot--1"></div>
+          <div class="tr-orb-dot tr-orb-dot--2"></div>
+          <div class="tr-orb-dot tr-orb-dot--3"></div>
+        </div>
+
+        <!-- Floating badges (unchanged) -->
+        <div class="tr-fire-badge tr-fire-badge--tl"><span>🤖</span> ChatGPT-5</div>
+        <div class="tr-fire-badge tr-fire-badge--tr"><span>🎨</span> Midjourney</div>
+        <div class="tr-fire-badge tr-fire-badge--bl"><span>📈</span> +32.6% this week</div>
+
+      </div>
+
+<!--
+  NOTE: Blue fire image yako bado iko ndani ya assets/images/
+  Ukitaka kubaki nayo badala ya orb, weka tu img tag ndani ya tr-orb-wrap
+  juu ya <div class="tr-orb"></div>
+-->
+    </div>
+  </section>
+
+
+  <!-- PAGE GRID: main + sidebar -->
+  <div class="tr-page">
+
+    <main class="tr-main">
+
+      <!-- Filters -->
+      <div class="tr-filters">
+        <div class="tr-filter-group">
+          <button class="tr-filter-btn tr-filter-btn--active" data-period="week">🔥 This Week</button>
+          <button class="tr-filter-btn" data-period="month">This Month</button>
+          <button class="tr-filter-btn" data-period="alltime">All Time</button>
+        </div>
+        <div class="tr-filter-divider"></div>
+        <div class="tr-filter-group">
+          <button class="tr-filter-btn tr-filter-btn--active" data-cat="all">All</button>
+          <button class="tr-filter-btn" data-cat="ai-chat">AI Chat</button>
+          <button class="tr-filter-btn" data-cat="image">Image</button>
+          <button class="tr-filter-btn" data-cat="video">Video</button>
+          <button class="tr-filter-btn" data-cat="audio">Audio</button>
+          <button class="tr-filter-btn" data-cat="productivity">Productivity</button>
+          <button class="tr-filter-btn" data-cat="code">Code</button>
+        </div>
+        <select class="tr-sort-select">
+          <option value="views">Most Viewed</option>
+          <option value="upvotes">Most Upvoted</option>
+          <option value="new">Newest</option>
+        </select>
+      </div>
+
+      <!-- Featured Spotlight -->
+      <div class="tr-featured">
+        <div class="tr-featured__logo">🤖</div>
+        <div class="tr-featured__body">
+          <div class="tr-featured__label">⭐ Featured Spotlight</div>
+          <div class="tr-featured__name">ChatGPT-5</div>
+          <p class="tr-featured__desc">
+            OpenAI's most advanced model yet. Smarter, faster, better reasoning
+            and multimodal capabilities that are reshaping how people work.
+          </p>
+        </div>
+        <div class="tr-featured__stats">
+          <div class="tr-stat-pill">🔥 12.8K views</div>
+          <div class="tr-stat-pill">⬆️ +45% this week</div>
+          <a href="#" class="tr-btn-view">View Tool →</a>
+        </div>
+      </div>
+
+      <!-- Tools Grid -->
+      <div class="tr-tools-grid" id="trending-tools-grid">
+
+        <div class="tr-card" data-cat="ai-chat">
+          <div class="tr-card__rank tr-card__rank--gold">1</div>
+          <div class="tr-card__top">
+            <div class="tr-card__logo" style="background:rgba(16,163,127,.15);">🤖</div>
+            <div class="tr-card__meta">
+              <div class="tr-card__name">ChatGPT-5</div>
+              <span class="tr-tag tr-tag--ai-chat">AI Chat</span>
+            </div>
+            <div class="tr-card__fire">🔥 12.8K</div>
+          </div>
+          <p class="tr-card__desc">OpenAI's most advanced model yet. Smarter, faster, better.</p>
+          <div class="tr-card__footer">
+            <svg class="tr-sparkline" viewBox="0 0 70 24">
+              <polyline class="tr-spark--up" points="0,20 12,16 24,14 36,10 48,7 60,4 70,2"/>
+            </svg>
+            <a href="#" class="tr-btn-view">View Tool →</a>
+          </div>
+        </div>
+
+        <div class="tr-card" data-cat="ai-chat">
+          <div class="tr-card__rank tr-card__rank--silver">2</div>
+          <div class="tr-card__top">
+            <div class="tr-card__logo" style="background:rgba(168,85,247,.15);">🧠</div>
+            <div class="tr-card__meta">
+              <div class="tr-card__name">Claude 3.5</div>
+              <span class="tr-tag tr-tag--ai-chat">AI Chat</span>
+            </div>
+            <div class="tr-card__fire">🔥 9.6K</div>
+          </div>
+          <p class="tr-card__desc">Anthropic's next-gen AI assistant. Powerful. Safe. Reliable.</p>
+          <div class="tr-card__footer">
+            <svg class="tr-sparkline" viewBox="0 0 70 24">
+              <polyline class="tr-spark--mid" points="0,18 12,15 24,17 36,12 48,9 60,11 70,7"/>
+            </svg>
+            <a href="#" class="tr-btn-view">View Tool →</a>
+          </div>
+        </div>
+
+        <div class="tr-card" data-cat="ai-chat">
+          <div class="tr-card__rank tr-card__rank--bronze">3</div>
+          <div class="tr-card__top">
+            <div class="tr-card__logo" style="background:rgba(6,182,212,.15);">✨</div>
+            <div class="tr-card__meta">
+              <div class="tr-card__name">Gemini 1.5 Pro</div>
+              <span class="tr-tag tr-tag--ai-chat">AI Chat</span>
+            </div>
+            <div class="tr-card__fire">🔥 7.2K</div>
+          </div>
+          <p class="tr-card__desc">Google's most capable AI model for complex tasks.</p>
+          <div class="tr-card__footer">
+            <svg class="tr-sparkline" viewBox="0 0 70 24">
+              <polyline class="tr-spark--up" points="0,14 12,10 24,12 36,8 48,10 60,6 70,8"/>
+            </svg>
+            <a href="#" class="tr-btn-view">View Tool →</a>
+          </div>
+        </div>
+
+        <div class="tr-card" data-cat="image">
+          <div class="tr-card__rank">4</div>
+          <div class="tr-card__top">
+            <div class="tr-card__logo" style="background:rgba(236,72,153,.15);">🎨</div>
+            <div class="tr-card__meta">
+              <div class="tr-card__name">Midjourney V6</div>
+              <span class="tr-tag tr-tag--image">Image AI</span>
+            </div>
+            <div class="tr-card__fire">🔥 6.1K</div>
+          </div>
+          <p class="tr-card__desc">Create stunning images from simple text prompts.</p>
+          <div class="tr-card__footer">
+            <svg class="tr-sparkline" viewBox="0 0 70 24">
+              <polyline class="tr-spark--pink" points="0,22 12,18 24,14 36,16 48,11 60,8 70,5"/>
+            </svg>
+            <a href="#" class="tr-btn-view">View Tool →</a>
+          </div>
+        </div>
+
+        <div class="tr-card" data-cat="video">
+          <div class="tr-card__rank">5</div>
+          <div class="tr-card__top">
+            <div class="tr-card__logo" style="background:rgba(6,182,212,.15);">🎬</div>
+            <div class="tr-card__meta">
+              <div class="tr-card__name">Runway Gen-3</div>
+              <span class="tr-tag tr-tag--video">Video AI</span>
+            </div>
+            <div class="tr-card__fire">🔥 5.3K</div>
+          </div>
+          <p class="tr-card__desc">Next-level AI video generation. Fast, smooth, cinematic.</p>
+          <div class="tr-card__footer">
+            <svg class="tr-sparkline" viewBox="0 0 70 24">
+              <polyline class="tr-spark--cyan" points="0,20 12,17 24,15 36,11 48,13 60,9 70,6"/>
+            </svg>
+            <a href="#" class="tr-btn-view">View Tool →</a>
+          </div>
+        </div>
+
+        <div class="tr-card" data-cat="audio">
+          <div class="tr-card__rank">6</div>
+          <div class="tr-card__top">
+            <div class="tr-card__logo" style="background:rgba(245,158,11,.15);">🎙️</div>
+            <div class="tr-card__meta">
+              <div class="tr-card__name">ElevenLabs</div>
+              <span class="tr-tag tr-tag--audio">Audio AI</span>
+            </div>
+            <div class="tr-card__fire">🔥 4.8K</div>
+          </div>
+          <p class="tr-card__desc">Realistic AI voice generation that speaks human.</p>
+          <div class="tr-card__footer">
+            <svg class="tr-sparkline" viewBox="0 0 70 24">
+              <polyline class="tr-spark--mid" points="0,16 12,14 24,12 36,14 48,10 60,12 70,8"/>
+            </svg>
+            <a href="#" class="tr-btn-view">View Tool →</a>
+          </div>
+        </div>
+
+      </div><!-- /tr-tools-grid -->
+
+
+      <!-- Rising Stars -->
+      <h2 class="tr-section-title">⭐ Rising Stars</h2>
+      <div class="tr-rising-list">
+
+        <div class="tr-rising-item">
+          <span class="tr-rising__rank">7</span>
+          <div class="tr-rising__logo">🔵</div>
+          <div class="tr-rising__info">
+            <div class="tr-rising__name">Perplexity AI</div>
+            <div class="tr-rising__cat">AI Search</div>
+          </div>
+          <span class="tr-rising__growth">+78%</span>
+        </div>
+
+        <div class="tr-rising-item">
+          <span class="tr-rising__rank">8</span>
+          <div class="tr-rising__logo">🟢</div>
+          <div class="tr-rising__info">
+            <div class="tr-rising__name">Suno AI</div>
+            <div class="tr-rising__cat">Music AI</div>
+          </div>
+          <span class="tr-rising__growth">+64%</span>
+        </div>
+
+        <div class="tr-rising-item">
+          <span class="tr-rising__rank">9</span>
+          <div class="tr-rising__logo">🟣</div>
+          <div class="tr-rising__info">
+            <div class="tr-rising__name">Kling AI</div>
+            <div class="tr-rising__cat">Video AI</div>
+          </div>
+          <span class="tr-rising__growth">+51%</span>
+        </div>
+
+        <div class="tr-rising-item">
+          <span class="tr-rising__rank">10</span>
+          <div class="tr-rising__logo">🟡</div>
+          <div class="tr-rising__info">
+            <div class="tr-rising__name">NotebookLM</div>
+            <div class="tr-rising__cat">Productivity</div>
+          </div>
+          <span class="tr-rising__growth">+44%</span>
+        </div>
+
+      </div>
+
+    </main>
+
+
+    <!-- SIDEBAR -->
+    <aside class="tr-sidebar">
+
+      <div class="tr-sidebar-card">
+        <div class="tr-sidebar-title">
+          📊 Trending Overview
+          <select class="tr-sidebar-select">
+            <option>This Week</option>
+            <option>This Month</option>
+          </select>
+        </div>
+        <div class="tr-overview__label">Total Views</div>
+        <div class="tr-overview__big" id="tr-total-views">128.4K</div>
+        <div class="tr-overview__delta">
+          <svg width="12" height="12" fill="none" stroke="#34d399" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          +32.6% vs last week
+        </div>
+        <div class="tr-mini-chart">
+          <svg viewBox="0 0 200 48" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#7c3aed" stop-opacity=".5"/>
+                <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,40 C20,36 40,30 60,26 C80,22 100,28 120,18 C140,10 160,14 180,8 L200,4 L200,48 L0,48 Z" fill="url(#chartGrad)"/>
+            <path d="M0,40 C20,36 40,30 60,26 C80,22 100,28 120,18 C140,10 160,14 180,8 L200,4" fill="none" stroke="#a855f7" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="tr-sidebar-subtitle">Top Gainers</div>
+        <div class="tr-gainers-row">
+          <div class="tr-gainer-chip">🤖</div>
+          <div class="tr-gainer-chip">🎨</div>
+          <div class="tr-gainer-chip">🔵</div>
+          <div class="tr-gainer-chip">✨</div>
+          <div class="tr-gainer-chip tr-gainer-chip--more">+12</div>
+        </div>
+      </div>
+
+      <div class="tr-sidebar-card">
+        <div class="tr-sidebar-title">🏆 Top Categories</div>
+        <div class="tr-cat-list">
+          <div class="tr-cat-item">
+            <div class="tr-cat-header"><span>🤖 AI Chat</span><span>32.4K</span></div>
+            <div class="tr-cat-track"><div class="tr-cat-fill" style="width:90%;background:linear-gradient(90deg,#7c3aed,#a855f7);"></div></div>
+          </div>
+          <div class="tr-cat-item">
+            <div class="tr-cat-header"><span>🎨 Image AI</span><span>24.8K</span></div>
+            <div class="tr-cat-track"><div class="tr-cat-fill" style="width:70%;background:linear-gradient(90deg,#ec4899,#f472b6);"></div></div>
+          </div>
+          <div class="tr-cat-item">
+            <div class="tr-cat-header"><span>🎬 Video AI</span><span>18.7K</span></div>
+            <div class="tr-cat-track"><div class="tr-cat-fill" style="width:54%;background:linear-gradient(90deg,#06b6d4,#22d3ee);"></div></div>
+          </div>
+          <div class="tr-cat-item">
+            <div class="tr-cat-header"><span>⚡ Productivity</span><span>16.3K</span></div>
+            <div class="tr-cat-track"><div class="tr-cat-fill" style="width:46%;background:linear-gradient(90deg,#f59e0b,#fbbf24);"></div></div>
+          </div>
+          <div class="tr-cat-item">
+            <div class="tr-cat-header"><span>💻 Code</span><span>12.9K</span></div>
+            <div class="tr-cat-track"><div class="tr-cat-fill" style="width:36%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tr-sidebar-card">
+        <div class="tr-sidebar-title">📬 Stay Updated</div>
+        <p class="tr-newsletter__desc">Get the latest trending AI tools and updates, delivered to you.</p>
+        <div class="tr-newsletter__form">
+          <input type="email" class="tr-newsletter__input" placeholder="Enter your email" />
+          <button class="tr-newsletter__btn">Subscribe</button>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /tr-page -->
+
+
+  <!-- ===== FOOTER ===== -->
+  <div id="footer-container"></div>
+
+  <!-- ===== MOBILE BOTTOM NAV ===== -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <a href="index.html" class="bottom-nav__item active">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="trending.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span>Tools</span>
+    </a>
+    <a href="learn.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Learn</span>
+    </a>
+    <a href="#blog" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      <span>Blog</span>
+    </a>
+    <a href="contact.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- ===== MOBILE PANELS ===== -->
+
+<!-- OVERLAY -->
+<div class="mob-overlay" id="mob-overlay"></div>
+
+<!-- PROFILE PANEL -->
+<div class="mob-panel" id="panel-profile">
+  <div class="mob-panel__handle"></div>
+  <div class="mob-panel__head">
+    <div class="mob-panel__avatar">
+      <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <div>
+      <h3 class="mob-panel__name">Galaxy User</h3>
+      <p class="mob-panel__email">user@aigalaxy.com</p>
+    </div>
+  </div>
+  <div class="mob-panel__body">
+    <button class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Edit Profile
+    </button>
+    <button class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Change Password
+    </button>
+    <button class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Saved Tools
+    </button>
+    <button class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </button>
+    <div class="mob-panel__divider"></div>
+    <button class="mob-panel__item mob-panel__item--danger">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Log Out
+    </button>
+  </div>
+</div>
+
+<!-- TOOLS PANEL -->
+<div class="mob-panel" id="panel-tools">
+  <div class="mob-panel__handle"></div>
+  <h3 class="mob-panel__title">AI Tools</h3>
+  <div class="mob-panel__body">
+    <a href="trending.html" class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      Trending Tools
+    </a>
+    <a href="tools.html" class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      All Tools
+    </a>
+    <a href="#categories" class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Browse Categories
+    </a>
+  </div>
+</div>
+
+<!-- LEARN PANEL -->
+<div class="mob-panel" id="panel-learn">
+  <div class="mob-panel__handle"></div>
+  <h3 class="mob-panel__title">Learn AI</h3>
+  <div class="mob-panel__body">
+    <a href="learn.html" class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Courses
+    </a>
+    <a href="learn.html#articles" class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Articles
+    </a>
+    <a href="learn.html#videos" class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      Videos
+    </a>
+  </div>
+</div>
+
+<!-- BLOG PANEL -->
+<div class="mob-panel" id="panel-blog">
+  <div class="mob-panel__handle"></div>
+  <h3 class="mob-panel__title">Blog</h3>
+  <div class="mob-panel__body">
+    <a href="#blog" class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Latest Posts
+    </a>
+    <a href="#blog" class="mob-panel__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Community Posts
+    </a>
+  </div>
+</div>
+
+  <!-- ===== AUTH MODAL ===== -->
+  <div id="auth-modal-container"></div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast" role="alert" hidden></div>
+
+  <!-- ===== JS FILES ===== -->
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/tools.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+/* ============================================
+   AI GALAXY — ANIMATIONS
+   animation.css
+   ============================================ */
+
+/* ---------- Keyframes ---------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1);    }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0)   scale(1);   opacity: 0.8; }
+  50%       { transform: translateY(-12px) scale(1.2); opacity: 1;   }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.2; }
+  50%       { opacity: 1;   }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+@keyframes badge-pop {
+  0%   { opacity: 0; transform: scale(0.8) translateY(-10px); }
+  100% { opacity: 1; transform: scale(1)   translateY(0);     }
+}
+
+/* ---------- Entrance Animations ---------- */
+.hero__badge   { animation: badge-pop   0.5s ease 0.2s both; }
+.hero__title   { animation: fade-in-up  0.6s ease 0.35s both; }
+.hero__desc    { animation: fade-in-up  0.6s ease 0.5s both; }
+.hero__btns    { animation: fade-in-up  0.6s ease 0.65s both; }
+.hero__right   { animation: slide-in-right 0.8s ease 0.4s both; }
+
+/* ---------- Scroll Reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0.05s; }
+.reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay: 0.12s; }
+.reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay: 0.19s; }
+.reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay: 0.26s; }
+.reveal-stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay: 0.33s; }
+.reveal-stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay: 0.40s; }
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "ChatGPT", "category": "Writing", "description": "AI assistant for chatting, writing and more." },
+  { "id": 2, "name": "Midjourney", "category": "Image Generation", "description": "AI image generation tool." },
+  { "id": 3, "name": "Canva AI", "category": "Design", "description": "Design anything with AI power." },
+  { "id": 4, "name": "Perplexity", "category": "Productivity", "description": "AI search engine." },
+  { "id": 5, "name": "Claude", "category": "Business", "description": "AI assistant by Anthropic." },
+  { "id": 6, "name": "DeepL", "category": "Education", "description": "AI translation made better." },
+  { "id": 7, "name": "GitHub Copilot", "category": "Coding", "description": "AI-powered coding assistant." },
+  { "id": 8, "name": "Notion AI", "category": "Productivity", "description": "AI assistant integrated into Notion." }
+]
