@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About AI Galaxy — Our story, mission, and how to reach us." />
+  <title>About Us — AI Galaxy</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/animation.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__container">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo">
+        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="6" fill="url(#grad1)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad1)" stroke-width="1.5" fill="none" transform="rotate(-30 16 16)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad2)" stroke-width="1" fill="none" transform="rotate(30 16 16)" opacity="0.5"/>
+          <circle cx="26" cy="10" r="2" fill="#a855f7"/>
+          <circle cx="8" cy="22" r="1.5" fill="#06b6d4"/>
+          <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+            <linearGradient id="grad2" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#a855f7"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>AI <strong>GALAXY</strong></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="trending.html" class="nav-link">Trending</a></li>
+        <li><a href="learn.html" class="nav-link">Learn</a></li>
+        <li><a href="tools.html" class="nav-link">Tools</a></li>
+        <li><a href="community.html" class="nav-link">Community</a></li>
+        <li><a href="contact.html" class="nav-link">About Us</a></li>
+      </ul>
+
+      <!-- Right Side -->
+      <div class="navbar__right">
+        <div class="navbar__search">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="nav-search" placeholder="Search AI tools, articles..." />
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="btn btn--primary btn--sm" id="signin-btn">Sign In</button>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ===== ABOUT HERO ===== -->
+  <section class="ab-hero">
+    <div class="container ab-hero__inner">
+      <div class="ab-hero__left reveal">
+        <span class="hero__badge">About Us</span>
+        <h1 class="ab-hero__title">Empowering the world with <span class="gradient-text">AI.</span></h1>
+        <p class="ab-hero__desc">AI Galaxy is your ultimate hub for discovering, exploring, and mastering the best AI tools in the galaxy.</p>
+      </div>
+      <div class="ab-hero__right reveal">
+        <div class="astro-glow"></div>
+        <div class="astro-figure">
+          <img src="assets/images/astronaut.png" alt="AI Galaxy Astronaut" class="astro-img"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INFO CARDS (Story / Mission / Why) ===== -->
+  <section class="ab-info">
+    <div class="container">
+      <div class="ab-info__grid">
+
+        <div class="ab-info-card reveal-stagger">
+          <button type="button" class="ab-info-card__head">
+            <span class="ab-info-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </span>
+            <h3>Our Story</h3>
+            <span class="ab-info-card__chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="ab-info-card__body">
+            <p>AI Galaxy was born out of a simple idea: make AI tools accessible to everyone. With thousands of AI tools emerging every day, we built a platform that helps you discover the best, stay updated, and use AI to its full potential.</p>
+          </div>
+        </div>
+
+        <div class="ab-info-card reveal-stagger">
+          <button type="button" class="ab-info-card__head">
+            <span class="ab-info-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </span>
+            <h3>Our Mission</h3>
+            <span class="ab-info-card__chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="ab-info-card__body">
+            <p>To empower individuals, creators, and businesses by connecting them with the best AI tools and resources, making AI simple, accessible, and impactful for all.</p>
+          </div>
+        </div>
+
+        <div class="ab-info-card reveal-stagger">
+          <button type="button" class="ab-info-card__head">
+            <span class="ab-info-card__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            </span>
+            <h3>Why AI Galaxy?</h3>
+            <span class="ab-info-card__chevron">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="ab-info-card__body">
+            <ul class="ab-check-list">
+              <li>Curated &amp; Verified AI tools</li>
+              <li>Always up-to-date</li>
+              <li>Easy to explore &amp; use</li>
+              <li>Built for everyone</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ===== STATS BAR ===== -->
+  <section class="ab-stats-wrap">
+    <div class="container">
+      <div class="ab-stats">
+        <div class="ab-stat reveal-stagger">
+          <span class="ab-stat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </span>
+          <div>
+            <p class="ab-stat__num">5,000+</p>
+            <p class="ab-stat__label">AI Tools <span>Curated &amp; Verified</span></p>
+          </div>
+        </div>
+
+        <div class="ab-stat reveal-stagger">
+          <span class="ab-stat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          </span>
+          <div>
+            <p class="ab-stat__num">100+</p>
+            <p class="ab-stat__label">Categories <span>Organized for you</span></p>
+          </div>
+        </div>
+
+        <div class="ab-stat reveal-stagger">
+          <span class="ab-stat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </span>
+          <div>
+            <p class="ab-stat__num">Daily</p>
+            <p class="ab-stat__label">Updates <span>Fresh tools everyday</span></p>
+          </div>
+        </div>
+
+        <div class="ab-stat reveal-stagger">
+          <span class="ab-stat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </span>
+          <div>
+            <p class="ab-stat__num">Global</p>
+            <p class="ab-stat__label">Community <span>Users from all over</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CORE VALUES ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title ab-values__title">Our Core Values</h2>
+      <div class="ab-values">
+
+        <div class="ab-value-card reveal-stagger">
+          <span class="ab-value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+          </span>
+          <h4>Innovation</h4>
+          <p>We embrace the future and bring you the most innovative AI tools.</p>
+        </div>
+
+        <div class="ab-value-card reveal-stagger">
+          <span class="ab-value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <h4>Trust</h4>
+          <p>We ensure every tool is carefully reviewed and reliable.</p>
+        </div>
+
+        <div class="ab-value-card reveal-stagger">
+          <span class="ab-value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.9L19 10l-5.1 2.1L12 17l-1.9-4.9L5 10l5.1-2.1z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>
+          </span>
+          <h4>Simplicity</h4>
+          <p>We make AI easy to discover, understand, and use for everyone.</p>
+        </div>
+
+        <div class="ab-value-card reveal-stagger">
+          <span class="ab-value-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <h4>Accessibility</h4>
+          <p>We believe AI should be accessible to anyone, anywhere.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section ab-contact-wrap">
+    <div class="container">
+      <div class="ab-contact-card reveal">
+
+        <div class="ab-contact-left">
+          <h3>Contact Us</h3>
+          <p>We'd love to hear from you!</p>
+
+          <div class="ab-contact-methods">
+            <a href="mailto:hello@aigalaxy.io" class="ab-contact-method">
+              <span class="ab-contact-method__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+              </span>
+              <span>
+                <strong>Email</strong>
+                <em>hello@aigalaxy.io</em>
+              </span>
+            </a>
+
+            <a href="https://wa.me/255123456789" target="_blank" rel="noopener" class="ab-contact-method">
+              <span class="ab-contact-method__icon ab-contact-method__icon--whatsapp">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.61-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.95 0-1.4.73-2.08 1-2.37.26-.28.56-.35.75-.35.19 0 .37.002.54.01.17.008.4-.06.62.48.24.58.81 2 .88 2.15.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.24.09 1.53.72 1.79.85.27.13.44.19.51.3.07.11.07.62-.17 1.3z"/></svg>
+              </span>
+              <span>
+                <strong>WhatsApp</strong>
+                <em>+255 123 456 789</em>
+              </span>
+            </a>
+
+            <a href="https://x.com/aigalaxy" target="_blank" rel="noopener" class="ab-contact-method">
+              <span class="ab-contact-method__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.1-9.3L1 2h7.4l5.1 6.7L18.9 2zm-1.3 18h2L7.5 4h-2l12.1 16z"/></svg>
+              </span>
+              <span>
+                <strong>X (Twitter)</strong>
+                <em>@aigalaxy.io</em>
+              </span>
+            </a>
+
+            <a href="https://github.com/aigalaxy" target="_blank" rel="noopener" class="ab-contact-method">
+              <span class="ab-contact-method__icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.48 2 2 6.58 2 12.17c0 4.48 2.87 8.28 6.84 9.62.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.61-3.37-1.19-3.37-1.19-.45-1.17-1.11-1.48-1.11-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.32 9.32 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.17C22 6.58 17.52 2 12 2z"/></svg>
+              </span>
+              <span>
+                <strong>GitHub</strong>
+                <em>github.com/aigalaxy</em>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <form class="ab-contact-form" id="ab-contact-form">
+          <div class="ab-form-row">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+          </div>
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn btn--primary ab-form-submit">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="footer-container"></div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast" role="alert" hidden></div>
+
+  <!-- ===== JS FILES ===== -->
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/about.js"></script>
+
+</body>
+</html>

@@ -34,11 +34,6 @@ const API = (() => {
     return await fetchJSON(`${DATA_PATH}categories.json`) || [];
   }
 
-  /** Get blog posts */
-  async function getBlogPosts() {
-    return await fetchJSON(`${DATA_PATH}blog.json`) || [];
-  }
-
   /** Filter tools by category */
   async function getToolsByCategory(category) {
     const tools = await getTools();
@@ -132,7 +127,6 @@ const API = (() => {
   return {
     getTools,
     getCategories,
-    getBlogPosts,
     getToolsByCategory,
     searchTools,
     getToolById,

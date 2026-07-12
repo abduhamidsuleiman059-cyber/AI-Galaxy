@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools – AI Galaxy</title>
+  <link rel="icon" href="favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS — same order as index.html / trending.html -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/animation.css" />
+  <link rel="stylesheet" href="assets/css/themes.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+
+<body class="dark">
+
+  <!-- NAVBAR — exact match to homepage/trending -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__container">
+
+      <a href="index.html" class="navbar__logo">
+        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="6" fill="url(#grad1)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad1)" stroke-width="1.5" fill="none" transform="rotate(-30 16 16)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad2)" stroke-width="1" fill="none" transform="rotate(30 16 16)" opacity="0.5"/>
+          <circle cx="26" cy="10" r="2" fill="#a855f7"/>
+          <circle cx="8" cy="22" r="1.5" fill="#06b6d4"/>
+          <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+            <linearGradient id="grad2" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#a855f7"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>AI <strong>GALAXY</strong></span>
+      </a>
+
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="index.html"     class="nav-link">Home</a></li>
+        <li><a href="trending.html"  class="nav-link">Trending</a></li>
+        <li><a href="learn.html"     class="nav-link">Learn</a></li>
+        <li><a href="tools.html"     class="nav-link active">Tools</a></li>
+        <li><a href="community.html" class="nav-link">Community</a></li>
+        <li><a href="contact.html" class="nav-link">About Us</a></li>
+      </ul>
+
+      <div class="navbar__right">
+        <div class="navbar__search">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" placeholder="Search AI tools…" />
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="navbar__icon-btn" aria-label="Notifications">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="navbar__badge">3</span>
+        </button>
+        <a href="#" class="btn-signin">Sign In</a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- TOOLS HERO -->
+  <section class="tl-hero">
+
+    <!-- blue fire glow sits BEHIND the content as ambience -->
+    <div class="tl-hero__bg-orb">
+      <img src="assets/images/blue-fire.png" alt="" />
+    </div>
+
+    <div class="tl-hero__inner">
+      <div class="tr-hero__badge">
+        <span class="tr-hero__dot"></span>
+        Explore The Best AI Tools
+      </div>
+      <h1 class="tl-hero__title">
+        Discover Powerful <span class="tl-accent">AI Tools</span>
+      </h1>
+      <p class="tl-hero__sub">
+        Find the best AI tools to boost your productivity, creativity, and workflow.
+        Explore, compare and choose the right tools for your needs.
+      </p>
+
+      <div class="tl-search-wrap">
+        <div class="tl-search-input">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="tl-search-input" placeholder="Search AI tools…" />
+        </div>
+        <button class="tl-search-btn" id="tl-search-btn">Search</button>
+      </div>
+
+      <div class="tl-select-row">
+        <select class="tl-select" id="tl-category-select">
+          <option>All Categories</option>
+          <option value="chatbots">AI Chatbots</option>
+          <option value="image">Image Generation</option>
+          <option value="video">Video Generation</option>
+          <option value="productivity">Productivity</option>
+          <option value="code">Code Assistant</option>
+          <option value="research">Research</option>
+        </select>
+        <select class="tl-select">
+          <option>All Pricing</option>
+          <option>Free</option>
+          <option>Paid</option>
+          <option>Free • Paid</option>
+        </select>
+        <select class="tl-select" id="tl-sort-select">
+          <option value="popular">Sort by: Popular</option>
+          <option value="rating">Sort by: Rating</option>
+          <option value="name">Sort by: Name</option>
+        </select>
+      </div>
+
+      <div class="tl-icon-row">
+        <div class="tl-icon-chip tl-icon-chip--1" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h8"/><path d="M8 14h5"/><rect x="5" y="3" width="14" height="18" rx="3"/></svg>
+        </div>
+        <div class="tl-icon-chip tl-icon-chip--2" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/><rect x="4" y="2" width="16" height="20" rx="3"/></svg>
+        </div>
+        <div class="tl-icon-chip tl-icon-chip--3" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8l-2 4 2 4"/><path d="M18 8l2 4-2 4"/><path d="M9 4l3 16"/><path d="M15 4l-3 16"/></svg>
+        </div>
+        <div class="tl-icon-chip tl-icon-chip--4" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M7 4v16"/><path d="M17 4v16"/><path d="M4 17h16"/></svg>
+        </div>
+        <div class="tl-icon-chip tl-icon-chip--5" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8c0-2 2-3 4-3s4 1 4 3"/><path d="M8 16c0 2 2 3 4 3s4-1 4-3"/><path d="M6 12h12"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- FEATURED TOOLS -->
+  <section class="tl-section">
+    <div class="tl-section-head">
+      <h2 class="tl-section-title">⭐ Featured Tools</h2>
+      <a href="#tl-all-tools" class="tl-section-link">View all tools →</a>
+    </div>
+    <div class="tl-featured-grid" id="tl-featured-grid">
+      <!-- rendered by toolspage.js -->
+    </div>
+  </section>
+
+
+  <!-- BROWSE BY CATEGORY -->
+  <section class="tl-section">
+    <div class="tl-section-head">
+      <h2 class="tl-section-title">🔷 Browse by Category</h2>
+      <a href="#tl-all-tools" class="tl-section-link">View all categories →</a>
+    </div>
+    <div class="tl-category-grid reveal-stagger" id="tl-category-grid">
+      <a href="#tl-all-tools" class="category-card" data-cat="all">
+        <div class="category-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10"/><path d="M7 12h10"/><path d="M7 16h6"/></svg></div>
+        <span class="category-card__name">All Tools</span>
+        <span class="category-card__count">120+ Tools</span>
+      </a>
+      <a href="#tl-all-tools" class="category-card" data-cat="chatbots">
+        <div class="category-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h8"/><path d="M8 14h5"/><rect x="5" y="3" width="14" height="18" rx="3"/></svg></div>
+        <span class="category-card__name">AI Chatbots</span>
+        <span class="category-card__count">23+ Tools</span>
+      </a>
+      <a href="#tl-all-tools" class="category-card" data-cat="image">
+        <div class="category-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4-4-6 6"/></svg></div>
+        <span class="category-card__name">Image Generation</span>
+        <span class="category-card__count">18+ Tools</span>
+      </a>
+      <a href="#tl-all-tools" class="category-card" data-cat="video">
+        <div class="category-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M10 9l4 3-4 3z"/></svg></div>
+        <span class="category-card__name">Video Generation</span>
+        <span class="category-card__count">15+ Tools</span>
+      </a>
+      <a href="#tl-all-tools" class="category-card" data-cat="productivity">
+        <div class="category-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 11h8"/><path d="M8 15h6"/><path d="M8 7h4"/><rect x="4" y="3" width="16" height="18" rx="3"/></svg></div>
+        <span class="category-card__name">Productivity</span>
+        <span class="category-card__count">20+ Tools</span>
+      </a>
+      <a href="#tl-all-tools" class="category-card" data-cat="code">
+        <div class="category-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18 22 12 16 6"/><path d="M8 6 2 12 8 18"/></svg></div>
+        <span class="category-card__name">Code Assistant</span>
+        <span class="category-card__count">16+ Tools</span>
+      </a>
+      <a href="#tl-all-tools" class="category-card" data-cat="research">
+        <div class="category-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.2-4.2"/><path d="M11 8v6"/><path d="M8 11h6"/></svg></div>
+        <span class="category-card__name">Research</span>
+        <span class="category-card__count">12+ Tools</span>
+      </a>
+      <a href="#tl-all-tools" class="category-card" data-cat="all">
+        <div class="category-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12h2"/><path d="M3 12h2"/><path d="M12 3v2"/><path d="M12 19v2"/></svg></div>
+        <span class="category-card__name">More</span>
+        <span class="category-card__count">16+ Tools</span>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ALL TOOLS -->
+  <section class="tl-section" id="tl-all-tools">
+    <div class="tl-section-head">
+      <h2 class="tl-section-title">🧭 All AI Tools</h2>
+    </div>
+    <div class="tl-all-filters">
+      <div class="tr-filter-group">
+        <button class="tr-filter-btn tr-filter-btn--active" data-cat="all">All</button>
+        <button class="tr-filter-btn" data-cat="chatbots">Chatbots</button>
+        <button class="tr-filter-btn" data-cat="image">Image</button>
+        <button class="tr-filter-btn" data-cat="video">Video</button>
+        <button class="tr-filter-btn" data-cat="productivity">Productivity</button>
+        <button class="tr-filter-btn" data-cat="code">Code</button>
+        <button class="tr-filter-btn" data-cat="research">Research</button>
+        <button class="tr-filter-btn" data-cat="audio">Audio</button>
+      </div>
+    </div>
+    <div class="tl-all-grid" id="tl-all-grid">
+      <!-- rendered by toolspage.js -->
+    </div>
+  </section>
+
+
+  <!-- ===== FOOTER ===== -->
+  <div id="footer-container"></div>
+
+  <!-- ===== MOBILE BOTTOM NAV ===== -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <a href="index.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="trending.html" class="bottom-nav__item active">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span>Tools</span>
+    </a>
+    <a href="learn.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Learn</span>
+    </a>
+    <a href="contact.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- ===== MOBILE PANELS ===== -->
+
+  <!-- OVERLAY -->
+  <div class="mob-overlay" id="mob-overlay"></div>
+
+  <!-- PROFILE PANEL -->
+  <div class="mob-panel" id="panel-profile">
+    <div class="mob-panel__handle"></div>
+    <div class="mob-panel__head">
+      <div class="mob-panel__avatar">
+        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div>
+        <h3 class="mob-panel__name">Galaxy User</h3>
+        <p class="mob-panel__email">user@aigalaxy.com</p>
+      </div>
+    </div>
+    <div class="mob-panel__body">
+      <button class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Edit Profile
+      </button>
+      <button class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Change Password
+      </button>
+      <button class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Saved Tools
+      </button>
+      <button class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </button>
+      <div class="mob-panel__divider"></div>
+      <button class="mob-panel__item mob-panel__item--danger">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log Out
+      </button>
+    </div>
+  </div>
+
+  <!-- TOOLS PANEL -->
+  <div class="mob-panel" id="panel-tools">
+    <div class="mob-panel__handle"></div>
+    <h3 class="mob-panel__title">AI Tools</h3>
+    <div class="mob-panel__body">
+      <a href="trending.html" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Trending Tools
+      </a>
+      <a href="tools.html" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        All Tools
+      </a>
+      <a href="#tl-all-tools" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Browse Categories
+      </a>
+    </div>
+  </div>
+
+  <!-- LEARN PANEL -->
+  <div class="mob-panel" id="panel-learn">
+    <div class="mob-panel__handle"></div>
+    <h3 class="mob-panel__title">Learn AI</h3>
+    <div class="mob-panel__body">
+      <a href="learn.html" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Courses
+      </a>
+      <a href="learn.html#articles" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Articles
+      </a>
+      <a href="learn.html#videos" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        Videos
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ===== AUTH MODAL ===== -->
+  <div id="auth-modal-container"></div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast" role="alert" hidden></div>
+
+  <!-- ===== JS FILES ===== -->
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/tools.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/toolspage.js"></script>
+
+</body>
+</html>

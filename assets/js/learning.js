@@ -1,79 +1,51 @@
 /* ============================================
-   LEARNING.JS — AI Galaxy Learning Page
+   AI GALAXY — LEARN PAGE JS
+   learnpage.js  (Learn page only — does not touch
+   any other page's script)
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ---------- CATEGORY PILLS ----------
-  const catPills = document.querySelectorAll('.cat-pill');
-  catPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      catPills.forEach(p => p.classList.remove('cat-pill--active'));
-      pill.classList.add('cat-pill--active');
-      // Future: filter courses by category
-      const cat = pill.dataset.cat;
-      filterCourses(cat);
+  /* ---- Hero search: redirect to Trending with query ---- */
+  const searchForm  = document.getElementById('lr-search-form');
+  const searchInput = document.getElementById('lr-search-input');
+
+  searchForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = searchInput.value.trim();
+    if (q) {
+      window.location.href = `trending.html?search=${encodeURIComponent(q)}`;
+    }
+  });
+
+  /* ---- Popular tags: fill search input on click ---- */
+  document.querySelectorAll('.lr-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const value = tag.dataset.tag || tag.textContent.trim();
+      searchInput.value = value;
+      searchInput.focus();
     });
   });
 
-  function filterCourses(cat) {
-    // Placeholder — hook up to real data later
-    console.log('Filter by:', cat);
-  }
-
-  // ---------- DARK MODE TOGGLE ----------
-  const darkToggle = document.getElementById('darkToggle');
-  if (darkToggle) {
-    darkToggle.addEventListener('change', () => {
-      document.body.classList.toggle('light-mode', !darkToggle.checked);
-    });
-  }
-
-  // ---------- ANIMATE PROGRESS BARS ON SCROLL ----------
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const fill = entry.target.querySelector('.progress-bar__fill');
-        if (fill) {
-          const width = fill.style.width;
-          fill.style.width = '0%';
-          setTimeout(() => { fill.style.width = width; }, 100);
-        }
-        observer.unobserve(entry.target);
+  /* ---- Newsletter form ---- */
+  const newsletterForm = document.getElementById('lr-newsletter-form');
+  newsletterForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const emailInput = newsletterForm.querySelector('input[type="email"]');
+    if (emailInput && emailInput.value.trim()) {
+      if (typeof window.showToast === 'function') {
+        window.showToast('Umejiunga! Asante kwa kufuatilia AI Galaxy 🚀');
       }
-    });
-  }, { threshold: 0.3 });
-
-  document.querySelectorAll('.progress-card').forEach(card => observer.observe(card));
-
-  // ---------- CONTINUE BUTTONS ----------
-  document.querySelectorAll('.btn-continue').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const card = e.target.closest('.progress-card');
-      const title = card?.querySelector('.progress-card__title')?.textContent;
-      console.log('Continue:', title);
-      // Future: navigate to course page
-    });
+      newsletterForm.reset();
+    }
   });
 
-  // ---------- SEARCH ----------
-  const searchInput = document.querySelector('.topbar__search input');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.toLowerCase().trim();
-      if (!query) return;
-      // Future: filter visible cards
-      console.log('Search:', query);
-    });
-  }
-
-  // ---------- SAVE BOOKMARKS ----------
-  document.querySelectorAll('.rec-card__save').forEach(btn => {
+  document.querySelectorAll('.lr-course-card .btn--primary').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      const saved = btn.dataset.saved === 'true';
-      btn.dataset.saved = !saved;
-      btn.textContent = saved ? '🔖' : '🔖';
-      btn.style.opacity = saved ? '0.5' : '1';
+      e.preventDefault();
+      if (typeof window.showToast === 'function') {
+        window.showToast('This learning path is opening soon.');
+      }
     });
   });
 

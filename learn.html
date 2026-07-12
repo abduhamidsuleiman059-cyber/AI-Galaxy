@@ -1,362 +1,449 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Learning — AI Galaxy</title>
-  <link rel="stylesheet" href="assets/css/variables.css" />
-  <link rel="stylesheet" href="assets/css/learning.css" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta name="description" content="AI Galaxy — Learn AI. Discover the best AI courses, tutorials and resources curated to help you master AI and stay ahead." />
+  <title>Learn AI — AI Galaxy</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-</head>
-<body class="dark-mode">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- ===== SIDEBAR ===== -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar__logo">
-      <div class="sidebar__logo-icon">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2"/>
-          <circle cx="14" cy="14" r="6" fill="url(#lg2)"/>
-          <ellipse cx="14" cy="14" rx="13" ry="5" stroke="url(#lg1)" stroke-width="1.5" fill="none"/>
+  <!-- CSS Files — same order as index.html -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/animation.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <!-- Page-specific (Learn page only, prefix: lr-) -->
+  <link rel="stylesheet" href="assets/css/learn.css" />
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR — exact match to homepage ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__container">
+
+      <a href="index.html" class="navbar__logo">
+        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="6" fill="url(#grad1)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad1)" stroke-width="1.5" fill="none" transform="rotate(-30 16 16)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad2)" stroke-width="1" fill="none" transform="rotate(30 16 16)" opacity="0.5"/>
+          <circle cx="26" cy="10" r="2" fill="#a855f7"/>
+          <circle cx="8" cy="22" r="1.5" fill="#06b6d4"/>
           <defs>
-            <linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/>
+            <linearGradient id="grad1" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
             </linearGradient>
-            <linearGradient id="lg2" x1="8" y1="8" x2="20" y2="20" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#a855f7"/><stop offset="1" stop-color="#06b6d4"/>
+            <linearGradient id="grad2" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#a855f7"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
             </linearGradient>
           </defs>
         </svg>
-      </div>
-      <span class="sidebar__logo-text">AI GALAXY</span>
-    </div>
+        <span>AI <strong>GALAXY</strong></span>
+      </a>
 
-    <nav class="sidebar__nav">
-      <a href="index.html" class="sidebar__link">
-        <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span>Home</span>
-      </a>
-      <a href="explore.html" class="sidebar__link">
-        <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <span>Explore</span>
-      </a>
-      <a href="tools.html" class="sidebar__link">
-        <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-        <span>AI Tools</span>
-      </a>
-      <a href="learning.html" class="sidebar__link sidebar__link--active">
-        <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        <span>Learning</span>
-      </a>
-      <a href="#" class="sidebar__link">
-        <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <span>Projects</span>
-      </a>
-      <a href="community.html" class="sidebar__link">
-        <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        <span>Community</span>
-      </a>
-      <a href="#" class="sidebar__link">
-        <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-        <span>Galaxy Points</span>
-      </a>
-      <a href="contact.html" class="sidebar__link">
-        <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-        <span>Book a Pro</span>
-      </a>
-    </nav>
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="trending.html" class="nav-link">Trending</a></li>
+        <li><a href="learn.html" class="nav-link">Learn</a></li>
+        <li><a href="tools.html" class="nav-link">Tools</a></li>
+        <li><a href="community.html" class="nav-link">Community</a></li>
+        <li><a href="contact.html" class="nav-link">About Us</a></li>
+      </ul>
 
-    <!-- Galaxy Points Card -->
-    <div class="sidebar__points-card">
-      <div class="sidebar__points-label">Galaxy Points</div>
-      <div class="sidebar__points-value">⭐ 2,450</div>
-      <button class="sidebar__points-btn">View Rewards</button>
-    </div>
-
-    <!-- Sidebar mascot -->
-    <div class="sidebar__mascot">
-      <div class="sidebar__mascot-img">🤖</div>
-      <p class="sidebar__mascot-quote">Learn. Create. Elevate.</p>
-      <p class="sidebar__mascot-sub">Master AI skills and build the future with AI Galaxy.</p>
-      <button class="sidebar__mascot-cta">Explore Now</button>
-    </div>
-
-    <!-- Dark mode toggle -->
-    <div class="sidebar__footer">
-      <div class="sidebar__dark-toggle">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-        <span>Dark Mode</span>
-        <label class="toggle-switch">
-          <input type="checkbox" checked id="darkToggle" />
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <a href="#" class="sidebar__help">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        Help & Support
-      </a>
-    </div>
-  </aside>
-
-  <!-- ===== MAIN CONTENT ===== -->
-  <main class="main-content">
-
-    <!-- Top bar -->
-    <header class="topbar">
-      <div class="topbar__search">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" placeholder="Search courses, topics..." />
-      </div>
-      <div class="topbar__actions">
-        <button class="topbar__notif">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-          <span class="topbar__badge">3</span>
-        </button>
-        <div class="topbar__avatar">
-          <img src="assets/images/avatar.png" alt="User" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-          <div class="topbar__avatar-fallback">A</div>
+      <div class="navbar__right">
+        <div class="navbar__search">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="nav-search" placeholder="Search AI tools, articles..." />
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="btn btn--primary btn--sm" id="signin-btn">Sign In</button>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    </header>
 
-    <!-- ===== HERO ===== -->
-    <section class="learn-hero">
-      <div class="learn-hero__content">
-        <h1 class="learn-hero__title">Learning</h1>
-        <p class="learn-hero__subtitle">Upgrade your skills. Unlock infinite possibilities.</p>
-        <p class="learn-hero__desc">Explore expert-led courses, hands-on projects, and real-world skills to help you grow in the age of AI.</p>
-        <div class="learn-hero__cta">
-          <button class="btn-primary">Browse Courses</button>
-          <button class="btn-ghost">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            How it works
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="lr-hero">
+    <div class="lr-hero__inner">
+
+      <!-- Left: copy + search -->
+      <div class="lr-hero__copy reveal">
+        <span class="lr-hero__badge">Jifunze AI. Kua Bila Kikomo.</span>
+        <h1 class="lr-hero__title">
+          Learn AI.<br />
+          <span class="hero__title--gradient">Build the Future.</span>
+        </h1>
+        <p class="lr-hero__desc">
+          Gundua kozi bora zaidi za AI, mafunzo, na rasilimali zilizoandaliwa
+          kukusaidia kuwa mtaalamu wa AI na kubaki mbele.
+        </p>
+
+        <form class="lr-search" id="lr-search-form">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="lr-search-input" placeholder="Search for courses, topics or tools..." />
+          <button type="submit" class="btn btn--primary btn--md">
+            <span>Search</span>
           </button>
+        </form>
+
+        <div class="lr-hero__popular">
+          Popular:
+          <span class="lr-tag" data-tag="ChatGPT">ChatGPT</span>
+          <span class="lr-tag" data-tag="Midjourney">Midjourney</span>
+          <span class="lr-tag" data-tag="Python AI">Python AI</span>
+          <span class="lr-tag" data-tag="Prompt Engineering">Prompt Engineering</span>
         </div>
       </div>
-      <div class="learn-hero__visual">
-        <div class="learn-hero__person"></div>
-        <div class="learn-hero__brand-badge">AI GALAXY</div>
-        <!-- Floating icons -->
-        <div class="float-icon float-icon--1">💬</div>
-        <div class="float-icon float-icon--2">🧠</div>
-        <div class="float-icon float-icon--3">🖼️</div>
-        <div class="float-icon float-icon--4">📊</div>
-        <div class="float-icon float-icon--5">➕</div>
-      </div>
-    </section>
 
-    <!-- ===== EXPLORE BY CATEGORY ===== -->
-    <section class="section">
-      <div class="section__header">
-        <h2 class="section__title">Explore by Category</h2>
-        <a href="#" class="section__view-all">View all →</a>
-      </div>
-      <div class="categories-row" id="categoriesRow">
-        <button class="cat-pill cat-pill--active" data-cat="all">
-          <span class="cat-pill__icon">⊞</span>
-          <span>All</span>
-        </button>
-        <button class="cat-pill" data-cat="basics">
-          <span class="cat-pill__icon">🧠</span>
-          <span>AI Basics</span>
-        </button>
-        <button class="cat-pill" data-cat="prompt">
-          <span class="cat-pill__icon">💬</span>
-          <span>Prompt Engineering</span>
-        </button>
-        <button class="cat-pill" data-cat="ml">
-          <span class="cat-pill__icon">✦</span>
-          <span>Machine Learning</span>
-        </button>
-        <button class="cat-pill" data-cat="data">
-          <span class="cat-pill__icon">📊</span>
-          <span>Data Science</span>
-        </button>
-        <button class="cat-pill" data-cat="tools">
-          <span class="cat-pill__icon">🔧</span>
-          <span>AI Tools</span>
-        </button>
-        <button class="cat-pill" data-cat="nocode">
-          <span class="cat-pill__icon">&lt;/&gt;</span>
-          <span>No-Code AI</span>
-        </button>
-        <button class="cat-pill" data-cat="career">
-          <span class="cat-pill__icon">👤</span>
-          <span>Career & Growth</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- ===== CONTINUE LEARNING ===== -->
-    <section class="section">
-      <div class="section__header">
-        <h2 class="section__title">Continue Learning</h2>
-        <a href="#" class="section__view-all">View all →</a>
-      </div>
-      <div class="progress-cards" id="progressCards">
-
-        <div class="progress-card">
-          <div class="progress-card__top">
-            <span class="badge badge--inprogress">In Progress</span>
-            <button class="progress-card__menu">⋮</button>
-          </div>
-          <div class="progress-card__thumb progress-card__thumb--chatgpt">
-            <div class="progress-card__thumb-icon">🤖</div>
-          </div>
-          <h3 class="progress-card__title">ChatGPT Mastery</h3>
-          <p class="progress-card__desc">Learn to create powerful prompts and get better AI results.</p>
-          <div class="progress-bar">
-            <div class="progress-bar__fill" style="width:65%"></div>
-          </div>
-          <div class="progress-card__pct">65%</div>
-          <button class="btn-continue">Continue</button>
+      <!-- Right: floating book visual -->
+      <div class="lr-hero__visual reveal">
+        <div class="lr-visual-glow"></div>
+        <div class="lr-orbit lr-orbit--1"></div>
+        <div class="lr-orbit lr-orbit--2"></div>
+        <div class="lr-book">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
         </div>
-
-        <div class="progress-card">
-          <div class="progress-card__top">
-            <span class="badge badge--inprogress">In Progress</span>
-            <button class="progress-card__menu">⋮</button>
-          </div>
-          <div class="progress-card__thumb progress-card__thumb--python">
-            <div class="progress-card__thumb-icon">🐍</div>
-          </div>
-          <h3 class="progress-card__title">Python for AI Beginners</h3>
-          <p class="progress-card__desc">Learn Python programming for AI and Machine Learning.</p>
-          <div class="progress-bar">
-            <div class="progress-bar__fill" style="width:40%"></div>
-          </div>
-          <div class="progress-card__pct">40%</div>
-          <button class="btn-continue">Continue</button>
-        </div>
-
-        <div class="progress-card">
-          <div class="progress-card__top">
-            <span class="badge badge--inprogress">In Progress</span>
-            <button class="progress-card__menu">⋮</button>
-          </div>
-          <div class="progress-card__thumb progress-card__thumb--ml">
-            <div class="progress-card__thumb-icon">🕸️</div>
-          </div>
-          <h3 class="progress-card__title">Machine Learning Basics</h3>
-          <p class="progress-card__desc">Understand ML concepts and build your first model.</p>
-          <div class="progress-bar">
-            <div class="progress-bar__fill" style="width:30%"></div>
-          </div>
-          <div class="progress-card__pct">30%</div>
-          <button class="btn-continue">Continue</button>
-        </div>
-
+        <div class="lr-badge lr-badge--1" title="Certificates">🎓</div>
+        <div class="lr-badge lr-badge--2" title="Coding AI">💻</div>
+        <div class="lr-badge lr-badge--3" title="Image AI">🎨</div>
+        <div class="lr-badge lr-badge--4" title="Chatbots">🤖</div>
       </div>
-    </section>
 
-    <!-- ===== RECOMMENDED FOR YOU ===== -->
-    <section class="section">
-      <div class="section__header">
-        <h2 class="section__title">Recommended for You</h2>
-        <a href="#" class="section__view-all">View all →</a>
+    </div>
+  </section>
+
+  <!-- ===== BROWSE BY CATEGORY ===== -->
+  <section class="categories-section section" id="lr-categories">
+    <div class="container">
+      <div class="section-top">
+        <h2 class="section-title">Browse by Category</h2>
+        <a href="trending.html" class="view-all">View all categories →</a>
       </div>
-      <div class="rec-grid" id="recGrid">
 
-        <div class="rec-card">
-          <div class="rec-card__thumb rec-card__thumb--midjourney">
-            <span>🎨</span>
+      <div class="categories-grid reveal-stagger">
+        <a href="trending.html?cat=chatgpt" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#10a37f,#0d8a6a);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
           </div>
-          <div class="rec-card__body">
-            <h4 class="rec-card__title">Midjourney Masterclass</h4>
-            <p class="rec-card__desc">Create stunning AI art like a pro.</p>
-            <div class="rec-card__meta">
-              <span class="rec-card__rating">⭐ 4.8 <span class="rec-card__count">(1.2k)</span></span>
-              <button class="rec-card__save">🔖</button>
+          <span class="category-card__name">ChatGPT</span>
+          <span class="category-card__count">12 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=image" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#ec4899,#f97316);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+          </div>
+          <span class="category-card__name">Image AI</span>
+          <span class="category-card__count">18 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=code" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#2563eb,#3b82f6);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <span class="category-card__name">Coding AI</span>
+          <span class="category-card__count">15 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=video" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#0891b2,#06b6d4);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <span class="category-card__name">Video AI</span>
+          <span class="category-card__count">10 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=marketing" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#d97706,#f59e0b);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 0 1-5.8-1.6"/></svg>
+          </div>
+          <span class="category-card__name">Marketing AI</span>
+          <span class="category-card__count">14 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=productivity" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#4f46e5,#6366f1);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2 4 7v10l8 5 8-5V7l-8-5z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <span class="category-card__name">Productivity AI</span>
+          <span class="category-card__count">9 Courses</span>
+        </a>
+
+        <a href="trending.html" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+          </div>
+          <span class="category-card__name">AI Tools</span>
+          <span class="category-card__count">20+ Courses</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED COURSES ===== -->
+  <section class="section" id="lr-featured-courses">
+    <div class="container">
+      <div class="section-top">
+        <h2 class="section-title">Featured Courses</h2>
+        <a href="#lr-featured-courses" class="view-all">View all courses →</a>
+      </div>
+
+      <div class="lr-courses-grid reveal-stagger">
+
+        <div class="lr-course-card">
+          <div class="lr-course-card__thumb" style="background:linear-gradient(135deg,#0d8a6a,#0a3d33);">
+            <span class="lr-course-card__badge">Best Seller</span>
+            🤖
+          </div>
+          <div class="lr-course-card__body">
+            <h3 class="lr-course-card__title">ChatGPT Mastery Complete Guide</h3>
+            <div class="lr-course-card__meta">
+              <span>Beginner</span><span class="lr-dot"></span><span>⭐ 4.8 (1.2K)</span>
             </div>
-          </div>
-        </div>
-
-        <div class="rec-card">
-          <div class="rec-card__thumb rec-card__thumb--canva">
-            <span>✏️</span>
-          </div>
-          <div class="rec-card__body">
-            <h4 class="rec-card__title">Canva AI Magic</h4>
-            <p class="rec-card__desc">Design anything 10x faster with AI.</p>
-            <div class="rec-card__meta">
-              <span class="rec-card__rating">⭐ 4.7 <span class="rec-card__count">(980)</span></span>
-              <span class="rec-card__level">Beginner</span>
-              <button class="rec-card__save">🔖</button>
+            <div class="lr-course-card__duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              6 Hours
             </div>
+            <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
           </div>
         </div>
 
-        <div class="rec-card">
-          <div class="rec-card__thumb rec-card__thumb--video">
-            <span>🎬</span>
+        <div class="lr-course-card">
+          <div class="lr-course-card__thumb" style="background:linear-gradient(135deg,#1e3a5f,#0f1f33);">
+            ⛵
           </div>
-          <div class="rec-card__body">
-            <h4 class="rec-card__title">AI Video Creation</h4>
-            <p class="rec-card__desc">Create engaging videos using AI tools.</p>
-            <div class="rec-card__meta">
-              <span class="rec-card__rating">⭐ 4.6 <span class="rec-card__count">(850)</span></span>
-              <span class="rec-card__level rec-card__level--mid">Intermediate</span>
-              <button class="rec-card__save">🔖</button>
+          <div class="lr-course-card__body">
+            <h3 class="lr-course-card__title">Midjourney Masterclass From Zero to Pro</h3>
+            <div class="lr-course-card__meta">
+              <span>Intermediate</span><span class="lr-dot"></span><span>⭐ 4.9 (982)</span>
             </div>
-          </div>
-        </div>
-
-        <div class="rec-card">
-          <div class="rec-card__thumb rec-card__thumb--data">
-            <span>📈</span>
-          </div>
-          <div class="rec-card__body">
-            <h4 class="rec-card__title">Data Analysis with AI</h4>
-            <p class="rec-card__desc">Analyze data and extract insights using AI.</p>
-            <div class="rec-card__meta">
-              <span class="rec-card__rating">⭐ 4.7 <span class="rec-card__count">(1.1k)</span></span>
-              <span class="rec-card__level rec-card__level--mid">Intermediate</span>
-              <button class="rec-card__save">🔖</button>
+            <div class="lr-course-card__duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              5 Hours
             </div>
+            <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
+          </div>
+        </div>
+
+        <div class="lr-course-card">
+          <div class="lr-course-card__thumb" style="background:linear-gradient(135deg,#3b0764,#1e0a3c);">
+            💻
+          </div>
+          <div class="lr-course-card__body">
+            <h3 class="lr-course-card__title">AI for Developers Build Smart Apps</h3>
+            <div class="lr-course-card__meta">
+              <span>Advanced</span><span class="lr-dot"></span><span>⭐ 4.7 (756)</span>
+            </div>
+            <div class="lr-course-card__duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              7.5 Hours
+            </div>
+            <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
+          </div>
+        </div>
+
+        <div class="lr-course-card">
+          <div class="lr-course-card__thumb" style="background:linear-gradient(135deg,#7c2d12,#431407);">
+            🎥
+          </div>
+          <div class="lr-course-card__body">
+            <h3 class="lr-course-card__title">AI Video Generation with Runway &amp; Pika</h3>
+            <div class="lr-course-card__meta">
+              <span>Beginner</span><span class="lr-dot"></span><span>⭐ 4.6 (642)</span>
+            </div>
+            <div class="lr-course-card__duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              4 Hours
+            </div>
+            <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
           </div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===== FEATURE STRIPS ===== -->
-    <section class="feature-strip">
-      <div class="feature-strip__item">
-        <span class="feature-strip__icon">🕐</span>
-        <div>
-          <strong>Learn at your pace</strong>
-          <p>Self-paced courses whenever you want.</p>
-        </div>
+  <!-- ===== LATEST AI TUTORIALS ===== -->
+  <section class="section" id="lr-tutorials" style="background:var(--bg-surface);">
+    <div class="container">
+      <div class="section-top">
+        <h2 class="section-title">Latest AI Tutorials</h2>
+        <a href="#lr-tutorials" class="view-all">View all tutorials →</a>
       </div>
-      <div class="feature-strip__item">
-        <span class="feature-strip__icon">&lt;/&gt;</span>
-        <div>
-          <strong>Hands-on Projects</strong>
-          <p>Build real projects and strengthen your skills.</p>
-        </div>
-      </div>
-      <div class="feature-strip__item">
-        <span class="feature-strip__icon">🏆</span>
-        <div>
-          <strong>Certificate</strong>
-          <p>Earn certificates and boost your profile.</p>
-        </div>
-      </div>
-      <div class="feature-strip__item">
-        <span class="feature-strip__icon">👥</span>
-        <div>
-          <strong>Community Support</strong>
-          <p>Learn together and grow together.</p>
-        </div>
-      </div>
-    </section>
 
-  </main>
+      <div class="lr-tutorials-grid reveal-stagger">
 
-  <script src="assets/js/learning.js"></script>
+        <div class="lr-tutorial-card">
+          <div class="lr-tutorial-card__thumb" style="background:linear-gradient(135deg,#0d8a6a,#0a3d33);">
+            <div class="lr-tutorial-card__play">
+              <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            </div>
+            <span class="lr-tutorial-card__duration">12:45</span>
+          </div>
+          <p class="lr-tutorial-card__title">ChatGPT Tips You Wish You Knew Earlier</p>
+        </div>
+
+        <div class="lr-tutorial-card">
+          <div class="lr-tutorial-card__thumb" style="background:linear-gradient(135deg,#2e1065,#160433);">
+            <div class="lr-tutorial-card__play">
+              <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            </div>
+            <span class="lr-tutorial-card__duration">15:30</span>
+          </div>
+          <p class="lr-tutorial-card__title">Create Stunning Images with Midjourney</p>
+        </div>
+
+        <div class="lr-tutorial-card">
+          <div class="lr-tutorial-card__thumb" style="background:linear-gradient(135deg,#0e7490,#083344);">
+            <div class="lr-tutorial-card__play">
+              <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            </div>
+            <span class="lr-tutorial-card__duration">18:20</span>
+          </div>
+          <p class="lr-tutorial-card__title">Build an AI App with Python</p>
+        </div>
+
+        <div class="lr-tutorial-card">
+          <div class="lr-tutorial-card__thumb" style="background:linear-gradient(135deg,#1d4ed8,#0f1f5c);">
+            <div class="lr-tutorial-card__play">
+              <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            </div>
+            <span class="lr-tutorial-card__duration">14:20</span>
+          </div>
+          <p class="lr-tutorial-card__title">Runway AI Complete Video Editing Guide</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY LEARN WITH AI GALAXY ===== -->
+  <section class="features-section section" id="lr-why">
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom:var(--space-8);">Why Learn with AI Galaxy?</h2>
+      <div class="features-strip">
+
+        <div class="feature-item">
+          <div class="feature-item__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <h4>100% Free Learning</h4>
+            <p>Access high-quality courses at no cost.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-item__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.85.83 6.7 2.3L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
+          </div>
+          <div>
+            <h4>Updated Weekly</h4>
+            <p>New content every week to keep you ahead.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-item__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <div>
+            <h4>Beginner Friendly</h4>
+            <p>Easy to follow from basics to advanced.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-item__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+          </div>
+          <div>
+            <h4>Certificates (Soon)</h4>
+            <p>Earn certificates and showcase your skills.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="lr-newsletter reveal">
+        <div class="lr-newsletter__left">
+          <div class="lr-newsletter__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+          </div>
+          <div>
+            <h3>Stay Ahead in AI</h3>
+            <p>Get the latest AI tutorials, tools, and updates delivered to your inbox.</p>
+          </div>
+        </div>
+        <form class="lr-newsletter__form" id="lr-newsletter-form">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit" class="btn btn--primary btn--md">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="footer-container"></div>
+
+  <!-- ===== MOBILE BOTTOM NAV ===== -->
+   <nav class="bottom-nav" id="bottom-nav">
+    <a href="index.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="trending.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span>Tools</span>
+    </a>
+    <a href="learn.html" class="bottom-nav__item active">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Learn</span>
+    </a>
+    <a href="contact.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- ===== SCRIPTS — same order as index.html ===== -->
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/script.js"></script>
+  <!-- Page-specific (Learn page only) -->
+  <script src="assets/js/learnpage.js"></script>
+
 </body>
 </html>

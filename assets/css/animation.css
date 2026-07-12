@@ -82,3 +82,124 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   MICRO-INTERACTIONS — PASS 1
+   animation.css — paste hii chini kabisa
+   ============================================================ */
+
+.tool-card, .category-card, .tool-row {
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.tool-card:active, .category-card:active, .tool-row:active { transform: scale(0.97); }
+
+.btn { transition: transform 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s ease, opacity 0.22s ease; }
+.btn:active { transform: scale(0.96); }
+
+.theme-toggle, .navbar__hamburger {
+  transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.theme-toggle:active, .navbar__hamburger:active { transform: scale(0.92); }
+
+.feature-item__icon, .category-card__icon, .tool-card__icon {
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+.feature-item:hover .feature-item__icon { transform: translateY(-2px) scale(1.05); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-card, .category-card, .tool-row, .btn, .theme-toggle, .navbar__hamburger {
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   AI GALAXY — ANIMATIONS
+   animation.css
+   ============================================ */
+
+/* ---------- Keyframes ---------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1);    }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0)   scale(1);   opacity: 0.8; }
+  50%       { transform: translateY(-12px) scale(1.2); opacity: 1;   }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.2; }
+  50%       { opacity: 1;   }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+@keyframes badge-pop {
+  0%   { opacity: 0; transform: scale(0.8) translateY(-10px); }
+  100% { opacity: 1; transform: scale(1)   translateY(0);     }
+}
+
+/* ---------- Entrance Animations ---------- */
+.hero__badge   { animation: badge-pop   0.5s ease 0.2s both; }
+.hero__title   { animation: fade-in-up  0.6s ease 0.35s both; }
+.hero__desc    { animation: fade-in-up  0.6s ease 0.5s both; }
+.hero__btns    { animation: fade-in-up  0.6s ease 0.65s both; }
+.hero__right   { animation: slide-in-right 0.8s ease 0.4s both; }
+
+/* ---------- Scroll Reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0.05s; }
+.reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay: 0.12s; }
+.reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay: 0.19s; }
+.reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay: 0.26s; }
+.reveal-stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay: 0.33s; }
+.reveal-stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay: 0.40s; }
+.reveal-stagger.visible > *:nth-child(7) { opacity:1; transform:none; transition-delay: 0.47s; }
+.reveal-stagger.visible > *:nth-child(8) { opacity:1; transform:none; transition-delay: 0.54s; }
+.reveal-stagger.visible > *:nth-child(9) { opacity:1; transform:none; transition-delay: 0.61s; }
+.reveal-stagger.visible > *:nth-child(10) { opacity:1; transform:none; transition-delay: 0.68s; }
+.reveal-stagger.visible > *:nth-child(11) { opacity:1; transform:none; transition-delay: 0.75s; }
+.reveal-stagger.visible > *:nth-child(12) { opacity:1; transform:none; transition-delay: 0.82s; }
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

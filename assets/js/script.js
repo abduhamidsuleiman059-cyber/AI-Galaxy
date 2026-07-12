@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           <div class="footer__bottom">
-            <p>© 2025 AI Galaxy. All rights reserved.</p>
+            <p>© 2026 AI Galaxy. All rights reserved.</p>
             <p>Made with ❤️ for the Swahili-speaking world.</p>
           </div>
         </div>
@@ -478,7 +478,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const panelMap = {
     1: 'panel-tools',    // Tools (index 1)
     2: 'panel-learn',    // Learn (index 2)
-    3: 'panel-blog',     // Blog  (index 3)
     4: 'panel-profile',  // Profile (index 4)
   };
 

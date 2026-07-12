@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Galaxy Community — Connect, learn, share, and grow together with thousands of AI enthusiasts and builders." />
+  <title>Community — AI Galaxy</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/animation.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__container">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo">
+        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="6" fill="url(#grad1)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad1)" stroke-width="1.5" fill="none" transform="rotate(-30 16 16)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad2)" stroke-width="1" fill="none" transform="rotate(30 16 16)" opacity="0.5"/>
+          <circle cx="26" cy="10" r="2" fill="#a855f7"/>
+          <circle cx="8" cy="22" r="1.5" fill="#06b6d4"/>
+          <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+            <linearGradient id="grad2" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#a855f7"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>AI <strong>GALAXY</strong></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="trending.html" class="nav-link">Trending</a></li>
+        <li><a href="learn.html" class="nav-link">Learn</a></li>
+        <li><a href="tools.html" class="nav-link">Tools</a></li>
+        <li><a href="community.html" class="nav-link">Community</a></li>
+        <li><a href="contact.html" class="nav-link">About Us</a></li>
+      </ul>
+
+      <!-- Right Side -->
+      <div class="navbar__right">
+        <div class="navbar__search">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="nav-search" placeholder="Search AI tools, articles..." />
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="btn btn--primary btn--sm" id="signin-btn">Sign In</button>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ===== COMMUNITY HERO ===== -->
+  <section class="cm-hero">
+    <div class="hero__stars"></div>
+    <div class="hero__blob hero__blob--1"></div>
+    <div class="hero__blob hero__blob--2"></div>
+
+    <div class="container cm-hero__container">
+
+      <!-- Text: badge + title + desc -->
+      <div class="cm-hero__copy reveal">
+        <span class="cm-hero__badge">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Stronger Together
+        </span>
+        <h1 class="cm-hero__title">
+          Join the<br />
+          <span class="gradient-text">AI Galaxy</span> Community
+        </h1>
+        <p class="cm-hero__desc">
+          Connect, learn, share, and grow together with thousands of AI enthusiasts and builders around the world.
+        </p>
+      </div>
+
+      <!-- Visual: network illustration -->
+      <div class="cm-hero__visual reveal">
+        <svg class="cm-network-lines" viewBox="0 0 460 380" fill="none">
+          <line x1="230" y1="175" x2="230" y2="55"  stroke="url(#cmLine)" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="230" y1="175" x2="60"  y2="140" stroke="url(#cmLine)" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="230" y1="175" x2="400" y2="140" stroke="url(#cmLine)" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="230" y1="175" x2="115" y2="320" stroke="url(#cmLine)" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="230" y1="175" x2="345" y2="320" stroke="url(#cmLine)" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <defs>
+            <linearGradient id="cmLine" x1="0" y1="0" x2="460" y2="380">
+              <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.6"/>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <div class="cm-node cm-node--center">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="cm-node cm-node--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="cm-node cm-node--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="cm-node cm-node--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+        <div class="cm-node cm-node--4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div class="cm-node cm-node--5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+
+        <div class="cm-bubble cm-bubble--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="cm-bubble cm-bubble--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="cm-bubble cm-bubble--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="cm-hero__btns reveal">
+        <a href="#groups" class="btn btn--primary btn--lg">
+          Join Community
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#discussions" class="btn btn--ghost btn--lg">Explore Discussions</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== COMMUNITY STATS ===== -->
+  <section class="cm-stats">
+    <div class="container">
+      <div class="cm-stats__grid reveal-stagger">
+
+        <div class="cm-stat-card">
+          <div class="cm-stat-card__icon cm-stat-card__icon--purple">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="cm-stat-card__value" data-count="12500" data-suffix="K+">12.5K+</div>
+            <div class="cm-stat-card__label">Members</div>
+            <div class="cm-stat-card__sub">Active community members</div>
+          </div>
+        </div>
+
+        <div class="cm-stat-card">
+          <div class="cm-stat-card__icon cm-stat-card__icon--cyan">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <div class="cm-stat-card__value" data-count="3200" data-suffix="K+">3.2K+</div>
+            <div class="cm-stat-card__label">Discussions</div>
+            <div class="cm-stat-card__sub">Engaging conversations</div>
+          </div>
+        </div>
+
+        <div class="cm-stat-card">
+          <div class="cm-stat-card__icon cm-stat-card__icon--green">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="cm-stat-card__value" data-count="450" data-suffix="+">450+</div>
+            <div class="cm-stat-card__label">Groups</div>
+            <div class="cm-stat-card__sub">Topic-based communities</div>
+          </div>
+        </div>
+
+        <div class="cm-stat-card">
+          <div class="cm-stat-card__icon cm-stat-card__icon--amber">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <div class="cm-stat-card__value" data-count="8700" data-suffix="K+">8.7K+</div>
+            <div class="cm-stat-card__label">Contributions</div>
+            <div class="cm-stat-card__sub">Posts, replies, and more</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEED: TRENDING / RECENT / CONTRIBUTORS + EVENTS ===== -->
+  <section class="cm-feed section" id="discussions">
+    <div class="container">
+      <div class="cm-feed__grid">
+
+        <!-- Trending Discussions -->
+        <div class="cm-panel reveal">
+          <div class="cm-panel__head">
+            <h3 class="cm-panel__title">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+              Trending Discussions
+            </h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="cm-panel-list">
+
+            <div class="cm-discussion-item">
+              <div class="cm-discussion-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="cm-discussion-item__body">
+                <div class="cm-discussion-item__title">What AI tool has the biggest impact on your workflow?</div>
+                <div class="cm-discussion-item__meta">
+                  <span class="cm-tag cm-tag--discussion">Discussion</span>
+                  <span>120 replies · by @Samantha · 2h ago</span>
+                  <span class="cm-discussion-item__fire">🔥 342</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cm-discussion-item">
+              <div class="cm-discussion-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="cm-discussion-item__body">
+                <div class="cm-discussion-item__title">Best practices for prompting LLMs in 2025</div>
+                <div class="cm-discussion-item__meta">
+                  <span class="cm-tag cm-tag--discussion">Discussion</span>
+                  <span>85 replies · by @David · 5h ago</span>
+                  <span class="cm-discussion-item__fire">🔥 289</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cm-discussion-item">
+              <div class="cm-discussion-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+              </div>
+              <div class="cm-discussion-item__body">
+                <div class="cm-discussion-item__title">How I built my AI SaaS with no-code tools</div>
+                <div class="cm-discussion-item__meta">
+                  <span class="cm-tag cm-tag--showcase">Showcase</span>
+                  <span>64 replies · by @Alex · 1d ago</span>
+                  <span class="cm-discussion-item__fire">🔥 210</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Recent Posts -->
+        <div class="cm-panel reveal">
+          <div class="cm-panel__head">
+            <h3 class="cm-panel__title">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Recent Posts
+            </h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="cm-panel-list">
+
+            <div class="cm-post-item">
+              <div class="cm-post-item__avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              </div>
+              <div>
+                <div class="cm-post-item__title">New to AI? Start here 🚀</div>
+                <div class="cm-post-item__meta">@WelcomeBot · 3h ago · 💬 12</div>
+              </div>
+            </div>
+
+            <div class="cm-post-item">
+              <div class="cm-post-item__avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div>
+                <div class="cm-post-item__title">Resources for learning Machine Learning</div>
+                <div class="cm-post-item__meta">@Aisha · 6h ago · 💬 18</div>
+              </div>
+            </div>
+
+            <div class="cm-post-item">
+              <div class="cm-post-item__avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              </div>
+              <div>
+                <div class="cm-post-item__title">Share your AI project!</div>
+                <div class="cm-post-item__meta">@Mike · 8h ago · 💬 24</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right column: Top Contributors + Upcoming Events -->
+        <div>
+          <div class="cm-panel reveal">
+            <div class="cm-panel__head">
+              <h3 class="cm-panel__title">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 6h2a2 2 0 0 1 0 4h-1"/><path d="M7 6H5a2 2 0 0 0 0 4h1"/></svg>
+                Top Contributors
+              </h3>
+              <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="cm-panel-list">
+
+              <div class="cm-contributor-item">
+                <span class="cm-contributor-item__rank">1</span>
+                <div class="cm-contributor-item__avatar">S</div>
+                <div>
+                  <div class="cm-contributor-item__name">@Samantha</div>
+                  <div class="cm-contributor-item__pts">2.1K points</div>
+                </div>
+              </div>
+              <div class="cm-contributor-item">
+                <span class="cm-contributor-item__rank">2</span>
+                <div class="cm-contributor-item__avatar">D</div>
+                <div>
+                  <div class="cm-contributor-item__name">@David</div>
+                  <div class="cm-contributor-item__pts">1.8K points</div>
+                </div>
+              </div>
+              <div class="cm-contributor-item">
+                <span class="cm-contributor-item__rank">3</span>
+                <div class="cm-contributor-item__avatar">A</div>
+                <div>
+                  <div class="cm-contributor-item__name">@Alex</div>
+                  <div class="cm-contributor-item__pts">1.4K points</div>
+                </div>
+              </div>
+              <div class="cm-contributor-item">
+                <span class="cm-contributor-item__rank">4</span>
+                <div class="cm-contributor-item__avatar">A</div>
+                <div>
+                  <div class="cm-contributor-item__name">@Aisha</div>
+                  <div class="cm-contributor-item__pts">1.2K points</div>
+                </div>
+              </div>
+              <div class="cm-contributor-item">
+                <span class="cm-contributor-item__rank">5</span>
+                <div class="cm-contributor-item__avatar">M</div>
+                <div>
+                  <div class="cm-contributor-item__name">@Mike</div>
+                  <div class="cm-contributor-item__pts">1.1K points</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="cm-panel reveal">
+            <div class="cm-panel__head">
+              <h3 class="cm-panel__title">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Upcoming Events
+              </h3>
+              <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="cm-panel-list">
+
+              <div class="cm-event-item">
+                <div class="cm-event-item__date">
+                  <span class="cm-event-item__date-mon">JUN</span>
+                  <span class="cm-event-item__date-day">07</span>
+                </div>
+                <div>
+                  <div class="cm-event-item__title">AI Galaxy Live: Building with LLMs</div>
+                  <div class="cm-event-item__meta">8:00 PM EAT · 120 going</div>
+                </div>
+              </div>
+
+              <div class="cm-event-item">
+                <div class="cm-event-item__date">
+                  <span class="cm-event-item__date-mon">JUN</span>
+                  <span class="cm-event-item__date-day">14</span>
+                </div>
+                <div>
+                  <div class="cm-event-item__title">Prompt Engineering Workshop</div>
+                  <div class="cm-event-item__meta">5:00 PM EAT · 85 going</div>
+                </div>
+              </div>
+
+              <div class="cm-event-item">
+                <div class="cm-event-item__date">
+                  <span class="cm-event-item__date-mon">JUN</span>
+                  <span class="cm-event-item__date-day">21</span>
+                </div>
+                <div>
+                  <div class="cm-event-item__title">AI Tools Showcase Community Call</div>
+                  <div class="cm-event-item__meta">7:00 PM EAT · 95 going</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPLORE AI GROUPS ===== -->
+  <section class="cm-groups section" id="groups">
+    <div class="container">
+      <div class="section-top reveal">
+        <h2 class="section-title">Explore AI Groups</h2>
+        <a href="#" class="view-all">View All Groups</a>
+      </div>
+
+      <div class="cm-groups__scroll reveal-stagger">
+
+        <div class="cm-group-card">
+          <div class="cm-group-card__icon cm-group-card__icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04z"/></svg>
+          </div>
+          <div class="cm-group-card__name">
+            AI Research Hub
+            <span class="cm-group-card__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <p class="cm-group-card__desc">Discuss the latest AI research and papers.</p>
+          <div class="cm-group-card__members">2.4K Members</div>
+          <button class="btn btn--outline btn--sm">Join Group</button>
+        </div>
+
+        <div class="cm-group-card">
+          <div class="cm-group-card__icon cm-group-card__icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></svg>
+          </div>
+          <div class="cm-group-card__name">AI Tools &amp; Resources</div>
+          <p class="cm-group-card__desc">Discover the best AI tools and resources.</p>
+          <div class="cm-group-card__members">3.1K Members</div>
+          <button class="btn btn--outline btn--sm">Join Group</button>
+        </div>
+
+        <div class="cm-group-card">
+          <div class="cm-group-card__icon cm-group-card__icon--amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="cm-group-card__name">Prompt Engineering</div>
+          <p class="cm-group-card__desc">Learn, share, and master the art of prompting.</p>
+          <div class="cm-group-card__members">1.8K Members</div>
+          <button class="btn btn--outline btn--sm">Join Group</button>
+        </div>
+
+        <div class="cm-group-card">
+          <div class="cm-group-card__icon cm-group-card__icon--cyan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="cm-group-card__name">
+            AI Builders
+            <span class="cm-group-card__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </div>
+          <p class="cm-group-card__desc">A community for builders creating AI-powered solutions.</p>
+          <div class="cm-group-card__members">2.7K Members</div>
+          <button class="btn btn--outline btn--sm">Join Group</button>
+        </div>
+
+      </div>
+
+      <div class="cm-groups__dots" id="groups-dots"></div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cm-cta reveal">
+        <div class="cm-cta__content">
+          <h2>Be Part of Something Bigger</h2>
+          <p>Share your knowledge, help others, and grow together. The future of AI is built by all of us.</p>
+        </div>
+        <a href="#groups" class="btn btn--primary btn--lg">
+          Join the Community
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <svg class="cm-cta__planet" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="30" fill="#fff"/>
+          <ellipse cx="50" cy="50" rx="46" ry="14" stroke="#fff" stroke-width="2" transform="rotate(-20 50 50)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMMUNITY FAQ ===== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-top reveal">
+        <h2 class="section-title">Community FAQ</h2>
+        <a href="#" class="view-all">View All</a>
+      </div>
+
+      <div class="cm-faq__grid reveal-stagger">
+
+        <div class="cm-faq-item">
+          <button class="cm-faq-item__q">
+            <span class="cm-faq-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>
+            <span>How do I join the community?</span>
+            <svg class="cm-faq-item__chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="cm-faq-item__a">
+            <p>Anyone can join! Click the "Join Community" button and create your account.</p>
+          </div>
+        </div>
+
+        <div class="cm-faq-item">
+          <button class="cm-faq-item__q">
+            <span class="cm-faq-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span>Are there any community guidelines?</span>
+            <svg class="cm-faq-item__chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="cm-faq-item__a">
+            <p>Yes, we have guidelines to ensure a positive and respectful environment for everyone.</p>
+          </div>
+        </div>
+
+        <div class="cm-faq-item">
+          <button class="cm-faq-item__q">
+            <span class="cm-faq-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span>How can I start a discussion?</span>
+            <svg class="cm-faq-item__chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="cm-faq-item__a">
+            <p>Go to the Discussions section and click on "Start a New Discussion".</p>
+          </div>
+        </div>
+
+        <div class="cm-faq-item">
+          <button class="cm-faq-item__q">
+            <span class="cm-faq-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span>Can I create my own group?</span>
+            <svg class="cm-faq-item__chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="cm-faq-item__a">
+            <p>Yes! You can create a group and bring together people with similar interests.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="footer-container"></div>
+
+  <!-- ===== MOBILE BOTTOM NAV ===== -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <a href="index.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="trending.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span>Tools</span>
+    </a>
+    <a href="learn.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Learn</span>
+    </a>
+    <a href="community.html" class="bottom-nav__item active">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Community</span>
+    </a>
+    <a href="contact.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- ===== MOBILE PANELS ===== -->
+
+  <!-- OVERLAY -->
+  <div class="mob-overlay" id="mob-overlay"></div>
+
+  <!-- PROFILE PANEL -->
+  <div class="mob-panel" id="panel-profile">
+    <div class="mob-panel__handle"></div>
+    <div class="mob-panel__head">
+      <div class="mob-panel__avatar">
+        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div>
+        <h3 class="mob-panel__name">Galaxy User</h3>
+        <p class="mob-panel__email">user@aigalaxy.com</p>
+      </div>
+    </div>
+    <div class="mob-panel__body">
+      <button class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Edit Profile
+      </button>
+      <button class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Change Password
+      </button>
+      <button class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Saved Tools
+      </button>
+      <button class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </button>
+      <div class="mob-panel__divider"></div>
+      <button class="mob-panel__item mob-panel__item--danger">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log Out
+      </button>
+    </div>
+  </div>
+
+  <!-- TOOLS PANEL -->
+  <div class="mob-panel" id="panel-tools">
+    <div class="mob-panel__handle"></div>
+    <h3 class="mob-panel__title">AI Tools</h3>
+    <div class="mob-panel__body">
+      <a href="trending.html" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Trending Tools
+      </a>
+      <a href="tools.html" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        All Tools
+      </a>
+      <a href="#categories" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Browse Categories
+      </a>
+    </div>
+  </div>
+
+  <!-- LEARN PANEL -->
+  <div class="mob-panel" id="panel-learn">
+    <div class="mob-panel__handle"></div>
+    <h3 class="mob-panel__title">Learn AI</h3>
+    <div class="mob-panel__body">
+      <a href="learn.html" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Courses
+      </a>
+      <a href="learn.html#articles" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Articles
+      </a>
+      <a href="learn.html#videos" class="mob-panel__item">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        Videos
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ===== AUTH MODAL ===== -->
+  <div id="auth-modal-container"></div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast" role="alert" hidden></div>
+
+  <!-- ===== JS FILES ===== -->
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/tools.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/community.js"></script>
+
+</body>
+</html>
