@@ -216,3 +216,5 @@
   background: rgba(255, 255, 255, 0.99) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
 }
+/* === Lucide-style inline icons === */
+.ai-icon { flex-shrink: 0; }
