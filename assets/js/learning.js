@@ -49,4 +49,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ============================================
+     LATEST AI TUTORIALS — YouTube modal player
+     ============================================ */
+  const videoModal  = document.getElementById('lr-video-modal');
+  const videoIframe = document.getElementById('lr-video-modal__iframe');
+  const tutorialCards = document.querySelectorAll('.lr-tutorial-card[data-video]');
+
+  if (!videoModal) {
+    console.warn('[AI Galaxy] #lr-video-modal haipo kwenye page — modal ya video haitafanya kazi. Angalia kama HTML ya modal imebandikwa kwenye learn.html.');
+  }
+
+  function openVideoModal(videoId) {
+    if (!videoId || !videoModal || !videoIframe) return;
+    videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    videoModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoModal() {
+    if (!videoModal || !videoIframe) return;
+    videoModal.classList.remove('is-open');
+    videoIframe.src = ''; // stop playback
+    document.body.style.overflow = '';
+  }
+
+  tutorialCards.forEach((card) => {
+    card.addEventListener('click', () => openVideoModal(card.dataset.video));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openVideoModal(card.dataset.video);
+      }
+    });
+  });
+
+  videoModal?.querySelectorAll('[data-close]').forEach((el) => {
+    el.addEventListener('click', closeVideoModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal?.classList.contains('is-open')) {
+      closeVideoModal();
+    }
+  });
+
 });

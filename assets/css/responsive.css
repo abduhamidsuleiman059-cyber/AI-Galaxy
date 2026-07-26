@@ -36,11 +36,7 @@
 
   /* Features */
   .features-strip { grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
-
-  /* Footer */
-  .footer__grid { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
-}
-
+ }
 /* ==========================================
    MOBILE — max 768px
    ========================================== */
@@ -119,17 +115,6 @@
 
   /* Add bottom padding so content isn't hidden behind bottom nav */
   body { padding-bottom: var(--bottom-nav-height); }
-
-  /* ---- Footer ---- */
-  .footer__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
-  .footer__bottom {
-    flex-direction: column;
-    gap: var(--space-3);
-    text-align: center;
-  }
 
   /* ---- Section spacing ---- */
   .section { padding: var(--space-10) 0; }
@@ -317,12 +302,16 @@
   .footer { padding: var(--space-10) 0 var(--space-6); }
 
   .footer__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-7) var(--space-5);
   }
 
-  /* Brand block */
-  .footer__brand { text-align: center; margin-bottom: var(--space-2); }
+  /* Brand block spans full width above the 2-col link grid */
+  .footer__brand {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
   .footer__brand .navbar__logo { justify-content: center; }
   .footer__brand p {
     margin: 0 auto;
@@ -330,15 +319,9 @@
     max-width: 320px;
   }
 
-  /* Each column (Quick Links / Categories / Company) */
+  /* Each column (Quick Links / Categories / Company / Support) */
   .footer__col {
-    text-align: center;
-    padding-bottom: var(--space-5);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  }
-  .footer__col:last-of-type {
-    border-bottom: none;
-    padding-bottom: 0;
+    text-align: left;
   }
 
   .footer__col h5 {
@@ -350,23 +333,33 @@
   }
 
   .footer__col ul {
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-3);
   }
 
   .footer__col a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: var(--space-1) 0;
     font-size: var(--text-sm);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .footer__col a:hover,
+  .footer__col a:active {
+    color: var(--color-purple-light);
+    transform: translateX(3px);
   }
 
   /* Bottom line: made with love + copyright */
   .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     padding-top: var(--space-5);
     gap: var(--space-2);
   }
 }
-
 /* ============================================================
    COMMUNITY PAGE — responsive.css
    Paste hii chini kabisa ya responsive.css (addition only)
@@ -572,17 +565,6 @@
 
   /* Add bottom padding so content isn't hidden behind bottom nav */
   body { padding-bottom: var(--bottom-nav-height); }
-
-  /* ---- Footer ---- */
-  .footer__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
-  .footer__bottom {
-    flex-direction: column;
-    gap: var(--space-3);
-    text-align: center;
-  }
 
   /* ---- Section spacing ---- */
   .section { padding: var(--space-10) 0; }

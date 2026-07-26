@@ -22,6 +22,82 @@
   <link rel="stylesheet" href="assets/css/responsive.css" />
   <!-- Page-specific (Learn page only, prefix: lr-) -->
   <link rel="stylesheet" href="assets/css/learn.css" />
+  <style>
+/* ===== VIDEO MODAL — inline failsafe (guaranteed to apply) ===== */
+.lr-video-modal {
+  display: none !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+}
+.lr-video-modal.is-open {
+  display: flex !important;
+}
+.lr-video-modal__backdrop {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(5, 8, 15, 0.9) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+.lr-video-modal__panel {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(920px, 92vw) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: rgba(20, 22, 32, 0.98) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6) !important;
+}
+.lr-video-modal__frame-wrap {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  background: #000 !important;
+}
+.lr-video-modal__iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+.lr-video-modal__close {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  z-index: 3 !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  background: rgba(0,0,0,0.5) !important;
+  color: #fff !important;
+  cursor: pointer !important;
+}
+.lr-video-modal__close:hover {
+  background: rgba(0,0,0,0.75) !important;
+}
+.lr-tutorial-card { cursor: pointer !important; }
+  </style>
 </head>
 
 <body>
@@ -97,12 +173,13 @@
           kukusaidia kuwa mtaalamu wa AI na kubaki mbele.
         </p>
 
-        <form class="lr-search" id="lr-search-form">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+       <form class="lr-search" id="lr-search-form">
+          <svg class="lr-search__icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
           </svg>
-          <input type="text" id="lr-search-input" placeholder="Search for courses, topics or tools..." />
-          <button type="submit" class="btn btn--primary btn--md">
+          <input type="text" id="lr-search-input" class="lr-search__input" placeholder="Search for courses, topics or tools..." />
+         <button type="submit" class="btn btn--primary btn--md">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             <span>Search</span>
           </button>
         </form>
@@ -277,14 +354,14 @@
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               4 Hours
             </div>
-            <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
+           <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
           </div>
         </div>
 
       </div>
     </div>
   </section>
-  <!-- ===== LATEST AI TUTORIALS ===== -->
+ <!-- ===== LATEST AI TUTORIALS ===== -->
   <section class="section" id="lr-tutorials" style="background:var(--bg-surface);">
     <div class="container">
       <div class="section-top">
@@ -294,8 +371,13 @@
 
       <div class="lr-tutorials-grid reveal-stagger">
 
-        <div class="lr-tutorial-card">
-          <div class="lr-tutorial-card__thumb" style="background:linear-gradient(135deg,#0d8a6a,#0a3d33);">
+        <div class="lr-tutorial-card" data-video="XogyU5lVG0M" tabindex="0" role="button" aria-label="Play: ChatGPT Tips You Wish You Knew Earlier">
+          <div class="lr-tutorial-card__thumb" style="background-image:linear-gradient(135deg,rgba(13,138,106,0.55),rgba(10,61,51,0.75)),url('https://img.youtube.com/vi/XogyU5lVG0M/hqdefault.jpg');background-size:cover;background-position:center;">
+            <div class="lr-tutorial-card__brand lr-tutorial-card__brand--chatgpt">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.28 9.82a5.98 5.98 0 0 0-.52-4.91 6.05 6.05 0 0 0-6.52-2.9A6.03 6.03 0 0 0 10.63 0a6.05 6.05 0 0 0-5.77 4.2 6 6 0 0 0-4.01 2.91 6.06 6.06 0 0 0 .75 7.1 5.98 5.98 0 0 0 .51 4.92 6.05 6.05 0 0 0 6.52 2.9A6 6 0 0 0 13.37 24a6.05 6.05 0 0 0 5.78-4.21 6 6 0 0 0 4-2.9 6.06 6.06 0 0 0-.75-7.09 5.9 5.9 0 0 0-.12.02Zm-9.03 12.61a4.48 4.48 0 0 1-2.88-1.04l.14-.08 4.78-2.76a.77.77 0 0 0 .4-.68v-6.73l2.02 1.17c.02.01.03.03.03.05v5.58a4.5 4.5 0 0 1-4.49 4.49ZM3.6 18.3a4.47 4.47 0 0 1-.54-3.02l.14.09 4.78 2.76c.24.14.54.14.79 0l5.83-3.37v2.33a.06.06 0 0 1-.02.05L9.75 20a4.5 4.5 0 0 1-6.15-1.7ZM2.34 7.9a4.48 4.48 0 0 1 2.35-1.97v5.68c0 .28.15.54.4.68l5.82 3.36-2.02 1.17a.07.07 0 0 1-.06 0l-4.83-2.79A4.5 4.5 0 0 1 2.34 7.9Zm16.57 3.85-5.82-3.37 2.02-1.16a.07.07 0 0 1 .06 0l4.83 2.79a4.49 4.49 0 0 1-.68 8.1v-5.68a.78.78 0 0 0-.4-.68ZM20.9 8.9l-.14-.09-4.78-2.76a.78.78 0 0 0-.79 0l-5.83 3.37V7.09a.06.06 0 0 1 .02-.05l4.83-2.78a4.49 4.49 0 0 1 6.68 4.64ZM8.94 12.86 6.92 11.7a.06.06 0 0 1-.03-.05V6.07a4.49 4.49 0 0 1 7.37-3.45l-.14.08-4.78 2.76a.77.77 0 0 0-.4.68v6.72Zm1.1-2.37 2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5v-3Z" fill="currentColor"/>
+              </svg>
+            </div>
             <div class="lr-tutorial-card__play">
               <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
             </div>
@@ -304,8 +386,13 @@
           <p class="lr-tutorial-card__title">ChatGPT Tips You Wish You Knew Earlier</p>
         </div>
 
-        <div class="lr-tutorial-card">
-          <div class="lr-tutorial-card__thumb" style="background:linear-gradient(135deg,#2e1065,#160433);">
+        <div class="lr-tutorial-card" data-video="ohOKxkyKa7w" tabindex="0" role="button" aria-label="Play: Create Stunning Images with Midjourney">
+          <div class="lr-tutorial-card__thumb" style="background-image:linear-gradient(135deg,rgba(46,16,101,0.55),rgba(22,4,51,0.75)),url('https://img.youtube.com/vi/ohOKxkyKa7w/hqdefault.jpg');background-size:cover;background-position:center;">
+            <div class="lr-tutorial-card__brand lr-tutorial-card__brand--midjourney">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 17c3-6.5 6-11 10-13.5C12.5 6 12 12 12 12s3.5-6 8-6c-3 4-4 8-4 11-1.5-2-3-3-6-3-4 0-6.5 1.5-8 3Z" fill="currentColor"/>
+              </svg>
+            </div>
             <div class="lr-tutorial-card__play">
               <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
             </div>
@@ -314,8 +401,14 @@
           <p class="lr-tutorial-card__title">Create Stunning Images with Midjourney</p>
         </div>
 
-        <div class="lr-tutorial-card">
-          <div class="lr-tutorial-card__thumb" style="background:linear-gradient(135deg,#0e7490,#083344);">
+        <div class="lr-tutorial-card" data-video="YKPO2S6j7MM" tabindex="0" role="button" aria-label="Play: Build an AI App with Python">
+          <div class="lr-tutorial-card__thumb" style="background-image:linear-gradient(135deg,rgba(14,116,144,0.55),rgba(8,51,68,0.75)),url('https://img.youtube.com/vi/YKPO2S6j7MM/hqdefault.jpg');background-size:cover;background-position:center;">
+            <div class="lr-tutorial-card__brand lr-tutorial-card__brand--python">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.9 2c-4 0-3.75 1.73-3.75 1.73v2.02h3.8v.5H6.6S4 6 4 10.1s2.27 3.95 2.27 3.95h1.36v-2.1s-.07-2.27 2.24-2.27h3.77s2.16.03 2.16-2.09V4.13S16.15 2 11.9 2ZM9.7 3.4c.42 0 .76.34.76.76 0 .42-.34.76-.76.76a.76.76 0 0 1 0-1.52Z" fill="currentColor"/>
+                <path d="M12.1 22c4 0 3.75-1.73 3.75-1.73v-2.02h-3.8v-.5h5.35s2.6 0 2.6-4.1-2.27-3.95-2.27-3.95h-1.36v2.1s.07 2.27-2.24 2.27H10.4s-2.16-.03-2.16 2.09v3.46S7.85 22 12.1 22Zm2.2-1.4a.76.76 0 1 1 0-1.52.76.76 0 0 1 0 1.52Z" fill="currentColor" opacity=".65"/>
+              </svg>
+            </div>
             <div class="lr-tutorial-card__play">
               <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
             </div>
@@ -324,8 +417,13 @@
           <p class="lr-tutorial-card__title">Build an AI App with Python</p>
         </div>
 
-        <div class="lr-tutorial-card">
-          <div class="lr-tutorial-card__thumb" style="background:linear-gradient(135deg,#1d4ed8,#0f1f5c);">
+        <div class="lr-tutorial-card" data-video="FqYRkl12ON8" tabindex="0" role="button" aria-label="Play: Runway AI Complete Video Editing Guide">
+          <div class="lr-tutorial-card__thumb" style="background-image:linear-gradient(135deg,rgba(29,78,216,0.55),rgba(15,31,92,0.75)),url('https://img.youtube.com/vi/FqYRkl12ON8/hqdefault.jpg');background-size:cover;background-position:center;">
+            <div class="lr-tutorial-card__brand lr-tutorial-card__brand--runway">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 20 12 4l8 16h-4.2l-3.8-8.4L8.2 20H4Z" fill="currentColor"/>
+              </svg>
+            </div>
             <div class="lr-tutorial-card__play">
               <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
             </div>
@@ -338,6 +436,21 @@
     </div>
   </section>
 
+  <!-- ===== VIDEO MODAL (tutorial player — floats above entire page) ===== -->
+  <div class="lr-video-modal" id="lr-video-modal">
+    <div class="lr-video-modal__backdrop" data-close></div>
+    <div class="lr-video-modal__panel">
+      <button class="lr-video-modal__close" data-close aria-label="Close video">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="lr-video-modal__frame-wrap">
+        <iframe id="lr-video-modal__iframe" class="lr-video-modal__iframe" src="" title="Tutorial video" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
   <!-- ===== WHY LEARN WITH AI GALAXY ===== -->
   <section class="features-section section" id="lr-why">
     <div class="container">
@@ -403,7 +516,10 @@
         </div>
         <form class="lr-newsletter__form" id="lr-newsletter-form">
           <input type="email" placeholder="Enter your email" required />
-          <button type="submit" class="btn btn--primary btn--md">Subscribe</button>
+             <button type="submit" class="btn btn--primary btn--md">
+            <span>Subscribe</span>
+           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+         </button>
         </form>
       </div>
     </div>
@@ -440,7 +556,7 @@
   <script src="assets/js/animation.js"></script>
   <script src="assets/js/script.js"></script>
   <!-- Page-specific (Learn page only) -->
-  <script src="assets/js/learnpage.js"></script>
+  <script src="assets/js/learning.js"></script>
 
 </body>
 </html>

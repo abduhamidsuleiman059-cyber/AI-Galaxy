@@ -121,9 +121,18 @@ document.addEventListener('DOMContentLoaded', () => {
               <h5>Company</h5>
               <ul>
                 <li><a href="contact.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Careers</a></li>
+              </ul>
+            </div>
+            <div class="footer__col">
+              <h5>Support</h5>
+              <ul>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Report Issue</a></li>
               </ul>
             </div>
           </div>

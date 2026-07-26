@@ -22,6 +22,28 @@
 
 <body class="dark">
 
+  <!-- SVG ICON SPRITE — shared icons, avoids duplicate markup -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-star" viewBox="0 0 24 24">
+        <path d="M12 2l2.9 6.6 7.1.7-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7-5.4-4.7 7.1-.7z" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      </symbol>
+      <symbol id="icon-compass" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="m14.5 9.5-1.7 5.2-5.2 1.7 1.7-5.2z" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <!-- NAVBAR — exact match to homepage/trending -->
   <nav class="navbar" id="navbar">
     <div class="navbar__container">
@@ -85,12 +107,17 @@
   </nav>
 
 
-  <!-- TOOLS HERO -->
-  <section class="tl-hero">
+  <!-- TOOLS HERO — v2 premium redesign -->
+  <section class="tl-hero tl-hero--v2">
+
+    <!-- animated gradient mesh, sits behind everything -->
+    <div class="tl-hero__mesh" aria-hidden="true"></div>
 
     <!-- blue fire glow sits BEHIND the content as ambience -->
     <div class="tl-hero__bg-orb">
-      <img src="assets/images/blue-fire.png" alt="" />
+      <div class="tl-orb-ring tl-orb-ring--a"></div>
+      <div class="tl-orb-ring tl-orb-ring--b"></div>
+      <img src="assets/images/blue-fire.png" alt="" class="tl-hero__flame-img" />
     </div>
 
     <div class="tl-hero__inner">
@@ -106,18 +133,18 @@
         Explore, compare and choose the right tools for your needs.
       </p>
 
-      <div class="tl-search-wrap">
+      <!-- Unified glass command bar: search + filters together -->
+      <div class="tl-command-bar">
         <div class="tl-search-input">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
           </svg>
           <input type="text" id="tl-search-input" placeholder="Search AI tools…" />
         </div>
-        <button class="tl-search-btn" id="tl-search-btn">Search</button>
-      </div>
 
-      <div class="tl-select-row">
-        <select class="tl-select" id="tl-category-select">
+        <div class="tl-command-bar__divider"></div>
+
+        <select class="tl-select tl-select--ghost" id="tl-category-select">
           <option>All Categories</option>
           <option value="chatbots">AI Chatbots</option>
           <option value="image">Image Generation</option>
@@ -126,46 +153,48 @@
           <option value="code">Code Assistant</option>
           <option value="research">Research</option>
         </select>
-        <select class="tl-select">
+        <select class="tl-select tl-select--ghost">
           <option>All Pricing</option>
           <option>Free</option>
           <option>Paid</option>
           <option>Free • Paid</option>
         </select>
-        <select class="tl-select" id="tl-sort-select">
-          <option value="popular">Sort by: Popular</option>
-          <option value="rating">Sort by: Rating</option>
-          <option value="name">Sort by: Name</option>
+        <select class="tl-select tl-select--ghost" id="tl-sort-select">
+          <option value="popular">Sort: Popular</option>
+          <option value="rating">Sort: Rating</option>
+          <option value="name">Sort: Name</option>
         </select>
+
+        <button class="tl-search-btn" id="tl-search-btn">Search</button>
       </div>
 
-      <div class="tl-icon-row">
-        <div class="tl-icon-chip tl-icon-chip--1" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h8"/><path d="M8 14h5"/><rect x="5" y="3" width="14" height="18" rx="3"/></svg>
+      <!-- Floating category dock (replaces the flat icon row) -->
+      <div class="tl-icon-row tl-icon-row--dock">
+        <div class="tl-icon-chip tl-icon-chip--1" style="color:#10a37f;" title="AI Chat" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         </div>
-        <div class="tl-icon-chip tl-icon-chip--2" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/><rect x="4" y="2" width="16" height="20" rx="3"/></svg>
+        <div class="tl-icon-chip tl-icon-chip--2" style="color:#ec4899;" title="Image Generation" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
         </div>
-        <div class="tl-icon-chip tl-icon-chip--3" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8l-2 4 2 4"/><path d="M18 8l2 4-2 4"/><path d="M9 4l3 16"/><path d="M15 4l-3 16"/></svg>
+        <div class="tl-icon-chip tl-icon-chip--3" style="color:#22d3ee;" title="Video Generation" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
         </div>
-        <div class="tl-icon-chip tl-icon-chip--4" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M7 4v16"/><path d="M17 4v16"/><path d="M4 17h16"/></svg>
+        <div class="tl-icon-chip tl-icon-chip--4" style="color:#34d399;" title="Code Assistant" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
-        <div class="tl-icon-chip tl-icon-chip--5" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8c0-2 2-3 4-3s4 1 4 3"/><path d="M8 16c0 2 2 3 4 3s4-1 4-3"/><path d="M6 12h12"/></svg>
+        <div class="tl-icon-chip tl-icon-chip--5" style="color:#f59e0b;" title="Audio AI" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
         </div>
       </div>
     </div>
 
   </section>
 
-
   <!-- FEATURED TOOLS -->
   <section class="tl-section">
     <div class="tl-section-head">
-      <h2 class="tl-section-title">⭐ Featured Tools</h2>
-      <a href="#tl-all-tools" class="tl-section-link">View all tools →</a>
+      <h2 class="tl-section-title"><svg class="icon" width="20" height="20"><use href="#icon-star"/></svg>Featured Tools</h2>
+      <a href="#tl-all-tools" class="tl-section-link">View all tools<svg class="icon icon-arrow" width="13" height="13"><use href="#icon-arrow-right"/></svg></a>
     </div>
     <div class="tl-featured-grid" id="tl-featured-grid">
       <!-- rendered by toolspage.js -->
@@ -176,8 +205,8 @@
   <!-- BROWSE BY CATEGORY -->
   <section class="tl-section">
     <div class="tl-section-head">
-      <h2 class="tl-section-title">🔷 Browse by Category</h2>
-      <a href="#tl-all-tools" class="tl-section-link">View all categories →</a>
+      <h2 class="tl-section-title"><svg class="icon" width="20" height="20"><use href="#icon-grid"/></svg>Browse by Category</h2>
+      <a href="#tl-all-tools" class="tl-section-link">View all categories<svg class="icon icon-arrow" width="13" height="13"><use href="#icon-arrow-right"/></svg></a>
     </div>
     <div class="tl-category-grid reveal-stagger" id="tl-category-grid">
       <a href="#tl-all-tools" class="category-card" data-cat="all">
@@ -227,7 +256,7 @@
   <!-- ALL TOOLS -->
   <section class="tl-section" id="tl-all-tools">
     <div class="tl-section-head">
-      <h2 class="tl-section-title">🧭 All AI Tools</h2>
+      <h2 class="tl-section-title"><svg class="icon" width="20" height="20"><use href="#icon-compass"/></svg>All AI Tools</h2>
     </div>
     <div class="tl-all-filters">
       <div class="tr-filter-group">
