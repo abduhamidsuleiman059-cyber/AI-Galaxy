@@ -484,11 +484,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const bottomNav  = document.getElementById('bottom-nav');
 
   /* Panel map — icon index => panel id */
-  const panelMap = {
-    1: 'panel-tools',    // Tools (index 1)
-    2: 'panel-learn',    // Learn (index 2)
-    4: 'panel-profile',  // Profile (index 4)
-  };
 
   let activePanel = null;
 
@@ -522,16 +517,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const items = bottomNav.querySelectorAll('.bottom-nav__item');
 
-    items.forEach((item, index) => {
-      // Home (index 0) — iende index.html kawaida, usifanye panel
-      if (index === 0) return;
+ items.forEach((item) => {
+      const panelKey = item.dataset.panel;
+      if (!panelKey) return; // Home — hakuna panel, iende kawaida
 
       item.addEventListener('click', function (e) {
-        e.preventDefault(); // Zuia link ya kawaida
+        e.preventDefault();
 
-        const panelId = panelMap[index];
-        if (!panelId) return;
-
+        const panelId = 'panel-' + panelKey;
         // Kama panel hii tayari iko wazi — funga
         const panel = document.getElementById(panelId);
         if (panel && panel.classList.contains('active')) {
