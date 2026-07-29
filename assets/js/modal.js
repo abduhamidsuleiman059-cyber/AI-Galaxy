@@ -1,5 +1,5 @@
 /* ============================================
-   AI GALAXY — AUTH MODAL
+   AI GALAXY — AUTH MODAL (Unified Login/Register)
    modal.js
    ============================================ */
 
@@ -31,21 +31,29 @@ document.addEventListener('DOMContentLoaded', () => {
           <span>AI <strong>GALAXY</strong></span>
         </div>
 
-        <!-- Tabs -->
-        <div class="modal-tabs">
-          <button class="modal-tab active" id="tab-login">Sign In</button>
-          <button class="modal-tab" id="tab-register">Register</button>
-        </div>
+        <h2 class="modal-heading" id="modal-heading">Welcome back</h2>
+        <p class="modal-subheading" id="modal-subheading">Sign in or create an account to continue</p>
 
-        <!-- LOGIN FORM -->
-        <div class="modal-form" id="form-login">
+        <!-- STEP 1 — Email only -->
+        <div class="modal-form" id="step-email">
           <div class="modal-field">
             <label>Email</label>
-            <input type="email" id="login-email" placeholder="you@email.com" />
+            <input type="email" id="auth-email" placeholder="you@email.com" autocomplete="email" />
+          </div>
+          <button class="btn btn--primary modal-submit" id="continue-btn">
+            Continue
+          </button>
+        </div>
+
+        <!-- STEP 2 — Login (password only) -->
+        <div class="modal-form" id="step-login" style="display:none;">
+          <div class="modal-email-chip">
+            <span id="login-email-display"></span>
+            <button type="button" id="change-email-login">Change</button>
           </div>
           <div class="modal-field">
             <label>Password</label>
-            <input type="password" id="login-pass" placeholder="••••••••" />
+            <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" />
           </div>
           <div class="modal-forgot">
             <a href="#">Forgot password?</a>
@@ -53,38 +61,32 @@ document.addEventListener('DOMContentLoaded', () => {
           <button class="btn btn--primary modal-submit" id="login-btn">
             Sign In
           </button>
-          <p class="modal-switch">
-            Don't have an account? 
-            <span id="go-register">Register here</span>
-          </p>
         </div>
 
-        <!-- REGISTER FORM -->
-        <div class="modal-form" id="form-register" style="display:none;">
-          <div class="modal-field">
-            <label>Full Name</label>
-            <input type="text" id="reg-name" placeholder="Your name" />
+        <!-- STEP 3 — Register (new account) -->
+        <div class="modal-form" id="step-register" style="display:none;">
+          <div class="modal-email-chip">
+            <span id="reg-email-display"></span>
+            <button type="button" id="change-email-reg">Change</button>
           </div>
           <div class="modal-field">
-            <label>Email</label>
-            <input type="email" id="reg-email" placeholder="you@email.com" />
+            <label>Full Name</label>
+            <input type="text" id="reg-name" placeholder="Your name" autocomplete="name" />
           </div>
           <div class="modal-field">
             <label>Password</label>
-            <input type="password" id="reg-pass" placeholder="••••••••" />
+            <input type="password" id="reg-pass" placeholder="••••••••" autocomplete="new-password" />
           </div>
           <div class="modal-field">
             <label>Confirm Password</label>
-            <input type="password" id="reg-pass2" placeholder="••••••••" />
+            <input type="password" id="reg-pass2" placeholder="••••••••" autocomplete="new-password" />
           </div>
           <button class="btn btn--primary modal-submit" id="register-btn">
             Create Account
           </button>
-          <p class="modal-switch">
-            Already have an account? 
-            <span id="go-login">Sign in here</span>
-          </p>
         </div>
+
+        <p class="modal-error" id="modal-error" hidden></p>
 
       </div>
     </div>`;
@@ -93,220 +95,239 @@ document.addEventListener('DOMContentLoaded', () => {
   const style = document.createElement('style');
   style.textContent = `
     .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9000;
-      background: rgba(7,7,26,0.85);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(7,7,26,0.85); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
     }
     .modal-overlay[hidden] { display: none; }
 
     .modal-box {
-      background: #0f0a1e;
-      border: 1px solid rgba(124,58,237,0.3);
-      border-radius: 24px;
-      padding: 2rem 1.75rem;
-      width: 100%;
-      max-width: 420px;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      background: #0f0a1e; border: 1px solid rgba(124,58,237,0.3);
+      border-radius: 24px; padding: 2rem 1.75rem; width: 100%; max-width: 420px;
+      position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
 
     .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      color: rgba(255,255,255,0.4);
-      font-size: 1.1rem;
-      cursor: pointer;
-      background: rgba(255,255,255,0.05);
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: absolute; top: 1rem; right: 1rem;
+      color: rgba(255,255,255,0.4); font-size: 1.1rem; cursor: pointer;
+      background: rgba(255,255,255,0.05); border: none;
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
       transition: all 0.2s;
     }
-    .modal-close:hover {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-    }
+    .modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
     .modal-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700;
+      color: #fff; margin-bottom: 1.25rem;
     }
 
-    .modal-tabs {
-      display: flex;
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 4px;
-      margin-bottom: 1.5rem;
-      gap: 4px;
+    .modal-heading {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700;
+      color: #fff; margin: 0 0 0.35rem;
     }
-    .modal-tab {
-      flex: 1;
-      padding: 0.6rem;
-      border: none;
-      border-radius: 9px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      background: transparent;
-      color: rgba(255,255,255,0.5);
-      transition: all 0.25s;
-    }
-    .modal-tab.active {
-      background: linear-gradient(135deg, #7c3aed, #a855f7);
-      color: #fff;
-      box-shadow: 0 4px 15px rgba(124,58,237,0.4);
+    .modal-subheading {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5); margin: 0 0 1.5rem;
     }
 
-    .modal-field {
-      margin-bottom: 1rem;
-    }
+    .modal-field { margin-bottom: 1rem; }
     .modal-field label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 0.4rem;
+      display: block; font-size: 0.8rem; font-weight: 600;
+      color: rgba(255,255,255,0.6); margin-bottom: 0.4rem;
       font-family: 'Space Grotesk', sans-serif;
     }
     .modal-field input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(124,58,237,0.25);
-      border-radius: 12px;
-      color: #fff;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border 0.2s;
+      width: 100%; padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 12px; color: #fff; font-size: 0.9rem; outline: none;
+      transition: border 0.2s; box-sizing: border-box;
     }
-    .modal-field input:focus {
-      border-color: #7c3aed;
-      background: rgba(124,58,237,0.08);
-    }
-    .modal-field input::placeholder {
-      color: rgba(255,255,255,0.25);
-    }
+    .modal-field input:focus { border-color: #7c3aed; background: rgba(124,58,237,0.08); }
+    .modal-field input::placeholder { color: rgba(255,255,255,0.25); }
 
-    .modal-forgot {
-      text-align: right;
-      margin-bottom: 1rem;
-      margin-top: -0.5rem;
+    .modal-email-chip {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 12px; padding: 0.6rem 1rem; margin-bottom: 1.25rem;
+      font-size: 0.85rem; color: #fff;
     }
-    .modal-forgot a {
-      font-size: 0.78rem;
-      color: #a855f7;
-      text-decoration: none;
+    .modal-email-chip button {
+      background: none; border: none; color: #a855f7;
+      font-size: 0.8rem; font-weight: 600; cursor: pointer;
     }
+    .modal-email-chip button:hover { color: #06b6d4; }
+
+    .modal-forgot { text-align: right; margin-bottom: 1rem; margin-top: -0.5rem; }
+    .modal-forgot a { font-size: 0.78rem; color: #a855f7; text-decoration: none; }
 
     .modal-submit {
-      width: 100%;
-      justify-content: center;
-      padding: 0.85rem;
-      font-size: 0.95rem;
-      border-radius: 12px;
-      margin-bottom: 1rem;
+      width: 100%; justify-content: center; padding: 0.85rem;
+      font-size: 0.95rem; border-radius: 12px;
     }
 
-    .modal-switch {
-      text-align: center;
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.4);
+    .modal-error {
+      color: #ef4444; font-size: 0.82rem; text-align: center;
+      margin-top: 1rem; margin-bottom: 0;
     }
-    .modal-switch span {
-      color: #a855f7;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .modal-switch span:hover {
-      color: #06b6d4;
+    .modal-error[hidden] { display: none; }
+
+    .modal-form { animation: modalFadeIn 0.25s ease; }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
   `;
   document.head.appendChild(style);
+  /* ---- Elements ---- */
+  const overlay      = document.getElementById('auth-overlay');
+  const closeBtn      = document.getElementById('modal-close');
+  const heading        = document.getElementById('modal-heading');
+  const subheading      = document.getElementById('modal-subheading');
+  const errorBox         = document.getElementById('modal-error');
 
-  /* ---- Logic ---- */
-  const overlay    = document.getElementById('auth-overlay');
-  const closeBtn   = document.getElementById('modal-close');
-  const tabLogin   = document.getElementById('tab-login');
-  const tabReg     = document.getElementById('tab-register');
-  const formLogin  = document.getElementById('form-login');
-  const formReg    = document.getElementById('form-register');
-  const goReg      = document.getElementById('go-register');
-  const goLogin    = document.getElementById('go-login');
+  const stepEmail    = document.getElementById('step-email');
+  const stepLogin     = document.getElementById('step-login');
+  const stepRegister   = document.getElementById('step-register');
 
-  /* Open */
-  signinBtn.addEventListener('click', () => { overlay.hidden = false; });
+  const emailInput    = document.getElementById('auth-email');
+  const continueBtn     = document.getElementById('continue-btn');
 
-  /* Close */
+  const loginEmailDisplay = document.getElementById('login-email-display');
+  const regEmailDisplay    = document.getElementById('reg-email-display');
+
+  /* ---- TODO (backend): badilisha hii function na real API call
+     inayoangalia kama email tayari ipo kwenye database.
+     Kwa sasa ni stub — inarudi false (yaani "email mpya") kila wakati. ---- */
+  function checkEmailExists(email) {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(false), 400); // simulate network delay
+    });
+  }
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.hidden = false;
+  }
+  function clearError() {
+    errorBox.hidden = true;
+    errorBox.textContent = '';
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  /* ---- Step control ---- */
+  function goToEmailStep() {
+    stepEmail.style.display    = 'block';
+    stepLogin.style.display     = 'none';
+    stepRegister.style.display   = 'none';
+    heading.textContent = 'Welcome back';
+    subheading.textContent = 'Sign in or create an account to continue';
+    clearError();
+    emailInput.focus();
+  }
+
+  function goToLoginStep(email) {
+    stepEmail.style.display    = 'none';
+    stepLogin.style.display     = 'block';
+    stepRegister.style.display   = 'none';
+    loginEmailDisplay.textContent = email;
+    heading.textContent = 'Sign in';
+    subheading.textContent = 'Enter your password to continue';
+    clearError();
+    document.getElementById('login-pass').focus();
+  }
+
+  function goToRegisterStep(email) {
+    stepEmail.style.display    = 'none';
+    stepLogin.style.display     = 'none';
+    stepRegister.style.display   = 'block';
+    regEmailDisplay.textContent = email;
+    heading.textContent = 'Create your account';
+    subheading.textContent = 'Just a few details to get started';
+    clearError();
+    document.getElementById('reg-name').focus();
+  }
+
+  /* ---- Open / Close modal ---- */
+  signinBtn.addEventListener('click', () => {
+    overlay.hidden = false;
+    goToEmailStep();
+  });
   closeBtn.addEventListener('click', () => { overlay.hidden = true; });
   overlay.addEventListener('click', e => {
     if (e.target === overlay) overlay.hidden = true;
   });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') overlay.hidden = true;
+    if (e.key === 'Escape' && !overlay.hidden) overlay.hidden = true;
   });
 
-  /* Switch tabs */
-  function showLogin() {
-    formLogin.style.display = 'block';
-    formReg.style.display   = 'none';
-    tabLogin.classList.add('active');
-    tabReg.classList.remove('active');
-  }
-  function showRegister() {
-    formLogin.style.display = 'none';
-    formReg.style.display   = 'block';
-    tabReg.classList.add('active');
-    tabLogin.classList.remove('active');
-  }
+  /* ---- Step 1: Continue button ---- */
+  continueBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    clearError();
 
-  tabLogin.addEventListener('click', showLogin);
-  tabReg.addEventListener('click', showRegister);
-  goReg.addEventListener('click', showRegister);
-  goLogin.addEventListener('click', showLogin);
-
-  /* Submit handlers */
-  document.getElementById('login-btn').addEventListener('click', () => {
-    const email = document.getElementById('login-email').value.trim();
-    const pass  = document.getElementById('login-pass').value.trim();
-    if (!email || !pass) {
-      alert('Please fill in all fields!');
+    if (!isValidEmail(email)) {
+      showError('Please enter a valid email address.');
       return;
     }
+
+    continueBtn.textContent = 'Checking…';
+    continueBtn.disabled = true;
+
+    const exists = await checkEmailExists(email);
+
+    continueBtn.textContent = 'Continue';
+    continueBtn.disabled = false;
+
+    if (exists) {
+      goToLoginStep(email);
+    } else {
+      goToRegisterStep(email);
+    }
+  });
+  emailInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') continueBtn.click();
+  });
+
+  /* ---- Change email links ---- */
+  document.getElementById('change-email-login').addEventListener('click', goToEmailStep);
+  document.getElementById('change-email-reg').addEventListener('click', goToEmailStep);
+
+  /* ---- Step 2: Login submit ---- */
+  document.getElementById('login-btn').addEventListener('click', () => {
+    const pass = document.getElementById('login-pass').value.trim();
+    clearError();
+    if (!pass) {
+      showError('Please enter your password.');
+      return;
+    }
+    /* TODO (backend): unganisha na real sign-in API hapa */
     alert('Sign in coming soon! 🚀');
   });
 
+  /* ---- Step 3: Register submit ---- */
   document.getElementById('register-btn').addEventListener('click', () => {
     const name  = document.getElementById('reg-name').value.trim();
-    const email = document.getElementById('reg-email').value.trim();
     const pass  = document.getElementById('reg-pass').value.trim();
     const pass2 = document.getElementById('reg-pass2').value.trim();
-    if (!name || !email || !pass || !pass2) {
-      alert('Please fill in all fields!');
+    clearError();
+
+    if (!name || !pass || !pass2) {
+      showError('Please fill in all fields.');
+      return;
+    }
+    if (pass.length < 6) {
+      showError('Password must be at least 6 characters.');
       return;
     }
     if (pass !== pass2) {
-      alert('Passwords do not match!');
+      showError('Passwords do not match.');
       return;
     }
+    /* TODO (backend): unganisha na real register API hapa */
     alert('Registration coming soon! 🚀');
   });
 

@@ -299,7 +299,16 @@
 
 @media (max-width: 768px) {
 
-  /* ---- Contact form (About Us) ---- */
+ /* ---- Contact form (About Us) ---- */
+  .ab-contact-card {
+    grid-template-columns: 1fr;
+    padding: var(--space-5);
+    gap: var(--space-6);
+    box-sizing: border-box;
+  }
+  .ab-contact-methods {
+    grid-template-columns: 1fr;
+  }
   .ab-form-row {
     grid-template-columns: 1fr;
   }
@@ -308,7 +317,6 @@
     box-sizing: border-box;
     max-width: 100%;
   }
-
   .footer { padding: var(--space-10) 0 var(--space-6); }
   .footer__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

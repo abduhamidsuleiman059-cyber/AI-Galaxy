@@ -1,0 +1,46 @@
+/* ============================================
+   AI GALAXY — THEME OVERRIDES (Light Mode)
+   themes.css
+   Trending page is now fully theme-aware inside
+   trending.css (uses real variables) — no rules
+   for it needed here anymore.
+   Tools & About Us heroes use a dark photo
+   background, so their title/desc stay light-
+   colored on purpose (readability over the image);
+   only the overlay tint gets lighter in light mode.
+   Community hero uses a pure CSS gradient (no
+   photo), so it fully switches like Home — its
+   text already follows var(--text-primary).
+   ============================================ */
+
+/* ---- Tools page (.tl-hero) — photo background ---- */
+[data-theme="light"] .tl-hero {
+  background:
+    linear-gradient(180deg, rgba(30,20,60,0.35) 0%, rgba(30,20,60,0.55) 55%, rgba(30,20,60,0.75) 100%),
+    url('assets/images/galaxy-bg.jpg');
+  background-size: cover;
+  background-position: center 65%;
+}
+[data-theme="light"] .tl-hero__title,
+[data-theme="light"] .tl-hero__sub {
+  color: #f0f0ff;
+}
+
+/* ---- About Us page (.ab-hero) — photo background ---- */
+[data-theme="light"] .ab-hero__title,
+[data-theme="light"] .ab-hero__desc {
+  color: #f0f0ff;
+}
+
+/* ---- Community page (.cm-hero) — pure CSS gradient,
+   fully theme-aware, no forced text color needed ---- */
+[data-theme="light"] .cm-hero {
+  --gradient-hero: linear-gradient(135deg, #f0f0ff 0%, #e8e8f8 50%, #f5f0ff 100%);
+}
+/* ---- Learn page (.lr-hero) — pure CSS gradient, no photo ---- */
+[data-theme="light"] .lr-hero {
+  background: radial-gradient(ellipse 80% 60% at 30% 40%,
+    rgba(124,58,237,.10) 0%,
+    rgba(6,182,212,.05) 50%,
+    transparent 100%);
+}

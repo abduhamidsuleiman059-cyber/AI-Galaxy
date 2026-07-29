@@ -14,6 +14,7 @@
     rgba(124,58,237,.22) 0%,
     rgba(6,182,212,.09) 50%,
     transparent 100%);
+  border-bottom: 1px solid var(--border-card);
 }
 
 .lr-hero__inner {
