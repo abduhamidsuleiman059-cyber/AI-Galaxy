@@ -53,7 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="modal-field">
             <label>Password</label>
-            <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" />
+            <div class="modal-pass-wrap">
+              <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" />
+              <button type="button" class="modal-pass-toggle" data-target="login-pass" aria-label="Show password">
+                <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.06M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
           </div>
           <div class="modal-forgot">
             <a href="#">Forgot password?</a>
@@ -75,11 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="modal-field">
             <label>Password</label>
-            <input type="password" id="reg-pass" placeholder="••••••••" autocomplete="new-password" />
+            <div class="modal-pass-wrap">
+              <input type="password" id="reg-pass" placeholder="••••••••" autocomplete="new-password" />
+              <button type="button" class="modal-pass-toggle" data-target="reg-pass" aria-label="Show password">
+                <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.06M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
           </div>
           <div class="modal-field">
             <label>Confirm Password</label>
-            <input type="password" id="reg-pass2" placeholder="••••••••" autocomplete="new-password" />
+            <div class="modal-pass-wrap">
+              <input type="password" id="reg-pass2" placeholder="••••••••" autocomplete="new-password" />
+              <button type="button" class="modal-pass-toggle" data-target="reg-pass2" aria-label="Show password">
+                <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.06M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
           </div>
           <button class="btn btn--primary modal-submit" id="register-btn">
             Create Account
@@ -146,13 +164,27 @@ document.addEventListener('DOMContentLoaded', () => {
     .modal-field input:focus { border-color: #7c3aed; background: rgba(124,58,237,0.08); }
     .modal-field input::placeholder { color: rgba(255,255,255,0.25); }
 
+    .modal-pass-wrap { position: relative; }
+    .modal-pass-wrap input { padding-right: 2.75rem; }
+    .modal-pass-toggle {
+      position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
+      background: none; border: none; padding: 0; cursor: pointer;
+      color: rgba(255,255,255,0.4); display: flex; align-items: center;
+    }
+    .modal-pass-toggle:hover { color: #a855f7; }
+
     .modal-email-chip {
       display: flex; align-items: center; justify-content: space-between;
+      gap: 0.75rem;
       background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.25);
       border-radius: 12px; padding: 0.6rem 1rem; margin-bottom: 1.25rem;
       font-size: 0.85rem; color: #fff;
     }
+    .modal-email-chip span {
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
+    }
     .modal-email-chip button {
+      flex-shrink: 0;
       background: none; border: none; color: #a855f7;
       font-size: 0.8rem; font-weight: 600; cursor: pointer;
     }
@@ -295,6 +327,17 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- Change email links ---- */
   document.getElementById('change-email-login').addEventListener('click', goToEmailStep);
   document.getElementById('change-email-reg').addEventListener('click', goToEmailStep);
+
+  /* ---- Password show/hide toggle ---- */
+  document.querySelectorAll('.modal-pass-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = document.getElementById(btn.dataset.target);
+      const isHidden = input.type === 'password';
+      input.type = isHidden ? 'text' : 'password';
+      btn.querySelector('.eye-open').style.display = isHidden ? 'none' : 'block';
+      btn.querySelector('.eye-closed').style.display = isHidden ? 'block' : 'none';
+    });
+  });
 
   /* ---- Step 2: Login submit ---- */
   document.getElementById('login-btn').addEventListener('click', () => {
