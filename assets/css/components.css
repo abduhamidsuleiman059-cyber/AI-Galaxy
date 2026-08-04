@@ -2202,9 +2202,8 @@
   display: grid;
   grid-template-columns: 1.15fr 1.15fr 1fr;
   gap: var(--space-5);
-  align-items: start;
+  align-items: stretch;
 }
-
 .cm-panel {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
@@ -5437,6 +5436,8 @@
 @media (max-width: 992px) {
   .ab-hero__inner { flex-direction: column; text-align: center; }
   .ab-hero__left { max-width: 100%; }
+  .ab-hero__right { width: 100%; max-width: 100%; align-items: center; }
+  .ab-orb-wrap { width: min(75vw, 320px); height: min(75vw, 320px); max-width: 320px; margin: 2rem auto 0; }
   .ab-hero__right { width: 100%; max-width: 100%; align-items: center; }
   .ab-orb-wrap { width: min(75vw, 320px); height: min(75vw, 320px); max-width: 320px; margin: 2rem auto 0; }
   .ab-info__grid { grid-template-columns: 1fr; }

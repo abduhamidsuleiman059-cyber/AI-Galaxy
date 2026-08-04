@@ -166,13 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     .modal-pass-wrap { position: relative; }
     .modal-pass-wrap input { padding-right: 2.75rem; }
-    .modal-pass-toggle {
+  .modal-pass-toggle {
       position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
       background: none; border: none; padding: 0; cursor: pointer;
-      color: rgba(255,255,255,0.4); display: flex; align-items: center;
+      color: rgba(15,15,30,0.5); display: flex; align-items: center;
     }
-    .modal-pass-toggle:hover { color: #a855f7; }
-
+    .modal-pass-toggle:hover { color: #7c3aed; }
     .modal-email-chip {
       display: flex; align-items: center; justify-content: space-between;
       gap: 0.75rem;
