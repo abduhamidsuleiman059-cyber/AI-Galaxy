@@ -5293,12 +5293,13 @@
    Ongezeko jipya, halibadilishi kilichopo
    ============================================ */
 
+/* BAADA */
 .ab-hero {
   position: relative;
   padding: calc(var(--navbar-height) + var(--space-12)) 0 var(--space-10);
   background:
     linear-gradient(135deg, rgba(10,10,26,0.85) 0%, rgba(18,8,34,0.75) 40%, rgba(10,22,40,0.85) 100%),
-    url("/assets/images/planet.png") center center / cover no-repeat;
+    url("../images/planet.png") center center / cover no-repeat;
   overflow: hidden;
 }
 .ab-hero__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-10); }

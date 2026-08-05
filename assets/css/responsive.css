@@ -83,9 +83,9 @@
     margin: 0 auto;
   }
 
-  .hero__title {
-    font-size: 2rem;
-    line-height: 1.2;
+ .hero__title {
+    font-size: 1.7rem;
+    line-height: 1.25;
   }
 
   .hero__badge {
@@ -266,21 +266,21 @@
 
   /* ---- Hero: spacing rhythm + astronaut alignment ---- */
   .hero__container { gap: var(--space-2); }
-  .hero__right {
-    margin-top: var(--space-3);
-    margin-bottom: var(--space-5);
-    transform: translateY(8px);
+.hero__right {
+    margin-top: var(--space-2);
+    margin-bottom: -10px;
+    transform: translateY(40px);
   }
   .hero__badge { margin-bottom: var(--space-4); }
   .hero__title { margin-bottom: var(--space-4); }
   .hero__desc  { margin-bottom: var(--space-6); }
 
   /* ---- Hero text readability ---- */
-  .hero__desc {
-    max-width: 320px;
+ .hero__desc {
+    max-width: 360px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.85;
+    line-height: 1.7;
     letter-spacing: 0.005em;
   }
 
@@ -289,9 +289,8 @@
 }
 
 @media (max-width: 480px) {
-  .hero__desc { max-width: 280px; }
+  .hero__desc { max-width: 320px; }
 }
-
 /* ============================================================
    FOOTER — MOBILE POLISH (Quick Links / Categories / Company)
    responsive.css — paste hii chini kabisa

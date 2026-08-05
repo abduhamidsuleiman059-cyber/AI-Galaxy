@@ -801,3 +801,30 @@ body.drawer-open { overflow: hidden; }
 @keyframes signin-border-spin {
   to { --border-angle: 360deg; }
 }
+
+/* ===== Explore AI Tools Button — Animated Moving Border ===== */
+@property --explore-border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+#explore-btn {
+  --explore-border-angle: 0deg;
+  position: relative;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(135deg, #8b5cf6, #3b82f6) padding-box,
+    conic-gradient(from var(--explore-border-angle), transparent 0%, #fff 8%, #06b6d4 22%, transparent 40%, transparent 100%) border-box;
+  animation: explore-border-spin 3s linear infinite;
+  box-shadow: 0 4px 24px rgba(124, 58, 237, 0.45);
+}
+
+#explore-btn:hover {
+  box-shadow: 0 6px 32px rgba(6, 182, 212, 0.55);
+  animation-duration: 1.2s;
+}
+
+@keyframes explore-border-spin {
+  to { --explore-border-angle: 360deg; }
+}
