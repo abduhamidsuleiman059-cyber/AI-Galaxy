@@ -1,13 +1,16 @@
 /* ============================================
    AI GALAXY — TOOLS PAGE
    toolspage.js
-   Rendering + filter logic for tools.html only.
-   Icons match the brand icon language already
-   established on trending.html (same paths reused
-   for ChatGPT / Claude / Midjourney / Runway /
-   Perplexity / ElevenLabs so the whole site reads
-   as one consistent icon system).
+   Rendering + filter logic for tools.html, plus
+   Save/Bookmark (Firestore) — mtu akiwa amelogin
+   anaweza kuhifadhi tools anazopenda.
    ============================================ */
+
+import { auth, db } from './firebase-config.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  doc, setDoc, deleteDoc, collection, getDocs
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -16,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- Full tools dataset (static — tools.json bado ni ndogo) ---- */
   const iconSvg = (path, filled) => `<svg viewBox="0 0 24 24" fill="${filled ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+
+  const slugify = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
   const ALL_TOOLS = [
     { name: 'ChatGPT', icon: iconSvg('<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>'), category: 'chatbots', badge: 'Popular', desc: 'Advanced AI chatbot for conversations, questions, and creative writing.', price: 'Free • Paid', rating: 4.9, color: 'rgba(16,163,127,.18)', accent: '#10a37f' },
@@ -32,22 +37,51 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'Cursor', icon: iconSvg('<polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>'), category: 'code', badge: 'New', desc: 'AI-first code editor built for pair programming with AI.', price: 'Free • Paid', rating: 4.7, color: 'rgba(37,99,235,.18)', accent: '#3b82f6' },
   ];
 
+  ALL_TOOLS.forEach(t => { t.id = slugify(t.name); });
+
   const FEATURED = ALL_TOOLS.slice(0, 5);
 
-  /* ---- Render Featured Tools ---- */
-  const featuredGrid = document.getElementById('tl-featured-grid');
-  function renderFeatured() {
-    if (!featuredGrid) return;
-    featuredGrid.innerHTML = FEATURED.map(t => toolCardHTML(t)).join('');
-  }
+  /* ---- Save/Bookmark state ---- */
+  let currentUser = null;
+  let savedIds = new Set();
+
+  /* ---- Save button styles (injected once) ---- */
+  const saveStyle = document.createElement('style');
+  saveStyle.textContent = `
+    .tl-tool-card__top {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem;
+    }
+    .tl-tool-card__top-right {
+      display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
+    }
+    .tl-save-btn {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(124,58,237,0.25);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: rgba(255,255,255,0.5); transition: all 0.15s;
+    }
+    .tl-save-btn:hover { background: rgba(124,58,237,0.15); color: #a855f7; }
+    .tl-save-btn.is-saved { color: #ec4899; border-color: rgba(236,72,153,0.4); }
+    .tl-save-btn.is-saved svg { fill: #ec4899; }
+    .tl-save-btn svg { width: 15px; height: 15px; }
+  `;
+  document.head.appendChild(saveStyle);
+
+  const heartIcon = (filled) => `<svg viewBox="0 0 24 24" fill="${filled ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>`;
 
   /* ---- Tool card HTML ---- */
   function toolCardHTML(t) {
+    const saved = savedIds.has(t.id);
     return `
       <div class="tl-tool-card" data-cat="${t.category}">
         <div class="tl-tool-card__top">
           <div class="tl-tool-card__icon" style="background:${t.color};color:${t.accent};">${t.icon}</div>
-          ${t.badge ? `<span class="tl-tool-card__badge">${t.badge}</span>` : ''}
+          <div class="tl-tool-card__top-right">
+            ${t.badge ? `<span class="tl-tool-card__badge">${t.badge}</span>` : ''}
+            <button class="tl-save-btn${saved ? ' is-saved' : ''}" data-id="${t.id}" aria-label="Save tool" title="Save this tool">
+              ${heartIcon(saved)}
+            </button>
+          </div>
         </div>
         <div class="tl-tool-card__name">${t.name}</div>
         <p class="tl-tool-card__desc">${t.desc}</p>
@@ -58,13 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>`;
   }
 
+  /* ---- Render Featured Tools ---- */
+  const featuredGrid = document.getElementById('tl-featured-grid');
+  function renderFeatured() {
+    if (!featuredGrid) return;
+    featuredGrid.innerHTML = FEATURED.map(t => toolCardHTML(t)).join('');
+  }
+
   /* ---- Render All Tools grid (filtered) ---- */
   let activeCategory = 'all';
   let activeQuery = '';
 
   function renderGrid() {
     let list = ALL_TOOLS;
-    if (activeCategory !== 'all') {
+    if (activeCategory === 'saved') {
+      list = list.filter(t => savedIds.has(t.id));
+    } else if (activeCategory !== 'all') {
       list = list.filter(t => t.category === activeCategory);
     }
     if (activeQuery) {
@@ -73,10 +116,18 @@ document.addEventListener('DOMContentLoaded', () => {
         t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)
       );
     }
+    const emptyMsg = activeCategory === 'saved'
+      ? 'Bado hujahifadhi tool yoyote — bonyeza \u2764\ufe0f kwenye tool unayoipenda.'
+      : 'Hakuna tools zilizopatikana.';
     grid.innerHTML = list.length
       ? list.map(t => toolCardHTML(t)).join('')
-      : `<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:2rem 0;">Hakuna tools zilizopatikana.</p>`;
+      : `<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:2rem 0;">${emptyMsg}</p>`;
     grid.classList.add('reveal-stagger', 'visible');
+  }
+
+  function renderAll() {
+    renderFeatured();
+    renderGrid();
   }
 
   /* ---- Category filter pills (tr-filter-btn reused) ---- */
@@ -125,7 +176,60 @@ document.addEventListener('DOMContentLoaded', () => {
     renderGrid();
   });
 
-  renderFeatured();
-  renderGrid();
+  /* ---- Save/Bookmark: click handler (delegated) ---- */
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.tl-save-btn');
+    if (!btn) return;
+
+    if (!currentUser) {
+      document.getElementById('signin-btn')?.click();
+      return;
+    }
+
+    const toolId = btn.dataset.id;
+    const tool = ALL_TOOLS.find(t => t.id === toolId);
+    if (!tool) return;
+
+    const ref = doc(db, 'users', currentUser.uid, 'savedTools', toolId);
+    const isSaved = savedIds.has(toolId);
+
+    btn.disabled = true;
+    try {
+      if (isSaved) {
+        await deleteDoc(ref);
+        savedIds.delete(toolId);
+      } else {
+        await setDoc(ref, {
+          name: tool.name, category: tool.category, price: tool.price,
+          rating: tool.rating, savedAt: Date.now()
+        });
+        savedIds.add(toolId);
+      }
+      renderAll();
+    } catch (err) {
+      console.error('Save tool error:', err);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  /* ---- Load saved tools whenever auth state changes ---- */
+  onAuthStateChanged(auth, async (user) => {
+    currentUser = user;
+    savedIds = new Set();
+
+    if (user) {
+      try {
+        const snap = await getDocs(collection(db, 'users', user.uid, 'savedTools'));
+        snap.forEach(d => savedIds.add(d.id));
+      } catch (err) {
+        console.error('Load saved tools error:', err);
+      }
+    }
+
+    renderAll();
+  });
+
+  renderAll();
 
 });

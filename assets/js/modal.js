@@ -1,3 +1,10 @@
+import { auth } from './firebase-config.js';
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 /* ============================================
    AI GALAXY — AUTH MODAL (Unified Login/Register)
    modal.js
@@ -8,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const signinBtn = document.getElementById('signin-btn');
   const container = document.getElementById('auth-modal-container');
   if (!signinBtn || !container) return;
-
   /* ---- Inject modal HTML ---- */
   container.innerHTML = `
     <div class="modal-overlay" id="auth-overlay" hidden>
@@ -34,14 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2 class="modal-heading" id="modal-heading">Welcome back</h2>
         <p class="modal-subheading" id="modal-subheading">Sign in or create an account to continue</p>
 
-        <!-- STEP 1 — Email only -->
+        <!-- STEP 1 — Email + explicit choice -->
         <div class="modal-form" id="step-email">
           <div class="modal-field">
             <label>Email</label>
             <input type="email" id="auth-email" placeholder="you@email.com" autocomplete="email" />
           </div>
-          <button class="btn btn--primary modal-submit" id="continue-btn">
-            Continue
+          <button class="btn btn--primary modal-submit" id="signin-direct-btn">
+            Sign In
+          </button>
+          <button class="btn btn--outline modal-submit" id="register-direct-btn">
+            Create Account
           </button>
         </div>
 
@@ -61,8 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
               </button>
             </div>
           </div>
-          <div class="modal-forgot">
-            <a href="#">Forgot password?</a>
+         <div class="modal-forgot">
+            <a href="#" id="forgot-pass-link">Forgot password?</a>
           </div>
           <button class="btn btn--primary modal-submit" id="login-btn">
             Sign In
@@ -197,6 +206,13 @@ document.addEventListener('DOMContentLoaded', () => {
       font-size: 0.95rem; border-radius: 12px;
     }
 
+    .btn--outline {
+      background: transparent; border: 1px solid rgba(124,58,237,0.4);
+      color: #fff; margin-top: 0.75rem;
+      display: flex; align-items: center; cursor: pointer;
+    }
+    .btn--outline:hover { background: rgba(124,58,237,0.1); border-color: #7c3aed; }
+
     .modal-error {
       color: #ef4444; font-size: 0.82rem; text-align: center;
       margin-top: 1rem; margin-bottom: 0;
@@ -222,19 +238,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const stepRegister   = document.getElementById('step-register');
 
   const emailInput    = document.getElementById('auth-email');
-  const continueBtn     = document.getElementById('continue-btn');
+  const signinDirectBtn  = document.getElementById('signin-direct-btn');
+  const registerDirectBtn = document.getElementById('register-direct-btn');
 
   const loginEmailDisplay = document.getElementById('login-email-display');
   const regEmailDisplay    = document.getElementById('reg-email-display');
-
-  /* ---- TODO (backend): badilisha hii function na real API call
-     inayoangalia kama email tayari ipo kwenye database.
-     Kwa sasa ni stub — inarudi false (yaani "email mpya") kila wakati. ---- */
-  function checkEmailExists(email) {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(false), 400); // simulate network delay
-    });
-  }
 
   function showError(msg) {
     errorBox.textContent = msg;
@@ -295,32 +303,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && !overlay.hidden) overlay.hidden = true;
   });
 
-  /* ---- Step 1: Continue button ---- */
-  continueBtn.addEventListener('click', async () => {
+  /* ---- Step 1: explicit Sign In / Create Account choice ---- */
+  signinDirectBtn.addEventListener('click', () => {
     const email = emailInput.value.trim();
     clearError();
-
     if (!isValidEmail(email)) {
       showError('Please enter a valid email address.');
       return;
     }
-
-    continueBtn.textContent = 'Checking…';
-    continueBtn.disabled = true;
-
-    const exists = await checkEmailExists(email);
-
-    continueBtn.textContent = 'Continue';
-    continueBtn.disabled = false;
-
-    if (exists) {
-      goToLoginStep(email);
-    } else {
-      goToRegisterStep(email);
-    }
+    goToLoginStep(email);
   });
+
+  registerDirectBtn.addEventListener('click', () => {
+    const email = emailInput.value.trim();
+    clearError();
+    if (!isValidEmail(email)) {
+      showError('Please enter a valid email address.');
+      return;
+    }
+    goToRegisterStep(email);
+  });
+
   emailInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') continueBtn.click();
+    if (e.key === 'Enter') signinDirectBtn.click();
   });
 
   /* ---- Change email links ---- */
@@ -338,20 +343,78 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---- Step 2: Login submit ---- */
-  document.getElementById('login-btn').addEventListener('click', () => {
+  /* ---- Step 2: Login submit (Firebase Auth) ---- */
+ /* ---- Forgot password ---- */
+  document.getElementById('forgot-pass-link').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = loginEmailDisplay.textContent.trim();
+    clearError();
+
+    if (!email) {
+      showError('Please enter your email first.');
+      return;
+    }
+
+    const link = document.getElementById('forgot-pass-link');
+    const originalText = link.textContent;
+    link.textContent = 'Sending…';
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      errorBox.style.color = '#4ade80';
+      showError(`Password reset link sent to ${email}. Check your inbox.`);
+    } catch (err) {
+      console.error('Reset password error:', err);
+      errorBox.style.color = '#ef4444';
+      if (err.code === 'auth/user-not-found') {
+        showError('No account found with this email.');
+      } else {
+        showError('Could not send reset link. Please try again.');
+      }
+    } finally {
+      link.textContent = originalText;
+    }
+  });
+
+  /* ---- Step 2: Login submit (Firebase Auth) ---- */
+  document.getElementById('login-btn').addEventListener('click', async () => {
+    const email = loginEmailDisplay.textContent.trim();
     const pass = document.getElementById('login-pass').value.trim();
     clearError();
+
     if (!pass) {
       showError('Please enter your password.');
       return;
     }
-    /* TODO (backend): unganisha na real sign-in API hapa */
-    alert('Sign in coming soon! 🚀');
+
+    const loginBtn = document.getElementById('login-btn');
+    loginBtn.textContent = 'Signing in…';
+    loginBtn.disabled = true;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+      overlay.hidden = true;
+      window.location.reload();
+    } catch (err) {
+      console.error('Login error:', err);
+      if (err.code === 'auth/user-not-found') {
+        showError('No account found with this email. Try Create Account instead.');
+      } else if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+        showError('Incorrect email or password. Please try again.');
+      } else if (err.code === 'auth/too-many-requests') {
+        showError('Too many attempts. Please try again later.');
+      } else {
+        showError('Sign in failed. Please try again.');
+      }
+    } finally {
+      loginBtn.textContent = 'Sign In';
+      loginBtn.disabled = false;
+    }
   });
 
-  /* ---- Step 3: Register submit ---- */
-  document.getElementById('register-btn').addEventListener('click', () => {
+  /* ---- Step 3: Register submit (Firebase Auth) ---- */
+  document.getElementById('register-btn').addEventListener('click', async () => {
+    const email = regEmailDisplay.textContent.trim();
     const name  = document.getElementById('reg-name').value.trim();
     const pass  = document.getElementById('reg-pass').value.trim();
     const pass2 = document.getElementById('reg-pass2').value.trim();
@@ -369,8 +432,29 @@ document.addEventListener('DOMContentLoaded', () => {
       showError('Passwords do not match.');
       return;
     }
-    /* TODO (backend): unganisha na real register API hapa */
-    alert('Registration coming soon! 🚀');
+
+    const registerBtn = document.getElementById('register-btn');
+    registerBtn.textContent = 'Creating account…';
+    registerBtn.disabled = true;
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+      await updateProfile(userCredential.user, { displayName: name });
+      overlay.hidden = true;
+      window.location.reload();
+    } catch (err) {
+      console.error('Register error:', err);
+      if (err.code === 'auth/email-already-in-use') {
+        showError('This email is already registered. Try Sign In instead.');
+      } else if (err.code === 'auth/weak-password') {
+        showError('Password is too weak.');
+      } else {
+        showError('Registration failed. Please try again.');
+      }
+    } finally {
+      registerBtn.textContent = 'Create Account';
+      registerBtn.disabled = false;
+    }
   });
 
 });
