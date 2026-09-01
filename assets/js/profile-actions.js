@@ -1,13 +1,17 @@
-import { auth } from './firebase-config.js';
+import { auth, storage } from './firebase-config.js';
 import {
   onAuthStateChanged, updateProfile,
   EmailAuthProvider, reauthenticateWithCredential,
   updatePassword, deleteUser
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  ref, uploadBytes, getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
+import { applyAvatars } from './avatar.js';
 
 /* ============================================
    AI GALAXY — PROFILE ACTIONS
-   Edit Profile, Change Password, Settings (Delete Account)
+   Edit Profile (jina + picha), Change Password, Settings (Delete Account)
    profile-actions.js
    ============================================ */
 
@@ -67,20 +71,38 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
-  /* ---- Update mob/desktop displayed name after a change ---- */
+  /* ---- Update mob/desktop displayed name + avatar after a change ---- */
   function refreshDisplayedName() {
     const firstName = (currentUser.displayName || currentUser.email || 'User').split(' ')[0];
     const signinBtn = document.getElementById('signin-btn');
     if (signinBtn) signinBtn.textContent = `Hi, ${firstName}`;
     const mobName = document.querySelector('#panel-profile .mob-panel__name');
     if (mobName) mobName.textContent = currentUser.displayName || firstName;
+    applyAvatars(currentUser);
   }
 
   /* ================= EDIT PROFILE ================= */
   document.getElementById('mob-edit-profile-btn')?.addEventListener('click', () => {
     if (!requireLogin()) return;
 
-    paOpen('Edit Profile', 'Update your display name', `
+    let selectedAvatarFile = null;
+    const initial = (currentUser.displayName || currentUser.email || 'U').trim().charAt(0).toUpperCase();
+
+    paOpen('Edit Profile', 'Update your display name and photo', `
+      <div class="modal-field pa-avatar-field">
+        <label>Profile Photo</label>
+        <div class="pa-avatar-upload">
+          <div class="pa-avatar-preview" id="pa-avatar-preview">
+            ${currentUser.photoURL
+              ? `<img src="${currentUser.photoURL}" alt="" />`
+              : `<span>${initial}</span>`}
+          </div>
+          <div>
+            <button type="button" class="btn btn--outline" id="pa-avatar-btn">Change Photo</button>
+            <input type="file" id="pa-avatar-input" accept="image/*" hidden />
+          </div>
+        </div>
+      </div>
       <div class="modal-field">
         <label>Full Name</label>
         <input type="text" id="pa-name-input" value="${currentUser.displayName || ''}" placeholder="Your name" />
@@ -88,23 +110,66 @@ document.addEventListener('DOMContentLoaded', () => {
       <button class="btn btn--primary modal-submit" id="pa-save-name-btn">Save Changes</button>
     `);
 
+    const avatarBtn     = document.getElementById('pa-avatar-btn');
+    const avatarInput   = document.getElementById('pa-avatar-input');
+    const avatarPreview = document.getElementById('pa-avatar-preview');
+
+    avatarBtn.addEventListener('click', () => avatarInput.click());
+
+    avatarInput.addEventListener('change', () => {
+      const file = avatarInput.files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith('image/')) {
+        paShowError('Please select an image file.');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        paShowError('Image must be smaller than 5MB.');
+        return;
+      }
+
+      paClearError();
+      selectedAvatarFile = file;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        avatarPreview.innerHTML = `<img src="${reader.result}" alt="" />`;
+      };
+      reader.readAsDataURL(file);
+    });
+
     document.getElementById('pa-save-name-btn').addEventListener('click', async () => {
       const name = document.getElementById('pa-name-input').value.trim();
       paClearError();
       if (!name) { paShowError('Please enter your name.'); return; }
 
       const btn = document.getElementById('pa-save-name-btn');
-      btn.textContent = 'Saving…';
+      const originalBtnText = btn.textContent;
       btn.disabled = true;
+
       try {
-        await updateProfile(currentUser, { displayName: name });
+        let photoURL = currentUser.photoURL || null;
+
+        if (selectedAvatarFile) {
+          btn.textContent = 'Uploading photo…';
+          const fileRef = ref(storage, `avatars/${currentUser.uid}`);
+          await uploadBytes(fileRef, selectedAvatarFile);
+          photoURL = await getDownloadURL(fileRef);
+        }
+
+        btn.textContent = 'Saving…';
+        const updates = { displayName: name };
+        if (selectedAvatarFile) updates.photoURL = photoURL;
+        await updateProfile(currentUser, updates);
+
         refreshDisplayedName();
         paShowError('Profile updated successfully.', true);
       } catch (err) {
         console.error('Edit profile error:', err);
         paShowError('Could not update profile. Please try again.');
       } finally {
-        btn.textContent = 'Save Changes';
+        btn.textContent = originalBtnText;
         btn.disabled = false;
       }
     });

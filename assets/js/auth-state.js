@@ -1,5 +1,6 @@
 import { auth } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { applyAvatars } from './avatar.js';
 
 /* ============================================
    AI GALAXY — AUTH STATE + USER DROPDOWN
@@ -90,6 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mobName)  mobName.textContent  = 'Galaxy User';
       if (mobEmail) mobEmail.textContent = 'Sign in to view your profile';
     }
+
+    applyAvatars(user);
   });
 
   /* Capture phase — mtu akiwa amelogin, click ya signinBtn inafungua dropdown badala ya modal */
