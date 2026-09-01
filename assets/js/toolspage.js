@@ -141,6 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ---- Ukifika tools.html?filter=saved (kutoka mobile profile panel), washa filter ya Saved moja kwa moja ---- */
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('filter') === 'saved') {
+    activeCategory = 'saved';
+    filterBtns.forEach(b => b.classList.toggle('tr-filter-btn--active', b.dataset.cat === 'saved'));
+  }
+
   /* ---- Category cards in "Browse by Category" also filter the grid ---- */
   document.querySelectorAll('.tl-category-grid .category-card').forEach(card => {
     card.addEventListener('click', (e) => {

@@ -73,15 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeDropdown() { dropdown.hidden = true; }
 
   onAuthStateChanged(auth, (user) => {
+    const mobName  = document.querySelector('.mob-panel__name');
+    const mobEmail = document.querySelector('.mob-panel__email');
+
     if (user) {
       loggedIn = true;
       const firstName = (user.displayName || user.email || 'User').split(' ')[0];
       signinBtn.textContent = `Hi, ${firstName}`;
       emailLabel.textContent = user.email || '';
+      if (mobName)  mobName.textContent  = user.displayName || firstName;
+      if (mobEmail) mobEmail.textContent = user.email || '';
     } else {
       loggedIn = false;
       signinBtn.textContent = originalLabel;
       closeDropdown();
+      if (mobName)  mobName.textContent  = 'Galaxy User';
+      if (mobEmail) mobEmail.textContent = 'Sign in to view your profile';
     }
   });
 
@@ -98,6 +105,22 @@ document.addEventListener('DOMContentLoaded', () => {
     signOut(auth);
     closeDropdown();
   });
+
+  /* ---- Mobile profile panel: Log Out ---- */
+  const mobLogoutBtn = document.getElementById('mob-logout-btn');
+  if (mobLogoutBtn) {
+    mobLogoutBtn.addEventListener('click', () => {
+      signOut(auth);
+    });
+  }
+
+  /* ---- Mobile profile panel: Saved Tools -> tools.html na filter ya saved tayari imewashwa ---- */
+  const mobSavedBtn = document.getElementById('mob-saved-tools-btn');
+  if (mobSavedBtn) {
+    mobSavedBtn.addEventListener('click', () => {
+      window.location.href = 'tools.html?filter=saved';
+    });
+  }
 
   document.addEventListener('click', (e) => {
     if (!dropdown.hidden && !dropdown.contains(e.target) && e.target !== signinBtn) {
