@@ -50,6 +50,7 @@
   /* ---- Navbar ---- */
   .navbar__links { display: none; }
   .navbar__search { display: none; }
+  .navbar__icon-btn { display: none; }
   .navbar__hamburger { display: flex; }
   .theme-toggle { width: 32px; height: 32px; }
 
@@ -525,6 +526,7 @@
   /* ---- Navbar ---- */
   .navbar__links { display: none; }
   .navbar__search { display: none; }
+  .navbar__icon-btn { display: none; }
   .navbar__hamburger { display: flex; }
   .theme-toggle { width: 32px; height: 32px; }
 
