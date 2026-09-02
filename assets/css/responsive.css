@@ -257,11 +257,20 @@
 
   /* ---- Navbar: Sign In button (15-20% narrower, shorter, softer radius) ---- */
   .navbar__right { gap: var(--space-2); }
-  #signin-btn {
+ #signin-btn {
     padding: 0.42rem 0.85rem;
     font-size: 0.8rem;
     border-radius: var(--radius-lg);
     min-height: 32px;
+    max-width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+  }
+
+  .navbar__hamburger {
+    flex-shrink: 0;
   }
 
   /* ---- Hero: spacing rhythm + astronaut alignment ---- */

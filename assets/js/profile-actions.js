@@ -1,17 +1,30 @@
-import { auth, storage } from './firebase-config.js';
+import { auth } from './firebase-config.js';
 import {
   onAuthStateChanged, updateProfile,
   EmailAuthProvider, reauthenticateWithCredential,
   updatePassword, deleteUser
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import {
-  ref, uploadBytes, getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
-import { applyAvatars } from './avatar.js';
+
+/* ---- Cloudinary (isiyohitaji card, badala ya Firebase Storage) ---- */
+const CLOUDINARY_CLOUD_NAME = 'jnkghelo';
+const CLOUDINARY_UPLOAD_PRESET = 'h9wkai0t';
+
+async function uploadToCloudinary(file) {
+  const url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+  formData.append('folder', 'avatars');
+
+  const res = await fetch(url, { method: 'POST', body: formData });
+  if (!res.ok) throw new Error('Cloudinary upload failed');
+  const data = await res.json();
+  return data.secure_url;
+}
 
 /* ============================================
    AI GALAXY — PROFILE ACTIONS
-   Edit Profile (jina + picha), Change Password, Settings (Delete Account)
+   Edit Profile, Change Password, Settings (Delete Account)
    profile-actions.js
    ============================================ */
 
@@ -59,6 +72,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function paCloseModal() { overlay.hidden = true; }
 
+  const paStyle = document.createElement('style');
+  paStyle.textContent = `
+    .pa-avatar-upload { display: flex; align-items: center; gap: 1rem; }
+    .pa-avatar-preview {
+      width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
+      background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5); flex-shrink: 0;
+    }
+    .pa-avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+  `;
+  document.head.appendChild(paStyle);
+
   paClose.addEventListener('click', paCloseModal);
   overlay.addEventListener('click', (e) => { if (e.target === overlay) paCloseModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !overlay.hidden) paCloseModal(); });
@@ -71,36 +97,33 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
-  /* ---- Update mob/desktop displayed name + avatar after a change ---- */
+  /* ---- Update mob/desktop displayed name after a change ---- */
   function refreshDisplayedName() {
     const firstName = (currentUser.displayName || currentUser.email || 'User').split(' ')[0];
     const signinBtn = document.getElementById('signin-btn');
     if (signinBtn) signinBtn.textContent = `Hi, ${firstName}`;
     const mobName = document.querySelector('#panel-profile .mob-panel__name');
     if (mobName) mobName.textContent = currentUser.displayName || firstName;
-    applyAvatars(currentUser);
   }
 
   /* ================= EDIT PROFILE ================= */
+  let selectedAvatarFile = null;
+
   document.getElementById('mob-edit-profile-btn')?.addEventListener('click', () => {
     if (!requireLogin()) return;
-
-    let selectedAvatarFile = null;
-    const initial = (currentUser.displayName || currentUser.email || 'U').trim().charAt(0).toUpperCase();
+    selectedAvatarFile = null;
 
     paOpen('Edit Profile', 'Update your display name and photo', `
-      <div class="modal-field pa-avatar-field">
+      <div class="modal-field">
         <label>Profile Photo</label>
         <div class="pa-avatar-upload">
           <div class="pa-avatar-preview" id="pa-avatar-preview">
             ${currentUser.photoURL
               ? `<img src="${currentUser.photoURL}" alt="" />`
-              : `<span>${initial}</span>`}
+              : `<svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`}
           </div>
-          <div>
-            <button type="button" class="btn btn--outline" id="pa-avatar-btn">Change Photo</button>
-            <input type="file" id="pa-avatar-input" accept="image/*" hidden />
-          </div>
+          <button type="button" class="btn btn--outline" id="pa-avatar-btn">Change Photo</button>
+          <input type="file" id="pa-avatar-file" accept="image/*" hidden />
         </div>
       </div>
       <div class="modal-field">
@@ -111,32 +134,15 @@ document.addEventListener('DOMContentLoaded', () => {
     `);
 
     const avatarBtn     = document.getElementById('pa-avatar-btn');
-    const avatarInput   = document.getElementById('pa-avatar-input');
+    const avatarFile    = document.getElementById('pa-avatar-file');
     const avatarPreview = document.getElementById('pa-avatar-preview');
 
-    avatarBtn.addEventListener('click', () => avatarInput.click());
-
-    avatarInput.addEventListener('change', () => {
-      const file = avatarInput.files[0];
+    avatarBtn.addEventListener('click', () => avatarFile.click());
+    avatarFile.addEventListener('change', () => {
+      const file = avatarFile.files[0];
       if (!file) return;
-
-      if (!file.type.startsWith('image/')) {
-        paShowError('Please select an image file.');
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        paShowError('Image must be smaller than 5MB.');
-        return;
-      }
-
-      paClearError();
       selectedAvatarFile = file;
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        avatarPreview.innerHTML = `<img src="${reader.result}" alt="" />`;
-      };
-      reader.readAsDataURL(file);
+      avatarPreview.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="" />`;
     });
 
     document.getElementById('pa-save-name-btn').addEventListener('click', async () => {
@@ -145,22 +151,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!name) { paShowError('Please enter your name.'); return; }
 
       const btn = document.getElementById('pa-save-name-btn');
-      const originalBtnText = btn.textContent;
       btn.disabled = true;
-
       try {
         let photoURL = currentUser.photoURL || null;
 
         if (selectedAvatarFile) {
           btn.textContent = 'Uploading photo…';
-          const fileRef = ref(storage, `avatars/${currentUser.uid}`);
-          await uploadBytes(fileRef, selectedAvatarFile);
-          photoURL = await getDownloadURL(fileRef);
+          photoURL = await uploadToCloudinary(selectedAvatarFile);
         }
 
         btn.textContent = 'Saving…';
         const updates = { displayName: name };
-        if (selectedAvatarFile) updates.photoURL = photoURL;
+        if (photoURL) updates.photoURL = photoURL;
         await updateProfile(currentUser, updates);
 
         refreshDisplayedName();
@@ -169,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Edit profile error:', err);
         paShowError('Could not update profile. Please try again.');
       } finally {
-        btn.textContent = originalBtnText;
+        btn.textContent = 'Save Changes';
         btn.disabled = false;
       }
     });
