@@ -138,17 +138,17 @@
       </p>
 
       <!-- Unified glass command bar: search + filters together -->
-      <div class="tl-command-bar">
+      <div class="tl-command-bar" role="search">
         <div class="tl-search-input">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
           </svg>
-          <input type="text" id="tl-search-input" placeholder="Search AI tools…" autocomplete="off" name="tools-search-field" />
+          <input type="search" id="tl-search-input" placeholder="Search AI tools, categories, or features" autocomplete="off" name="tools-search-field" aria-label="Search AI tools" />
         </div>
 
         <div class="tl-command-bar__divider"></div>
 
-        <select class="tl-select tl-select--ghost" id="tl-category-select">
+        <select class="tl-select tl-select--ghost" id="tl-category-select" aria-label="Filter by category">
           <option>All Categories</option>
           <option value="chatbots">AI Chatbots</option>
           <option value="image">Image Generation</option>
@@ -157,19 +157,24 @@
           <option value="code">Code Assistant</option>
           <option value="research">Research</option>
         </select>
-        <select class="tl-select tl-select--ghost">
+        <select class="tl-select tl-select--ghost" aria-label="Filter by pricing">
           <option>All Pricing</option>
           <option>Free</option>
           <option>Paid</option>
           <option>Free • Paid</option>
         </select>
-        <select class="tl-select tl-select--ghost" id="tl-sort-select">
+        <select class="tl-select tl-select--ghost" id="tl-sort-select" aria-label="Sort tools">
           <option value="popular">Sort: Popular</option>
           <option value="rating">Sort: Rating</option>
           <option value="name">Sort: Name</option>
         </select>
 
-        <button class="tl-search-btn" id="tl-search-btn">Search</button>
+        <button class="tl-search-btn" id="tl-search-btn" type="button">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>
+          </svg>
+          <span>Search tools</span>
+        </button>
       </div>
 
       <!-- Floating category dock (replaces the flat icon row) -->

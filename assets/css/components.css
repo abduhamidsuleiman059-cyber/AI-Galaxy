@@ -3524,7 +3524,7 @@
 .tr-fire-badge--tr { top: 12%; right: 0; }
 .tr-fire-badge--bl { bottom: 18%; left: 4%; }
 
-── Page grid ── */
+/* ── Page grid ── */
 .tr-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -3673,7 +3673,7 @@
   transform: translateY(-3px);
   box-shadow: 0 8px 28px rgba(124,58,237,.15);
 }
-* Rank badge */
+/* Rank badge */
 .tr-card__rank {
   position: absolute;
   top: -10px;
@@ -5629,35 +5629,49 @@
   max-width:min(880px, 94vw);
   margin:0 auto var(--space-6);
   padding:var(--space-2);
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(8,12,31,0.72);
+  border:1px solid rgba(255,255,255,0.16);
   border-radius:var(--radius-full);
-  box-shadow:0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+  box-shadow:0 18px 50px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.09), 0 0 0 1px rgba(6,182,212,0.04);
   backdrop-filter:blur(20px);
   position:relative;
   z-index:1;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.tl-command-bar:focus-within{
+  border-color:rgba(34,211,238,0.48);
+  box-shadow:0 18px 50px rgba(0,0,0,0.42), 0 0 0 4px rgba(6,182,212,0.10), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 .tl-command-bar .tl-search-input{
-  flex:2;
+  flex:1 1 380px;
   min-width:0;
-  background:none;
+  min-height:46px;
+  background:rgba(255,255,255,0.095);
   border:none;
   box-shadow:none;
-  padding-left:var(--space-3);
+  padding:0 var(--space-3) 0 var(--space-4);
+  border-radius:var(--radius-full);
+  transition:background .2s ease;
 }
-.tl-command-bar .tl-search-input svg{ color:var(--text-muted); flex-shrink:0; }
+.tl-command-bar .tl-search-input:focus-within{
+  background:rgba(255,255,255,0.14);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.12);
+}
+.tl-command-bar .tl-search-input svg{ color:var(--color-cyan-light); flex-shrink:0; opacity:.9; }
 .tl-command-bar .tl-search-input input{
   background:none;
   border:none;
   outline:none;
-  color:var(--text-primary);
+  color:#ffffff;
+  -webkit-text-fill-color:#ffffff;
   font-family:var(--font-body);
-  font-size:var(--text-sm);
+  font-size:.92rem;
+  font-weight:500;
   padding:0.85rem 0;
   width:100%;
   min-width:0;
 }
-.tl-command-bar .tl-search-input input::placeholder{ color:var(--text-muted); }
+.tl-command-bar .tl-search-input input::placeholder{ color:rgba(255,255,255,0.62); opacity:1; }
 
 .tl-command-bar__divider{
   width:1px;
@@ -5672,13 +5686,51 @@
   backdrop-filter:none;
   white-space:nowrap;
   font-size:var(--text-sm);
+  color:rgba(240,240,255,.72);
+  color-scheme:dark;
+  min-height:40px;
+  padding:0 .75rem;
   flex-shrink:0;
 }
-.tl-select--ghost:hover{ background:rgba(255,255,255,0.06); border-radius:var(--radius-full); }
+.tl-select--ghost option{
+  background:#111130 !important;
+  color:#f0f0ff !important;
+}
+.tl-select--ghost:hover,
+.tl-select--ghost:focus-visible{ background:rgba(255,255,255,0.08); border-radius:var(--radius-full); color:var(--text-primary); }
 
 .tl-command-bar .tl-search-btn{
   margin-left:auto;
   flex-shrink:0;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+  padding:0 1.15rem;
+  border-radius:var(--radius-full);
+  background:linear-gradient(135deg, var(--color-purple) 0%, var(--color-cyan) 150%);
+  color:#fff;
+  font-family:var(--font-display);
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.01em;
+  box-shadow:0 8px 22px rgba(124,58,237,.28), inset 0 1px 0 rgba(255,255,255,.2);
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.tl-command-bar .tl-search-btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+  box-shadow:0 12px 28px rgba(124,58,237,.38), inset 0 1px 0 rgba(255,255,255,.22);
+}
+.tl-command-bar .tl-search-btn:active{ transform:translateY(0); }
+.tl-command-bar .tl-search-btn:focus-visible{ outline:2px solid var(--color-cyan-light); outline-offset:3px; }
+.tl-command-bar .tl-search-btn svg{ flex-shrink:0; }
+
+@media (max-width:900px){
+  .tl-command-bar{ gap:.35rem; }
+  .tl-command-bar .tl-search-input{ flex-basis:100%; }
+  .tl-command-bar .tl-select--ghost{ flex:1 1 auto; }
 }
 
 /* Floating category dock — replaces the flat icon row */

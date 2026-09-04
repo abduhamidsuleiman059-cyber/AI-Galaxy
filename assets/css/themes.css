@@ -25,6 +25,21 @@
 [data-theme="light"] .tl-hero__sub {
   color: #f0f0ff;
 }
+[data-theme="light"] .tl-select--ghost {
+  color-scheme: light;
+  color: #f0f0ff;
+}
+[data-theme="light"] .tl-select--ghost option {
+  background: #ffffff !important;
+  color: #0a0a1a !important;
+}
+[data-theme="light"] .tl-command-bar .tl-search-input input {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+}
+[data-theme="light"] .tl-command-bar .tl-search-input input::placeholder {
+  color: rgba(255,255,255,0.72);
+}
 
 /* ---- About Us page (.ab-hero) — photo background ---- */
 [data-theme="light"] .ab-hero__title,
