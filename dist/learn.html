@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Galaxy — Learn AI. Discover the best AI courses, tutorials and resources curated to help you master AI and stay ahead." />
+  <title>Learn AI — AI Galaxy</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/x-icon" href="/assets/favicon-B_SY1GJM.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="manifest" href="site.webmanifest" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- CSS Files — same order as index.html -->
+  <!-- Page-specific (Learn page only, prefix: lr-) -->
+  <style>
+/* ===== VIDEO MODAL — inline failsafe (guaranteed to apply) ===== */
+.lr-video-modal {
+  display: none !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+}
+.lr-video-modal.is-open {
+  display: flex !important;
+}
+.lr-video-modal__backdrop {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(5, 8, 15, 0.9) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+.lr-video-modal__panel {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(920px, 92vw) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: rgba(20, 22, 32, 0.98) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6) !important;
+}
+.lr-video-modal__frame-wrap {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  background: #000 !important;
+}
+.lr-video-modal__iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+.lr-video-modal__close {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  z-index: 3 !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  background: rgba(0,0,0,0.5) !important;
+  color: #fff !important;
+  cursor: pointer !important;
+}
+.lr-video-modal__close:hover {
+  background: rgba(0,0,0,0.75) !important;
+}
+.lr-tutorial-card { cursor: pointer !important; }
+  </style>
+  <script type="module" crossorigin src="/assets/learn-CwvAgbRU.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modal-kWVoKFoC.js">
+  <link rel="modulepreload" crossorigin href="/assets/profile-actions-BEVaoyxH.js">
+  <link rel="stylesheet" crossorigin href="/assets/modal-C-rVS1oj.css">
+  <link rel="stylesheet" crossorigin href="/assets/learn-BCXFlUvq.css">
+  <link rel="stylesheet" crossorigin href="/assets/themes-C-2jQhEP.css">
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR — exact match to homepage ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__container">
+
+      <a href="index.html" class="navbar__logo">
+        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="6" fill="url(#grad1)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad1)" stroke-width="1.5" fill="none" transform="rotate(-30 16 16)"/>
+          <ellipse cx="16" cy="16" rx="15" ry="6" stroke="url(#grad2)" stroke-width="1" fill="none" transform="rotate(30 16 16)" opacity="0.5"/>
+          <circle cx="26" cy="10" r="2" fill="#a855f7"/>
+          <circle cx="8" cy="22" r="1.5" fill="#06b6d4"/>
+          <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+            <linearGradient id="grad2" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#a855f7"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>AI <strong>GALAXY</strong></span>
+      </a>
+
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="trending.html" class="nav-link">Trending</a></li>
+        <li><a href="learn.html" class="nav-link">Learn</a></li>
+        <li><a href="tools.html" class="nav-link">Tools</a></li>
+        <li><a href="community.html" class="nav-link">Community</a></li>
+        <li><a href="contact.html" class="nav-link">About Us</a></li>
+      </ul>
+
+      <div class="navbar__right">
+        <div class="navbar__search">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        <input type="text" id="nav-search" placeholder="Search AI tools, articles..." autocomplete="off" name="site-nav-search" />
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="btn btn--primary btn--sm" id="signin-btn">Sign In</button>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="lr-hero">
+    <div class="lr-hero__inner">
+
+      <!-- Left: copy + search -->
+      <div class="lr-hero__copy reveal">
+        <span class="lr-hero__badge">Jifunze AI. Kua Bila Kikomo.</span>
+        <h1 class="lr-hero__title">
+          Learn AI.<br />
+          <span class="hero__title--gradient">Build the Future.</span>
+        </h1>
+        <p class="lr-hero__desc">
+          Gundua kozi bora zaidi za AI, mafunzo, na rasilimali zilizoandaliwa
+          kukusaidia kuwa mtaalamu wa AI na kubaki mbele.
+        </p>
+
+       <form class="lr-search" id="lr-search-form">
+          <svg class="lr-search__icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="lr-search-input" class="lr-search__input" placeholder="Search for courses, topics or tools..." />
+         <button type="submit" class="btn btn--primary btn--md">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Search</span>
+          </button>
+        </form>
+
+        <div class="lr-hero__popular">
+          Popular:
+          <span class="lr-tag" data-tag="ChatGPT">ChatGPT</span>
+          <span class="lr-tag" data-tag="Midjourney">Midjourney</span>
+          <span class="lr-tag" data-tag="Python AI">Python AI</span>
+          <span class="lr-tag" data-tag="Prompt Engineering">Prompt Engineering</span>
+        </div>
+      </div>
+
+      <!-- Right: floating book visual -->
+      <div class="lr-hero__visual reveal">
+        <div class="lr-visual-glow"></div>
+        <div class="lr-orbit lr-orbit--1"></div>
+        <div class="lr-orbit lr-orbit--2"></div>
+        <div class="lr-book">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <div class="lr-badge lr-badge--1" title="Certificates"><svg class="ai-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></div>
+        <div class="lr-badge lr-badge--2" title="Coding AI"><svg class="ai-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="lr-badge lr-badge--3" title="Image AI"><svg class="ai-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></div>
+        <div class="lr-badge lr-badge--4" title="Chatbots"><svg class="ai-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div>
+
+    </div>
+  </section>
+
+  <!-- ===== BROWSE BY CATEGORY ===== -->
+  <section class="categories-section section" id="lr-categories">
+    <div class="container">
+      <div class="section-top">
+        <h2 class="section-title">Browse by Category</h2>
+        <a href="trending.html" class="view-all">View all categories →</a>
+      </div>
+
+      <div class="categories-grid reveal-stagger">
+        <a href="trending.html?cat=chatgpt" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#10a37f,#0d8a6a);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <span class="category-card__name">ChatGPT</span>
+          <span class="category-card__count">12 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=image" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#ec4899,#f97316);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+          </div>
+          <span class="category-card__name">Image AI</span>
+          <span class="category-card__count">18 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=code" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#2563eb,#3b82f6);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <span class="category-card__name">Coding AI</span>
+          <span class="category-card__count">15 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=video" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#0891b2,#06b6d4);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <span class="category-card__name">Video AI</span>
+          <span class="category-card__count">10 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=marketing" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#d97706,#f59e0b);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 0 1-5.8-1.6"/></svg>
+          </div>
+          <span class="category-card__name">Marketing AI</span>
+          <span class="category-card__count">14 Courses</span>
+        </a>
+
+        <a href="trending.html?cat=productivity" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#4f46e5,#6366f1);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2 4 7v10l8 5 8-5V7l-8-5z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <span class="category-card__name">Productivity AI</span>
+          <span class="category-card__count">9 Courses</span>
+        </a>
+
+        <a href="trending.html" class="category-card">
+          <div class="category-card__icon" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">
+            <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+          </div>
+          <span class="category-card__name">AI Tools</span>
+          <span class="category-card__count">20+ Courses</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED COURSES ===== -->
+  <section class="section" id="lr-featured-courses">
+    <div class="container">
+      <div class="section-top">
+        <h2 class="section-title">Featured Courses</h2>
+        <a href="#lr-featured-courses" class="view-all">View all courses →</a>
+      </div>
+      <div class="lr-courses-grid reveal-stagger">
+
+        <div class="lr-course-card">
+          <div class="lr-course-card__thumb" style="background:linear-gradient(135deg,#0d8a6a,#0a3d33);">
+            <span class="lr-course-card__badge">Best Seller</span>
+            <svg class="ai-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+          </div>
+          <div class="lr-course-card__body">
+            <h3 class="lr-course-card__title">ChatGPT Mastery Complete Guide</h3>
+            <div class="lr-course-card__meta">
+              <span>Beginner</span><span class="lr-dot"></span><span><svg class="ai-icon" width="13" height="13" viewBox="0 0 24 24" fill="#fbbf24" stroke="none" style="vertical-align:-2px;margin-right:2px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.8 (1.2K)</span>
+            </div>
+            <div class="lr-course-card__duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              6 Hours
+            </div>
+            <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
+          </div>
+        </div>
+
+        <div class="lr-course-card">
+          <div class="lr-course-card__thumb" style="background:linear-gradient(135deg,#1e3a5f,#0f1f33);">
+            <svg class="ai-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+          </div>
+          <div class="lr-course-card__body">
+            <h3 class="lr-course-card__title">Midjourney Masterclass From Zero to Pro</h3>
+            <div class="lr-course-card__meta">
+              <span>Intermediate</span><span class="lr-dot"></span><span><svg class="ai-icon" width="13" height="13" viewBox="0 0 24 24" fill="#fbbf24" stroke="none" style="vertical-align:-2px;margin-right:2px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.9 (982)</span>
+            </div>
+            <div class="lr-course-card__duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              5 Hours
+            </div>
+            <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
+          </div>
+        </div>
+
+        <div class="lr-course-card">
+          <div class="lr-course-card__thumb" style="background:linear-gradient(135deg,#3b0764,#1e0a3c);">
+            <svg class="ai-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="lr-course-card__body">
+            <h3 class="lr-course-card__title">AI for Developers Build Smart Apps</h3>
+            <div class="lr-course-card__meta">
+              <span>Advanced</span><span class="lr-dot"></span><span><svg class="ai-icon" width="13" height="13" viewBox="0 0 24 24" fill="#fbbf24" stroke="none" style="vertical-align:-2px;margin-right:2px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.7 (756)</span>
+            </div>
+            <div class="lr-course-card__duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              7.5 Hours
+            </div>
+            <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
+          </div>
+        </div>
+
+        <div class="lr-course-card">
+          <div class="lr-course-card__thumb" style="background:linear-gradient(135deg,#7c2d12,#431407);">
+            <svg class="ai-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <div class="lr-course-card__body">
+            <h3 class="lr-course-card__title">AI Video Generation with Runway &amp; Pika</h3>
+            <div class="lr-course-card__meta">
+              <span>Beginner</span><span class="lr-dot"></span><span><svg class="ai-icon" width="13" height="13" viewBox="0 0 24 24" fill="#fbbf24" stroke="none" style="vertical-align:-2px;margin-right:2px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.6 (642)</span>
+            </div>
+            <div class="lr-course-card__duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              4 Hours
+            </div>
+           <a href="#" class="btn btn--primary btn--sm">Start Learning</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+ <!-- ===== LATEST AI TUTORIALS ===== -->
+  <section class="section" id="lr-tutorials" style="background:var(--bg-surface);">
+    <div class="container">
+      <div class="section-top">
+        <h2 class="section-title">Latest AI Tutorials</h2>
+        <a href="#lr-tutorials" class="view-all">View all tutorials →</a>
+      </div>
+
+      <div class="lr-tutorials-grid reveal-stagger">
+
+        <div class="lr-tutorial-card" data-video="WTF5qphyy8w" tabindex="0" role="button" aria-label="Play: ChatGPT Tips You Wish You Knew Earlier">
+          <div class="lr-tutorial-card__thumb" style="background-image:linear-gradient(135deg,rgba(13,138,106,0.55),rgba(10,61,51,0.75)),url('https://img.youtube.com/vi/WTF5qphyy8w/hqdefault.jpg');background-size:cover;background-position:center;">
+            <div class="lr-tutorial-card__brand lr-tutorial-card__brand--chatgpt">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.28 9.82a5.98 5.98 0 0 0-.52-4.91 6.05 6.05 0 0 0-6.52-2.9A6.03 6.03 0 0 0 10.63 0a6.05 6.05 0 0 0-5.77 4.2 6 6 0 0 0-4.01 2.91 6.06 6.06 0 0 0 .75 7.1 5.98 5.98 0 0 0 .51 4.92 6.05 6.05 0 0 0 6.52 2.9A6 6 0 0 0 13.37 24a6.05 6.05 0 0 0 5.78-4.21 6 6 0 0 0 4-2.9 6.06 6.06 0 0 0-.75-7.09 5.9 5.9 0 0 0-.12.02Zm-9.03 12.61a4.48 4.48 0 0 1-2.88-1.04l.14-.08 4.78-2.76a.77.77 0 0 0 .4-.68v-6.73l2.02 1.17c.02.01.03.03.03.05v5.58a4.5 4.5 0 0 1-4.49 4.49ZM3.6 18.3a4.47 4.47 0 0 1-.54-3.02l.14.09 4.78 2.76c.24.14.54.14.79 0l5.83-3.37v2.33a.06.06 0 0 1-.02.05L9.75 20a4.5 4.5 0 0 1-6.15-1.7ZM2.34 7.9a4.48 4.48 0 0 1 2.35-1.97v5.68c0 .28.15.54.4.68l5.82 3.36-2.02 1.17a.07.07 0 0 1-.06 0l-4.83-2.79A4.5 4.5 0 0 1 2.34 7.9Zm16.57 3.85-5.82-3.37 2.02-1.16a.07.07 0 0 1 .06 0l4.83 2.79a4.49 4.49 0 0 1-.68 8.1v-5.68a.78.78 0 0 0-.4-.68ZM20.9 8.9l-.14-.09-4.78-2.76a.78.78 0 0 0-.79 0l-5.83 3.37V7.09a.06.06 0 0 1 .02-.05l4.83-2.78a4.49 4.49 0 0 1 6.68 4.64ZM8.94 12.86 6.92 11.7a.06.06 0 0 1-.03-.05V6.07a4.49 4.49 0 0 1 7.37-3.45l-.14.08-4.78 2.76a.77.77 0 0 0-.4.68v6.72Zm1.1-2.37 2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5v-3Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="lr-tutorial-card__play">
+              <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            </div>
+            <span class="lr-tutorial-card__duration">38:58</span>
+          </div>
+          <p class="lr-tutorial-card__title">ChatGPT Tips You Wish You Knew Earlier</p>
+        </div>
+
+        <div class="lr-tutorial-card" data-video="ohOKxkyKa7w" tabindex="0" role="button" aria-label="Play: Create Stunning Images with Midjourney">
+          <div class="lr-tutorial-card__thumb" style="background-image:linear-gradient(135deg,rgba(46,16,101,0.55),rgba(22,4,51,0.75)),url('https://img.youtube.com/vi/ohOKxkyKa7w/hqdefault.jpg');background-size:cover;background-position:center;">
+            <div class="lr-tutorial-card__brand lr-tutorial-card__brand--midjourney">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 17c3-6.5 6-11 10-13.5C12.5 6 12 12 12 12s3.5-6 8-6c-3 4-4 8-4 11-1.5-2-3-3-6-3-4 0-6.5 1.5-8 3Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="lr-tutorial-card__play">
+              <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            </div>
+            <span class="lr-tutorial-card__duration">9:33</span>
+          </div>
+          <p class="lr-tutorial-card__title">Create Stunning Images with Midjourney</p>
+        </div>
+
+        <div class="lr-tutorial-card" data-video="YKPO2S6j7MM" tabindex="0" role="button" aria-label="Play: Build an AI App with Python">
+          <div class="lr-tutorial-card__thumb" style="background-image:linear-gradient(135deg,rgba(14,116,144,0.55),rgba(8,51,68,0.75)),url('https://img.youtube.com/vi/YKPO2S6j7MM/hqdefault.jpg');background-size:cover;background-position:center;">
+            <div class="lr-tutorial-card__brand lr-tutorial-card__brand--python">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.9 2c-4 0-3.75 1.73-3.75 1.73v2.02h3.8v.5H6.6S4 6 4 10.1s2.27 3.95 2.27 3.95h1.36v-2.1s-.07-2.27 2.24-2.27h3.77s2.16.03 2.16-2.09V4.13S16.15 2 11.9 2ZM9.7 3.4c.42 0 .76.34.76.76 0 .42-.34.76-.76.76a.76.76 0 0 1 0-1.52Z" fill="currentColor"/>
+                <path d="M12.1 22c4 0 3.75-1.73 3.75-1.73v-2.02h-3.8v-.5h5.35s2.6 0 2.6-4.1-2.27-3.95-2.27-3.95h-1.36v2.1s.07 2.27-2.24 2.27H10.4s-2.16-.03-2.16 2.09v3.46S7.85 22 12.1 22Zm2.2-1.4a.76.76 0 1 1 0-1.52.76.76 0 0 1 0 1.52Z" fill="currentColor" opacity=".65"/>
+              </svg>
+            </div>
+            <div class="lr-tutorial-card__play">
+              <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            </div>
+            <span class="lr-tutorial-card__duration">12:19</span>
+          </div>
+          <p class="lr-tutorial-card__title">Build an AI App with Python</p>
+        </div>
+
+        <div class="lr-tutorial-card" data-video="FqYRkl12ON8" tabindex="0" role="button" aria-label="Play: Runway AI Complete Video Editing Guide">
+          <div class="lr-tutorial-card__thumb" style="background-image:linear-gradient(135deg,rgba(29,78,216,0.55),rgba(15,31,92,0.75)),url('https://img.youtube.com/vi/FqYRkl12ON8/hqdefault.jpg');background-size:cover;background-position:center;">
+            <div class="lr-tutorial-card__brand lr-tutorial-card__brand--runway">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 20 12 4l8 16h-4.2l-3.8-8.4L8.2 20H4Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="lr-tutorial-card__play">
+              <svg fill="currentColor" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            </div>
+            <span class="lr-tutorial-card__duration">17:58</span>
+          </div>
+          <p class="lr-tutorial-card__title">Runway AI Complete Video Editing Guide</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEO MODAL (tutorial player — floats above entire page) ===== -->
+  <div class="lr-video-modal" id="lr-video-modal">
+    <div class="lr-video-modal__backdrop" data-close></div>
+    <div class="lr-video-modal__panel">
+      <button class="lr-video-modal__close" data-close aria-label="Close video">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="lr-video-modal__frame-wrap">
+        <iframe id="lr-video-modal__iframe" class="lr-video-modal__iframe" src="" title="Tutorial video" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <!-- ===== WHY LEARN WITH AI GALAXY ===== -->
+  <section class="features-section section" id="lr-why">
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom:var(--space-8);">Why Learn with AI Galaxy?</h2>
+      <div class="features-strip">
+
+        <div class="feature-item">
+          <div class="feature-item__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <h4>100% Free Learning</h4>
+            <p>Access high-quality courses at no cost.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-item__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.85.83 6.7 2.3L21 8"/><polyline points="21 3 21 8 16 8"/></svg>
+          </div>
+          <div>
+            <h4>Updated Weekly</h4>
+            <p>New content every week to keep you ahead.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-item__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <div>
+            <h4>Beginner Friendly</h4>
+            <p>Easy to follow from basics to advanced.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-item__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+          </div>
+          <div>
+            <h4>Certificates (Soon)</h4>
+            <p>Earn certificates and showcase your skills.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="lr-newsletter reveal">
+        <div class="lr-newsletter__left">
+          <div class="lr-newsletter__icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+          </div>
+          <div>
+            <h3>Stay Ahead in AI</h3>
+            <p>Get the latest AI tutorials, tools, and updates delivered to your inbox.</p>
+          </div>
+        </div>
+        <form class="lr-newsletter__form" id="lr-newsletter-form">
+          <input type="email" placeholder="Enter your email" required />
+             <button type="submit" class="btn btn--primary btn--md">
+            <span>Subscribe</span>
+           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+         </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="footer-container"></div>
+
+  <!-- ===== MOBILE BOTTOM NAV ===== -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <a href="index.html" class="bottom-nav__item">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="trending.html" class="bottom-nav__item" data-panel="tools">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span>Tools</span>
+    </a>
+    <a href="learn.html" class="bottom-nav__item" data-panel="learn">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Learn</span>
+    </a>
+    <a href="community.html" class="bottom-nav__item active">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Community</span>
+    </a>
+    <a href="contact.html" class="bottom-nav__item" data-panel="profile">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <div class="mob-overlay" id="mob-overlay"></div>
+
+  <!-- PROFILE PANEL -->
+  <div class="mob-panel" id="panel-profile">
+    <div class="mob-panel__handle"></div>
+    <div class="mob-panel__head">
+      <div class="mob-panel__avatar">
+        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div>
+        <h3 class="mob-panel__name">Galaxy User</h3>
+        <p class="mob-panel__email">user@aigalaxy.com</p>
+      </div>
+    </div>
+    <div class="mob-panel__body">
+      <button class="mob-panel__item" id="mob-edit-profile-btn">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Edit Profile
+      </button>
+      <button class="mob-panel__item" id="mob-change-password-btn">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Change Password
+      </button>
+      <button class="mob-panel__item" id="mob-saved-tools-btn">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Saved Tools
+      </button>
+      <button class="mob-panel__item" id="mob-settings-btn">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </button>
+      <div class="mob-panel__divider"></div>
+      <button class="mob-panel__item mob-panel__item--danger" id="mob-logout-btn">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log Out
+      </button>
+    </div>
+  </div>
+
+<!-- ===== AUTH MODAL ===== -->
+  <div id="auth-modal-container"></div>
+
+  <!-- ===== JS FILES ===== -->
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/learning.js"></script>
+<script src="assets/js/navbar.js"></script>
+<script src="assets/js/tools.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/animation.js"></script>
+<script src="assets/js/script.js"></script>
+
+</body>
+</html>

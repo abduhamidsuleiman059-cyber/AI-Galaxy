@@ -315,7 +315,8 @@
             <input type="email" name="email" placeholder="Your Email" required />
           </div>
           <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit" class="btn btn--primary ab-form-submit">
+          <div class="g-recaptcha" data-sitekey="6LdCvaotAAAAAPar3qJkZM4pGkZ7euyLxHMPf4MI" style="margin-bottom:1rem;"></div>
+           <button type="submit" class="btn btn--primary ab-form-submit">
             Send Message
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
@@ -442,6 +443,9 @@
 <script type="module" src="assets/js/about.js"></script>
 <script src="assets/js/search.js"></script>
 <script src="assets/js/animation.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="assets/js/contact-form.js"></script>
 <script src="assets/js/script.js"></script>
 
 </body>
